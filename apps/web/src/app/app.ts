@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Release } from '@cms/common';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +9,4 @@ import { Release } from '@cms/common';
 })
 export class App {
   protected readonly title = signal('app');
-
-  release: Release = {
-    id: 1,
-  };
 }
