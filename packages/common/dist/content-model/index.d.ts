@@ -1,6 +1,6 @@
 import { PageParams } from "../page/index.js";
 export declare class ContentModel {
-    id: number;
+    id: string;
     type: string;
     description: string | null;
     version: number;
@@ -15,7 +15,7 @@ export declare class CreateContentModel {
     data: Record<string, unknown>;
 }
 export declare class UpdateContentModel {
-    id: number;
+    id: string;
     description?: string | null;
     data?: Record<string, unknown>;
 }

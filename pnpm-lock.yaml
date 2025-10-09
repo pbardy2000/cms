@@ -43,6 +43,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
+      uuid:
+        specifier: ^13.0.0
+        version: 13.0.0
     devDependencies:
       '@nestjs/cli':
         specifier: ^10.0.0
@@ -134,12 +137,36 @@ importers:
       '@cms/common':
         specifier: workspace:*
         version: link:../../packages/common
+      '@ngrx/effects':
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0)
+      '@ngrx/entity':
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0)
+      '@ngrx/operators':
+        specifier: ^20.0.1
+        version: 20.0.1(rxjs@7.8.0)
+      '@ngrx/router-store':
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/common@20.3.0)(@angular/core@20.3.0)(@angular/router@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0)
+      '@ngrx/store':
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/core@20.3.0)(rxjs@7.8.0)
+      '@ngrx/store-devtools':
+        specifier: ^20.0.1
+        version: 20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0)
+      dayjs:
+        specifier: ^1.11.18
+        version: 1.11.18
       rxjs:
         specifier: ~7.8.0
         version: 7.8.0
       tslib:
         specifier: ^2.3.0
         version: 2.3.0
+      uuid:
+        specifier: ^13.0.0
+        version: 13.0.0
     devDependencies:
       '@angular/build':
         specifier: ^20.3.4
@@ -1008,6 +1035,7 @@ packages:
   /@colors/colors@1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+    requiresBuild: true
     dev: true
 
   /@cspotcode/source-map-support@0.8.1:
@@ -2550,6 +2578,82 @@ packages:
       '@nestjs/platform-express': 10.0.0(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)
       tslib: 2.5.3
     dev: true
+
+  /@ngrx/effects@20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0):
+    resolution: {integrity: sha512-bUwAPxwk9ly9FAalECLsjEFrIrrEK5iE95idv1TCekMwShqWuw1XzhqVqcmonbCFEiAGBDgyvDYwJxGi0W6UPw==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      '@ngrx/store': 20.0.1
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@angular/core': 20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.0)
+      '@ngrx/store': 20.0.1(@angular/core@20.3.0)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      tslib: 2.5.3
+    dev: false
+
+  /@ngrx/entity@20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0):
+    resolution: {integrity: sha512-NYzWkN1skfdI3MJNpaFPNcYSnwnXvKm7+DX7b1CeKzRxFKn5LNZaetETezDoF6VK9gSzxAnA1zwB+EtS0IzOFQ==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      '@ngrx/store': 20.0.1
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@angular/core': 20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.0)
+      '@ngrx/store': 20.0.1(@angular/core@20.3.0)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      tslib: 2.5.3
+    dev: false
+
+  /@ngrx/operators@20.0.1(rxjs@7.8.0):
+    resolution: {integrity: sha512-IIaVUlPU2LB1FbZ2m4/4FmAZnTEDCDgC115naods4SHo6U+DU7ZzItfIGDLeEPDaHa8MnjVJwOtrXjy73eJcNg==}
+    peerDependencies:
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      rxjs: 7.8.0
+      tslib: 2.5.3
+    dev: false
+
+  /@ngrx/router-store@20.0.1(@angular/common@20.3.0)(@angular/core@20.3.0)(@angular/router@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0):
+    resolution: {integrity: sha512-sjl2n2LxBkK7+ShuictIoRSVj+N8QgGEL7btznR8rK0oGfUr5iMC/k23oENje4N4a80Gd2i+jEXsX1pBz8//vA==}
+    peerDependencies:
+      '@angular/common': ^20.0.0
+      '@angular/core': ^20.0.0
+      '@angular/router': ^20.0.0
+      '@ngrx/store': 20.0.1
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@angular/common': 20.3.0(@angular/core@20.3.0)(rxjs@7.8.0)
+      '@angular/core': 20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.0)
+      '@angular/router': 20.3.0(@angular/common@20.3.0)(@angular/core@20.3.0)(@angular/platform-browser@20.3.0)(rxjs@7.8.0)
+      '@ngrx/store': 20.0.1(@angular/core@20.3.0)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      tslib: 2.5.3
+    dev: false
+
+  /@ngrx/store-devtools@20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0):
+    resolution: {integrity: sha512-csP579rdeiz0WF5kOmUSX+6PWb4Q/zw6ejYzktJHcQvauWcVU2rPsBCxbyaK6eRJl/ZgzJrTmmGDRnySIglE1A==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      '@ngrx/store': 20.0.1
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@angular/core': 20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.0)
+      '@ngrx/store': 20.0.1(@angular/core@20.3.0)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      tslib: 2.5.3
+    dev: false
+
+  /@ngrx/store@20.0.1(@angular/core@20.3.0)(rxjs@7.8.0):
+    resolution: {integrity: sha512-SWIHKe9lBoNf4rOklaWbCRAz8ie1Duf1iL4SMe6BipqhdUfJ/pEbcz3xMQUIlv1CciHhRgMJFTzFrDxamYHknQ==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@angular/core': 20.3.0(@angular/compiler@20.3.0)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      tslib: 2.5.3
+    dev: false
 
   /@noble/hashes@1.8.0:
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
@@ -4539,6 +4643,10 @@ packages:
     resolution: {integrity: sha512-39BOQLs9ZjKh0/patS9nrT8wc3ioX3/eA/zgbKNopnF2wCqJEoxywwwElATYvRsXdnOxA/OQeQoFZ3rFjVajhg==}
     engines: {node: '>=4.0'}
     dev: true
+
+  /dayjs@1.11.18:
+    resolution: {integrity: sha512-zFBQ7WFRvVRhKcWoUh+ZA1g2HVgUbsZm9sbddh8EC5iv93sui8DVVz1Npvz+r6meo9VKfa8NyLWBsQK1VvIKPA==}
+    dev: false
 
   /debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -8229,7 +8337,7 @@ packages:
   /rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
-      tslib: 2.3.0
+      tslib: 2.5.3
     dev: true
 
   /rxjs@7.8.2:
@@ -9191,6 +9299,11 @@ packages:
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  /uuid@13.0.0:
+    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}

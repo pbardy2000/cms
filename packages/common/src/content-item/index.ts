@@ -5,13 +5,14 @@ import {
   IsObject,
   IsOptional,
   IsString,
+  IsUUID,
   ValidateIf,
 } from "class-validator";
 import { PageParams } from "../page/index.js";
 
 export class ContentItem {
-  @IsNumber()
-  id!: number;
+  @IsUUID()
+  id!: string;
 
   @IsString()
   key!: string;
@@ -19,12 +20,12 @@ export class ContentItem {
   @IsString()
   contentType!: string;
 
-  @IsNumber()
-  contentModelId!: number;
+  @IsUUID()
+  contentModelId!: string;
 
   @ValidateIf((o) => o.releaseId !== null)
-  @IsNumber()
-  releaseId!: number | null;
+  @IsUUID()
+  releaseId!: string | null;
 
   @IsDateString()
   createdAt!: string;
@@ -52,12 +53,12 @@ export class CreateContentItem {
   @IsString()
   contentType!: string;
 
-  @IsNumber()
-  contentModelId!: number;
+  @IsUUID()
+  contentModelId!: string;
 
   @ValidateIf((o) => o.releaseId !== null)
-  @IsNumber()
-  releaseId!: number | null;
+  @IsUUID()
+  releaseId!: string | null;
 
   @ValidateIf((o) => o.publishAt !== null)
   @IsDateString()
@@ -68,8 +69,8 @@ export class CreateContentItem {
 }
 
 export class UpdateContentItem {
-  @IsNumber()
-  id!: number;
+  @IsUUID()
+  id!: string;
 
   @IsOptional()
   @IsString()
@@ -77,8 +78,8 @@ export class UpdateContentItem {
 
   @IsOptional()
   @ValidateIf((o) => o.releaseId !== null)
-  @IsNumber()
-  releaseId?: number | null;
+  @IsUUID()
+  releaseId?: string | null;
 
   @IsOptional()
   @ValidateIf((o) => o.publishAt !== null)
@@ -96,8 +97,8 @@ export class GetContentItemsQueryParams extends PageParams {
   key?: string;
 
   @IsOptional()
-  @IsNumber()
-  contentModelId?: number;
+  @IsUUID()
+  contentModelId?: string;
 
   @IsOptional()
   @IsString()
@@ -108,8 +109,8 @@ export class GetContentItemsQueryParams extends PageParams {
   version?: number;
 
   @IsOptional()
-  @IsNumber()
-  releaseId?: number;
+  @IsUUID()
+  releaseId?: string;
 
   @IsOptional()
   @IsBoolean()

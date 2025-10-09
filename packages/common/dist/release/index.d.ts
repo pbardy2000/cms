@@ -1,6 +1,6 @@
 import { PageParams } from "../page/index.js";
 export declare class Release {
-    id: number;
+    id: string;
     name: string;
     createdAt: string;
     updatedAt: string | null;
@@ -12,7 +12,7 @@ export declare class CreateRelease {
     publishAt: string;
 }
 export declare class UpdateRelease {
-    id: number;
+    id: string;
     name?: string;
     publishAt?: string | null;
 }

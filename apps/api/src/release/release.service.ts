@@ -18,7 +18,7 @@ export class ReleaseService {
 
   constructor(private readonly releaseProvider: ReleaseProvider) {}
 
-  async getReleaseById(id: number): Promise<Release> {
+  async getReleaseById(id: string): Promise<Release> {
     this.logger.log(`Calling getReleaseById`);
     this.logger.log(JSON.stringify(id));
 
@@ -60,7 +60,7 @@ export class ReleaseService {
     return await this.releaseProvider.createRelease(release);
   }
 
-  async updateRelease(id: number, release: UpdateRelease): Promise<Release> {
+  async updateRelease(id: string, release: UpdateRelease): Promise<Release> {
     this.logger.log(`Calling updateRelease`);
     this.logger.log(JSON.stringify(id));
     this.logger.log(JSON.stringify(release));
@@ -79,7 +79,7 @@ export class ReleaseService {
     return await this.releaseProvider.updateRelease(id, release);
   }
 
-  async softDeleteRelease(id: number): Promise<Release> {
+  async softDeleteRelease(id: string): Promise<Release> {
     this.logger.log(`Calling softDeleteRelease`);
     this.logger.log(JSON.stringify(id));
 
@@ -95,7 +95,7 @@ export class ReleaseService {
     return await this.releaseProvider.softDeleteRelease(id);
   }
 
-  async deleteRelease(id: number): Promise<Release> {
+  async deleteRelease(id: string): Promise<Release> {
     this.logger.log(`Calling deleteRelease`);
     this.logger.log(JSON.stringify(id));
 

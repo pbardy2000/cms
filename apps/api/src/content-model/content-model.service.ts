@@ -18,7 +18,7 @@ export class ContentModelService {
 
   constructor(private readonly contentModelProvider: ContentModelProvider) {}
 
-  async getContentModel(id: number): Promise<ContentModel> {
+  async getContentModel(id: string): Promise<ContentModel> {
     this.logger.log(`Calling getContentModel`);
     this.logger.log(JSON.stringify(id));
 
@@ -64,7 +64,7 @@ export class ContentModelService {
   }
 
   async updateContentModel(
-    id: number,
+    id: string,
     contentModel: UpdateContentModel,
   ): Promise<ContentModel> {
     this.logger.log(`Calling updateContentModel`);
@@ -87,7 +87,7 @@ export class ContentModelService {
     return await this.contentModelProvider.updateContentModel(id, contentModel);
   }
 
-  async softDeleteContentModel(id: number): Promise<ContentModel> {
+  async softDeleteContentModel(id: string): Promise<ContentModel> {
     this.logger.log(`Calling softDeleteContentModel`);
     this.logger.log(JSON.stringify(id));
 
@@ -105,7 +105,7 @@ export class ContentModelService {
     return await this.contentModelProvider.softDeleteContentModel(id);
   }
 
-  async deleteContentModel(id: number): Promise<ContentModel> {
+  async deleteContentModel(id: string): Promise<ContentModel> {
     this.logger.log(`Calling deleteContentModel`);
     this.logger.log(JSON.stringify(id));
 

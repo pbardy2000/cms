@@ -1,0 +1,46 @@
+import type { GetReleasesQueryParams, Release } from '@cms/common';
+import { createActionGroup, props } from '@ngrx/store';
+import { RELEASE_FEATURE_KEY } from './release.model';
+
+export const {
+  getRelease,
+  getReleaseSuccess,
+  getReleaseFailure,
+  getReleases,
+  getReleasesSuccess,
+  getReleasesFailure,
+  insertRelease,
+  insertReleaseSuccess,
+  insertReleaseFailure,
+  updateRelease,
+  updateReleaseSuccess,
+  updateReleaseFailure,
+  deleteRelease,
+  deleteReleaseSuccess,
+  deleteReleaseFailure,
+  softDeleteRelease,
+  softDeleteReleaseSuccess,
+  softDeleteReleaseFailure,
+} = createActionGroup({
+  source: RELEASE_FEATURE_KEY,
+  events: {
+    getRelease: props<{ id: string }>(),
+    getReleaseSuccess: props<{ release: Release }>(),
+    getReleaseFailure: props<{ error: unknown }>(),
+    getReleases: props<{ queryParams: GetReleasesQueryParams }>(),
+    getReleasesSuccess: props<{ releases: Release[] }>(),
+    getReleasesFailure: props<{ error: unknown }>(),
+    insertRelease: props<{ release: Release }>(),
+    insertReleaseSuccess: props<{ release: Release }>(),
+    insertReleaseFailure: props<{ release: Release; error: unknown }>(),
+    updateRelease: props<{ id: string; release: Release }>(),
+    updateReleaseSuccess: props<{ release: Release }>(),
+    updateReleaseFailure: props<{ error: unknown }>(),
+    deleteRelease: props<{ id: string }>(),
+    deleteReleaseSuccess: props<{ release: Release }>(),
+    deleteReleaseFailure: props<{ error: unknown }>(),
+    softDeleteRelease: props<{ id: string }>(),
+    softDeleteReleaseSuccess: props<{ release: Release }>(),
+    softDeleteReleaseFailure: props<{ error: unknown }>(),
+  },
+});

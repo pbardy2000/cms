@@ -18,7 +18,7 @@ export class ContentItemService {
 
   constructor(private readonly contentItemProvider: ContentItemProvider) {}
 
-  async getContentItemById(id: number): Promise<ContentItem> {
+  async getContentItemById(id: string): Promise<ContentItem> {
     this.logger.log(`Calling getContentItemById`);
     this.logger.log(JSON.stringify(id));
 
@@ -45,9 +45,6 @@ export class ContentItemService {
   async createContentItem(
     contentItem: CreateContentItem,
   ): Promise<ContentItem> {
-    this.logger.log(`Calling createContentItem`);
-    this.logger.log(JSON.stringify(contentItem));
-
     // Attempt to find a content model with the same key and id, if so throw a conflict error
     const existingItems = await this.contentItemProvider.getContentItems({
       key: contentItem.key,
@@ -56,9 +53,6 @@ export class ContentItemService {
     });
 
     if (existingItems.length > 0) {
-      this.logger.log(`Found existing content items`);
-      this.logger.log(JSON.stringify(existingItems));
-
       throw new ConflictException();
     }
 
@@ -66,7 +60,7 @@ export class ContentItemService {
   }
 
   async updateContentItem(
-    id: number,
+    id: string,
     contentItem: UpdateContentItem,
   ): Promise<ContentItem> {
     this.logger.log(`Calling updateContentItem`);
@@ -87,7 +81,7 @@ export class ContentItemService {
     return await this.contentItemProvider.updateContentItem(id, contentItem);
   }
 
-  async deleteContentItem(id: number): Promise<ContentItem> {
+  async deleteContentItem(id: string): Promise<ContentItem> {
     this.logger.log(`Calling deleteContentItem`);
     this.logger.log(JSON.stringify(id));
 
@@ -103,7 +97,7 @@ export class ContentItemService {
     return await this.contentItemProvider.deleteContentItem(id);
   }
 
-  async softDeleteContentItem(id: number): Promise<ContentItem> {
+  async softDeleteContentItem(id: string): Promise<ContentItem> {
     this.logger.log(`Calling softDeleteContentItem`);
     this.logger.log(JSON.stringify(id));
 

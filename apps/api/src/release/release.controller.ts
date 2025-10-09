@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -16,9 +15,7 @@ export class ReleaseController {
   constructor(private readonly releaseService: ReleaseService) {}
 
   @Get(':id')
-  async getReleaseById(
-    @Param('id', ParseIntPipe) id: number,
-  ): Promise<Release> {
+  async getReleaseById(@Param('id') id: string): Promise<Release> {
     return await this.releaseService.getReleaseById(id);
   }
 
@@ -36,21 +33,19 @@ export class ReleaseController {
 
   @Patch(':id')
   async updateRelease(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Query() release: Release,
   ): Promise<Release> {
     return await this.releaseService.updateRelease(id, release);
   }
 
   @Delete(':id/soft-delete')
-  async softDeleteRelease(
-    @Param('id', ParseIntPipe) id: number,
-  ): Promise<Release> {
+  async softDeleteRelease(@Param('id') id: string): Promise<Release> {
     return await this.releaseService.softDeleteRelease(id);
   }
 
   @Delete(':id')
-  async deleteRelease(@Param('id', ParseIntPipe) id: number): Promise<Release> {
+  async deleteRelease(@Param('id') id: string): Promise<Release> {
     return await this.releaseService.deleteRelease(id);
   }
 }

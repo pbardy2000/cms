@@ -16,7 +16,7 @@ export class ReleaseProvider {
     @Inject(DrizzleAsyncProvider) private readonly db: MySql2Database,
   ) {}
 
-  async getReleaseById(id: number): Promise<Release> {
+  async getReleaseById(id: string): Promise<Release> {
     const rows = await this.db.select().from(release).where(eq(release.id, id));
 
     return rows[0];
@@ -55,7 +55,7 @@ export class ReleaseProvider {
     return row;
   }
 
-  async updateRelease(id: number, data: UpdateRelease): Promise<Release> {
+  async updateRelease(id: string, data: UpdateRelease): Promise<Release> {
     await this.db.update(release).set(data).where(eq(release.id, id));
 
     const [row] = await this.db
@@ -66,7 +66,7 @@ export class ReleaseProvider {
     return row;
   }
 
-  async softDeleteRelease(id: number): Promise<Release> {
+  async softDeleteRelease(id: string): Promise<Release> {
     const [row] = await this.db
       .select()
       .from(release)
@@ -77,7 +77,7 @@ export class ReleaseProvider {
     return row;
   }
 
-  async deleteRelease(id: number): Promise<Release> {
+  async deleteRelease(id: string): Promise<Release> {
     const [row] = await this.db
       .select()
       .from(release)

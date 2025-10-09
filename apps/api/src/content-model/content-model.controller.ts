@@ -9,7 +9,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,7 +20,7 @@ export class ContentModelController {
   constructor(private readonly contentModelService: ContentModelService) {}
 
   @Get(':id')
-  async getContentModel(@Param('id', ParseIntPipe) id: number) {
+  async getContentModel(@Param('id') id: string) {
     return this.contentModelService.getContentModel(id);
   }
 
@@ -37,19 +36,19 @@ export class ContentModelController {
 
   @Patch(':id')
   async updateContentModel(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Body() contentModel: UpdateContentModel,
   ) {
     return this.contentModelService.updateContentModel(id, contentModel);
   }
 
   @Delete(':id/soft')
-  async softDeleteContentModel(@Param('id') id: number) {
+  async softDeleteContentModel(@Param('id') id: string) {
     return this.contentModelService.softDeleteContentModel(id);
   }
 
   @Delete(':id')
-  async deleteContentModel(@Param('id') id: number) {
+  async deleteContentModel(@Param('id') id: string) {
     return this.contentModelService.deleteContentModel(id);
   }
 }

@@ -1,0 +1,5 @@
+<button (click)="onClick()">Button</button>
+
+@for (item of contentItems(); track $index) {
+<p>{{ item | json }}</p>
+}

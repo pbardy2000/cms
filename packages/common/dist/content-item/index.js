@@ -7,13 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsBoolean, IsDateString, IsNumber, IsObject, IsOptional, IsString, ValidateIf, } from "class-validator";
+import { IsBoolean, IsDateString, IsNumber, IsObject, IsOptional, IsString, IsUUID, ValidateIf, } from "class-validator";
 import { PageParams } from "../page/index.js";
 export class ContentItem {
 }
 __decorate([
-    IsNumber(),
-    __metadata("design:type", Number)
+    IsUUID(),
+    __metadata("design:type", String)
 ], ContentItem.prototype, "id", void 0);
 __decorate([
     IsString(),
@@ -24,12 +24,12 @@ __decorate([
     __metadata("design:type", String)
 ], ContentItem.prototype, "contentType", void 0);
 __decorate([
-    IsNumber(),
-    __metadata("design:type", Number)
+    IsUUID(),
+    __metadata("design:type", String)
 ], ContentItem.prototype, "contentModelId", void 0);
 __decorate([
     ValidateIf((o) => o.releaseId !== null),
-    IsNumber(),
+    IsUUID(),
     __metadata("design:type", Object)
 ], ContentItem.prototype, "releaseId", void 0);
 __decorate([
@@ -66,12 +66,12 @@ __decorate([
     __metadata("design:type", String)
 ], CreateContentItem.prototype, "contentType", void 0);
 __decorate([
-    IsNumber(),
-    __metadata("design:type", Number)
+    IsUUID(),
+    __metadata("design:type", String)
 ], CreateContentItem.prototype, "contentModelId", void 0);
 __decorate([
     ValidateIf((o) => o.releaseId !== null),
-    IsNumber(),
+    IsUUID(),
     __metadata("design:type", Object)
 ], CreateContentItem.prototype, "releaseId", void 0);
 __decorate([
@@ -86,8 +86,8 @@ __decorate([
 export class UpdateContentItem {
 }
 __decorate([
-    IsNumber(),
-    __metadata("design:type", Number)
+    IsUUID(),
+    __metadata("design:type", String)
 ], UpdateContentItem.prototype, "id", void 0);
 __decorate([
     IsOptional(),
@@ -97,7 +97,7 @@ __decorate([
 __decorate([
     IsOptional(),
     ValidateIf((o) => o.releaseId !== null),
-    IsNumber(),
+    IsUUID(),
     __metadata("design:type", Object)
 ], UpdateContentItem.prototype, "releaseId", void 0);
 __decorate([
@@ -120,8 +120,8 @@ __decorate([
 ], GetContentItemsQueryParams.prototype, "key", void 0);
 __decorate([
     IsOptional(),
-    IsNumber(),
-    __metadata("design:type", Number)
+    IsUUID(),
+    __metadata("design:type", String)
 ], GetContentItemsQueryParams.prototype, "contentModelId", void 0);
 __decorate([
     IsOptional(),
@@ -135,8 +135,8 @@ __decorate([
 ], GetContentItemsQueryParams.prototype, "version", void 0);
 __decorate([
     IsOptional(),
-    IsNumber(),
-    __metadata("design:type", Number)
+    IsUUID(),
+    __metadata("design:type", String)
 ], GetContentItemsQueryParams.prototype, "releaseId", void 0);
 __decorate([
     IsOptional(),

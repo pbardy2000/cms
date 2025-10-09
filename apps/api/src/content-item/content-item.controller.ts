@@ -10,7 +10,6 @@ import {
   Get,
   Logger,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -24,7 +23,7 @@ export class ContentItemController {
   constructor(private readonly contentItemService: ContentItemService) {}
 
   @Get(':id')
-  async getContentItemById(@Param('id', ParseIntPipe) id: number) {
+  async getContentItemById(@Param('id') id: string) {
     return this.contentItemService.getContentItemById(id);
   }
 
@@ -40,19 +39,19 @@ export class ContentItemController {
 
   @Patch(':id')
   async updateContentItem(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Body() contentItem: UpdateContentItem,
   ) {
     return this.contentItemService.updateContentItem(id, contentItem);
   }
 
   @Delete(':id')
-  async deleteContentItem(@Param('id') id: number) {
+  async deleteContentItem(@Param('id') id: string) {
     return this.contentItemService.deleteContentItem(id);
   }
 
   @Delete(':id/soft')
-  async softDeleteContentItem(@Param('id') id: number) {
+  async softDeleteContentItem(@Param('id') id: string) {
     return this.contentItemService.softDeleteContentItem(id);
   }
 }

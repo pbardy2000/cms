@@ -4,7 +4,7 @@ import type {
   GetContentItemsQueryParams,
   UpdateContentItem,
 } from '@cms/common';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { and, eq, like, SQL } from 'drizzle-orm';
 import { MySql2Database } from 'drizzle-orm/mysql2';
 import { DrizzleAsyncProvider } from 'src/drizzle/drizzle.provider';
@@ -12,11 +12,13 @@ import { contentItem } from 'src/drizzle/schema';
 
 @Injectable()
 export class ContentItemProvider {
+  readonly logger = new Logger();
+
   constructor(
     @Inject(DrizzleAsyncProvider) private readonly db: MySql2Database,
   ) {}
 
-  async getContentItemById(id: number): Promise<ContentItem> {
+  async getContentItemById(id: string): Promise<ContentItem> {
     const rows = await this.db
       .select()
       .from(contentItem)
@@ -70,8 +72,10 @@ export class ContentItemProvider {
   async createContentItem(data: CreateContentItem): Promise<ContentItem> {
     const [{ id }] = await this.db
       .insert(contentItem)
-      .values(data)
+      .values([data])
       .$returningId();
+
+    this.logger.log(`Created content item with id ${JSON.stringify(id)}`);
 
     const [row] = await this.db
       .select()
@@ -82,7 +86,7 @@ export class ContentItemProvider {
   }
 
   async updateContentItem(
-    id: number,
+    id: string,
     data: UpdateContentItem,
   ): Promise<ContentItem> {
     await this.db.update(contentItem).set(data).where(eq(contentItem.id, id));
@@ -95,7 +99,7 @@ export class ContentItemProvider {
     return row;
   }
 
-  async deleteContentItem(id: number): Promise<ContentItem> {
+  async deleteContentItem(id: string): Promise<ContentItem> {
     const [row] = await this.db
       .select()
       .from(contentItem)
@@ -106,7 +110,7 @@ export class ContentItemProvider {
     return row;
   }
 
-  async softDeleteContentItem(id: number): Promise<ContentItem> {
+  async softDeleteContentItem(id: string): Promise<ContentItem> {
     await this.db
       .update(contentItem)
       .set({ deletedAt: new Date().toISOString() })

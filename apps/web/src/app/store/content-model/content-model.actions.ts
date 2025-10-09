@@ -1,0 +1,46 @@
+import type { ContentModel, GetContentModelsQueryParams } from '@cms/common';
+import { createActionGroup, props } from '@ngrx/store';
+import { CONTENT_MODEL_FEATURE_KEY } from './content-model.models';
+
+export const {
+  getContentModel,
+  getContentModelSuccess,
+  getContentModelFailure,
+  getContentModels,
+  getContentModelsSuccess,
+  getContentModelsFailure,
+  insertContentModel,
+  insertContentModelSuccess,
+  insertContentModelFailure,
+  updateContentModel,
+  updateContentModelSuccess,
+  updateContentModelFailure,
+  deleteContentModel,
+  deleteContentModelSuccess,
+  deleteContentModelFailure,
+  softDeleteContentModel,
+  softDeleteContentModelSuccess,
+  softDeleteContentModelFailure,
+} = createActionGroup({
+  source: CONTENT_MODEL_FEATURE_KEY,
+  events: {
+    getContentModel: props<{ id: string }>(),
+    getContentModelSuccess: props<{ contentModel: ContentModel }>(),
+    getContentModelFailure: props<{ error: unknown }>(),
+    getContentModels: props<{ queryParams: GetContentModelsQueryParams }>(),
+    getContentModelsSuccess: props<{ contentModels: ContentModel[] }>(),
+    getContentModelsFailure: props<{ error: unknown }>(),
+    insertContentModel: props<{ contentModel: ContentModel }>(),
+    insertContentModelSuccess: props<{ contentModel: ContentModel }>(),
+    insertContentModelFailure: props<{ contentModel: ContentModel; error: unknown }>(),
+    updateContentModel: props<{ id: string; contentModel: ContentModel }>(),
+    updateContentModelSuccess: props<{ contentModel: ContentModel }>(),
+    updateContentModelFailure: props<{ error: unknown }>(),
+    deleteContentModel: props<{ id: string }>(),
+    deleteContentModelSuccess: props<{ contentModel: ContentModel }>(),
+    deleteContentModelFailure: props<{ error: unknown }>(),
+    softDeleteContentModel: props<{ id: string }>(),
+    softDeleteContentModelSuccess: props<{ contentModel: ContentModel }>(),
+    softDeleteContentModelFailure: props<{ error: unknown }>(),
+  },
+});

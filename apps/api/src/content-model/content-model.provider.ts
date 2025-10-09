@@ -16,7 +16,7 @@ export class ContentModelProvider {
     @Inject(DrizzleAsyncProvider) private readonly db: MySql2Database,
   ) {}
 
-  async getContentModelById(id: number): Promise<ContentModel> {
+  async getContentModelById(id: string): Promise<ContentModel> {
     const rows = await this.db
       .select()
       .from(contentModel)
@@ -64,7 +64,7 @@ export class ContentModelProvider {
   }
 
   async updateContentModel(
-    id: number,
+    id: string,
     data: UpdateContentModel,
   ): Promise<ContentModel> {
     await this.db.update(contentModel).set(data).where(eq(contentModel.id, id));
@@ -77,7 +77,7 @@ export class ContentModelProvider {
     return row;
   }
 
-  async softDeleteContentModel(id: number): Promise<ContentModel> {
+  async softDeleteContentModel(id: string): Promise<ContentModel> {
     await this.db
       .update(contentModel)
       .set({ deletedAt: new Date().toISOString() })
@@ -91,7 +91,7 @@ export class ContentModelProvider {
     return row;
   }
 
-  async deleteContentModel(id: number): Promise<ContentModel> {
+  async deleteContentModel(id: string): Promise<ContentModel> {
     const [row] = await this.db
       .select()
       .from(contentModel)

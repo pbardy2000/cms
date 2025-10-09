@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm';
 import {
   int,
   json,
@@ -7,7 +8,9 @@ import {
 } from 'drizzle-orm/mysql-core';
 
 export const contentModel = mysqlTable('content_model', {
-  id: int('id').primaryKey().autoincrement(),
+  id: varchar('id', { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => sql`UUID()`),
   type: varchar('type', { length: 255 }).notNull(),
   description: varchar('description', { length: 255 }),
   version: int('version').notNull().default(1),
@@ -18,11 +21,13 @@ export const contentModel = mysqlTable('content_model', {
 });
 
 export const contentItem = mysqlTable('content_item', {
-  id: int('id').primaryKey().autoincrement(),
+  id: varchar('id', { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => sql`UUID()`),
   key: varchar('key', { length: 255 }).notNull(),
   contentType: varchar('content_type', { length: 255 }).notNull(),
-  contentModelId: int('content_model_id').notNull(),
-  releaseId: int('release_id'),
+  contentModelId: varchar('content_model_id', { length: 36 }).notNull(),
+  releaseId: varchar('release_id', { length: 36 }),
   createdAt: timestamp('created_at', { mode: 'string' }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { mode: 'string' }),
   deletedAt: timestamp('deleted_at', { mode: 'string' }),
@@ -31,7 +36,9 @@ export const contentItem = mysqlTable('content_item', {
 });
 
 export const release = mysqlTable('release', {
-  id: int('id').primaryKey().autoincrement(),
+  id: varchar('id', { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => sql`UUID()`),
   name: varchar('name', { length: 255 }).notNull(),
   createdAt: timestamp('created_at', { mode: 'string' }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { mode: 'string' }),

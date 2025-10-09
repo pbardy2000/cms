@@ -1,16 +1,16 @@
 import {
   IsBoolean,
   IsDateString,
-  IsNumber,
   IsOptional,
   IsString,
+  IsUUID,
   ValidateIf,
 } from "class-validator";
 import { PageParams } from "../page/index.js";
 
 export class Release {
-  @IsNumber()
-  id!: number;
+  @IsUUID()
+  id!: string;
 
   @IsString()
   name!: string;
@@ -39,8 +39,8 @@ export class CreateRelease {
 }
 
 export class UpdateRelease {
-  @IsNumber()
-  id!: number;
+  @IsUUID()
+  id!: string;
 
   @IsOptional()
   @IsString()
