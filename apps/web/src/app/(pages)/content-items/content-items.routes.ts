@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { contentItemResolver } from '@app/store/content-item/content-item.resolver';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,7 @@ export const routes: Routes = [
       },
       {
         path: ':contentItemId',
+        resolve: { contentItem: contentItemResolver },
         loadChildren: () => import('./[contentItemId]/content-item.routes').then((m) => m.routes),
       },
     ],

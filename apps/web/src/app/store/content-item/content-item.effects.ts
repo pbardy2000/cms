@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { optimisticUpdate, pessimisticUpdate } from '@ngrx/router-store/data-persistence';
+import { createId } from '@paralleldrive/cuid2';
+import { catchError, filter, map, of, switchMap } from 'rxjs';
 import {
   deleteContentItem,
   deleteContentItemFailure,
@@ -13,6 +15,9 @@ import {
   getContentItemSuccess,
   insertContentItem,
   insertContentItemFailure,
+  insertContentItemOptimistically,
+  insertContentItemOptimisticallyFailure,
+  insertContentItemOptimisticallySuccess,
   insertContentItemSuccess,
   softDeleteContentItem,
   softDeleteContentItemFailure,
@@ -52,15 +57,59 @@ export class ContentItemEffects {
     )
   );
 
-  readonly insertContentItem = createEffect(() =>
+  readonly insertContentItemWithOptimism = createEffect(() =>
     this.actions.pipe(
       ofType(insertContentItem),
-      switchMap((action) =>
-        this.contentItemService.createContentItem(action.contentItem).pipe(
-          map((contentItem) => insertContentItemSuccess({ contentItem })),
-          catchError((error) => of(insertContentItemFailure({ error })))
-        )
+      filter((action) => action.optimistic === true),
+      map((action) =>
+        insertContentItemOptimistically({
+          contentItem: {
+            ...action.contentItem,
+            id: createId(),
+            createdAt: new Date().toISOString(),
+            updatedAt: null,
+            deletedAt: null,
+          },
+        })
       )
+    )
+  );
+
+  readonly insertContentItemOptimistically = createEffect(() =>
+    this.actions.pipe(
+      ofType(insertContentItemOptimistically),
+      optimisticUpdate({
+        run: (action) => {
+          const { id, createdAt, updatedAt, deletedAt, ...contentItem } = action.contentItem;
+          return this.contentItemService
+            .createContentItem(contentItem)
+            .pipe(
+              map((contentItem) =>
+                insertContentItemOptimisticallySuccess({ stubId: id, contentItem })
+              )
+            );
+        },
+        undoAction: (action) => {
+          return insertContentItemOptimisticallyFailure({ contentItem: action.contentItem });
+        },
+      })
+    )
+  );
+
+  readonly insertContentItemPessimistically = createEffect(() =>
+    this.actions.pipe(
+      ofType(insertContentItem),
+      filter((action) => !action.optimistic),
+      pessimisticUpdate({
+        run: (action) => {
+          return this.contentItemService
+            .createContentItem(action.contentItem)
+            .pipe(map((contentItem) => insertContentItemSuccess({ contentItem })));
+        },
+        onError: (_, error) => {
+          return insertContentItemFailure({ error });
+        },
+      })
     )
   );
 

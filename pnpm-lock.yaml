@@ -25,6 +25,9 @@ importers:
       '@nestjs/platform-express':
         specifier: ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)
+      '@paralleldrive/cuid2':
+        specifier: ^2.2.2
+        version: 2.2.2
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
@@ -155,6 +158,9 @@ importers:
       '@ngrx/store-devtools':
         specifier: ^20.0.1
         version: 20.0.1(@angular/core@20.3.0)(@ngrx/store@20.0.1)(rxjs@7.8.0)
+      '@paralleldrive/cuid2':
+        specifier: ^2.2.2
+        version: 2.2.2
       dayjs:
         specifier: ^1.11.18
         version: 1.11.18
@@ -164,9 +170,6 @@ importers:
       tslib:
         specifier: ^2.3.0
         version: 2.3.0
-      uuid:
-        specifier: ^13.0.0
-        version: 13.0.0
     devDependencies:
       '@angular/build':
         specifier: ^20.3.4
@@ -2658,7 +2661,6 @@ packages:
   /@noble/hashes@1.8.0:
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
-    dev: true
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2783,7 +2785,6 @@ packages:
     resolution: {integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==}
     dependencies:
       '@noble/hashes': 1.8.0
-    dev: true
 
   /@parcel/watcher-android-arm64@2.5.1:
     resolution: {integrity: sha512-KF8+j9nNbUN8vzOFDpRMsaKBHZ/mcjEjMToVMJOhTozkDonQFFrRcfdLWn6yWKCmJKmdVxSgHiYvTCef4/qcBA==}

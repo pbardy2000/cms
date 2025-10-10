@@ -5,13 +5,12 @@ import {
   IsObject,
   IsOptional,
   IsString,
-  IsUUID,
   ValidateIf,
 } from "class-validator";
 import { PageParams } from "../page/index.js";
 
 export class ContentModel {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsString()
@@ -52,7 +51,7 @@ export class CreateContentModel {
 }
 
 export class UpdateContentModel {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsOptional()

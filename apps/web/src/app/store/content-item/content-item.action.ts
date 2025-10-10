@@ -1,5 +1,5 @@
 import type { ContentItem, CreateContentItem, GetContentItemsQueryParams } from '@cms/common';
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { CONTENT_ITEM_FEATURE_KEY } from './content-item.models';
 
 export const {
@@ -10,6 +10,9 @@ export const {
   getContentItemsSuccess,
   getContentItemsFailure,
   insertContentItem,
+  insertContentItemOptimistically,
+  insertContentItemOptimisticallySuccess,
+  insertContentItemOptimisticallyFailure,
   insertContentItemSuccess,
   insertContentItemFailure,
   updateContentItem,
@@ -21,6 +24,7 @@ export const {
   softDeleteContentItem,
   softDeleteContentItemSuccess,
   softDeleteContentItemFailure,
+  navigationEnd,
 } = createActionGroup({
   source: CONTENT_ITEM_FEATURE_KEY,
   events: {
@@ -30,7 +34,10 @@ export const {
     getContentItems: props<{ queryParams: GetContentItemsQueryParams }>(),
     getContentItemsSuccess: props<{ contentItems: ContentItem[] }>(),
     getContentItemsFailure: props<{ error: unknown }>(),
-    insertContentItem: props<{ contentItem: CreateContentItem }>(),
+    insertContentItem: props<{ contentItem: CreateContentItem; optimistic?: boolean }>(),
+    insertContentItemOptimistically: props<{ contentItem: ContentItem }>(),
+    insertContentItemOptimisticallySuccess: props<{ stubId: string; contentItem: ContentItem }>(),
+    insertContentItemOptimisticallyFailure: props<{ contentItem: ContentItem }>(),
     insertContentItemSuccess: props<{ contentItem: ContentItem }>(),
     insertContentItemFailure: props<{ error: unknown }>(),
     updateContentItem: props<{ id: string; contentItem: ContentItem }>(),
@@ -42,5 +49,6 @@ export const {
     softDeleteContentItem: props<{ id: string }>(),
     softDeleteContentItemSuccess: props<{ contentItem: ContentItem }>(),
     softDeleteContentItemFailure: props<{ error: unknown }>(),
+    navigationEnd: emptyProps(),
   },
 });

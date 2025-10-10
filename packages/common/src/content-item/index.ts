@@ -5,13 +5,12 @@ import {
   IsObject,
   IsOptional,
   IsString,
-  IsUUID,
   ValidateIf,
 } from "class-validator";
 import { PageParams } from "../page/index.js";
 
 export class ContentItem {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsString()
@@ -20,11 +19,11 @@ export class ContentItem {
   @IsString()
   contentType!: string;
 
-  @IsUUID()
+  @IsString()
   contentModelId!: string;
 
   @ValidateIf((o) => o.releaseId !== null)
-  @IsUUID()
+  @IsString()
   releaseId!: string | null;
 
   @IsDateString()
@@ -53,11 +52,11 @@ export class CreateContentItem {
   @IsString()
   contentType!: string;
 
-  @IsUUID()
+  @IsString()
   contentModelId!: string;
 
   @ValidateIf((o) => o.releaseId !== null)
-  @IsUUID()
+  @IsString()
   releaseId!: string | null;
 
   @ValidateIf((o) => o.publishAt !== null)
@@ -69,7 +68,7 @@ export class CreateContentItem {
 }
 
 export class UpdateContentItem {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsOptional()
@@ -78,7 +77,7 @@ export class UpdateContentItem {
 
   @IsOptional()
   @ValidateIf((o) => o.releaseId !== null)
-  @IsUUID()
+  @IsString()
   releaseId?: string | null;
 
   @IsOptional()
@@ -97,7 +96,7 @@ export class GetContentItemsQueryParams extends PageParams {
   key?: string;
 
   @IsOptional()
-  @IsUUID()
+  @IsString()
   contentModelId?: string;
 
   @IsOptional()
@@ -109,7 +108,7 @@ export class GetContentItemsQueryParams extends PageParams {
   version?: number;
 
   @IsOptional()
-  @IsUUID()
+  @IsString()
   releaseId?: string;
 
   @IsOptional()

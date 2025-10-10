@@ -5,6 +5,9 @@ import {
   deleteContentItemSuccess,
   getContentItemsSuccess,
   getContentItemSuccess,
+  insertContentItemOptimistically,
+  insertContentItemOptimisticallyFailure,
+  insertContentItemOptimisticallySuccess,
   insertContentItemSuccess,
   softDeleteContentItemSuccess,
   updateContentItemSuccess,
@@ -23,12 +26,22 @@ export const contentItemReducer = createReducer<ContentItemState>(
   on(
     getContentItemSuccess,
     insertContentItemSuccess,
+    insertContentItemOptimisticallySuccess,
     updateContentItemSuccess,
     softDeleteContentItemSuccess,
     (state, action) => {
       return contentItemAdapter.upsertOne(action.contentItem, state);
     }
   ),
+  on(insertContentItemOptimistically, (state, action) => {
+    return contentItemAdapter.addOne(action.contentItem, state);
+  }),
+  on(insertContentItemOptimisticallySuccess, (state, action) => {
+    return contentItemAdapter.removeOne(action.stubId, state);
+  }),
+  on(insertContentItemOptimisticallyFailure, (state, action) => {
+    return contentItemAdapter.removeOne(action.contentItem.id, state);
+  }),
   on(getContentItemsSuccess, (state, action) => {
     return contentItemAdapter.upsertMany(action.contentItems, state);
   }),

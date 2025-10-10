@@ -3,13 +3,12 @@ import {
   IsDateString,
   IsOptional,
   IsString,
-  IsUUID,
   ValidateIf,
 } from "class-validator";
 import { PageParams } from "../page/index.js";
 
 export class Release {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsString()
@@ -39,7 +38,7 @@ export class CreateRelease {
 }
 
 export class UpdateRelease {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsOptional()
