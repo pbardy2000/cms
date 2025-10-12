@@ -23,8 +23,17 @@ export class EditContentModelService {
       type: this.fb.control(contentModel?.type || ''),
       description: this.fb.control(contentModel?.description || ''),
       version: this.fb.control(contentModel?.version || 1),
-      data: this.fb.group({}),
+      data: this.fb.group({
+        type: this.fb.control('object'),
+        properties: this.buildPropertiesForm(contentModel),
+      }),
     });
+
+    return form;
+  }
+
+  private buildPropertiesForm(contentModel?: ContentModel): FormGroup {
+    const form = this.fb.group({});
 
     return form;
   }
