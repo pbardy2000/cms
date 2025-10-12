@@ -1,0 +1,19 @@
+@let remaining = maxlength() - value().length;
+
+@if (remaining === 1) {
+  <div [id]="`${id}-hint-info`" class="govuk-hint govuk-character-count__message">
+    You have 1 character remaining
+  </div>
+}
+
+@if (remaining === 0 || remaining > 1) {
+  <div [id]="`${id}-hint-info`" class="govuk-hint govuk-character-count__message">
+    You have {{ remaining }} characters remaining
+  </div>
+}
+
+@if (remaining < 0) {
+  <div [id]="`${id}-hint-info`" class="govuk-hint govuk-character-count__message">
+    You have {{ remaining * -1 }} characters too many
+  </div>
+}

@@ -1,0 +1,16 @@
+<h1 class="govuk-heading-xl">Edit content model</h1>
+
+@if (editContentModelService.form; as form) {
+  <form [formGroup]="form">
+    <app-text-input label="Title" formControlName="type"></app-text-input>
+    <app-textarea
+      label="Description"
+      formControlName="description"
+      [maxlength]="500"
+    ></app-textarea>
+  </form>
+}
+
+<app-button-group>
+  <app-button>Save content model</app-button>
+</app-button-group>

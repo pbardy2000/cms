@@ -1,0 +1,45 @@
+<div
+  class="govuk-form-group"
+  [class.govuk-form-group--error]="error()"
+  [class.govuk-character-count]="maxlength()"
+  [attr.data-module]="maxlength() ? 'govuk-character-count' : undefined"
+  [attr.data-maxlength]="maxlength()"
+>
+  @if (label()) {
+    <h1 class="govuk-label-wrapper">
+      <label class="govuk-label" [htmlFor]="id()">
+        {{ label() }}
+      </label>
+    </h1>
+  }
+
+  @if (hint()) {
+    <div [id]="`${id()}-hint`" class="govuk-hint">
+      {{ hint() }}
+    </div>
+  }
+
+  @if (error()) {
+    <app-error-message [id]="id()">
+      {{ error() }}
+    </app-error-message>
+  }
+
+  <textarea
+    class="govuk-textarea"
+    [class.govuk-textarea--error]="error()"
+    [id]="id()"
+    [name]="name()"
+    [disabled]="disabled()"
+    [attr.rows]="rows()"
+    [attr.maxlength]="maxlength()"
+    [attr.aria-describedby]="hint() ? `${id()}-hint` : undefined"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+    (blur)="onTouched()"
+  ></textarea>
+
+  @if (maxlength(); as maxlength) {
+    <app-character-count [id]="id()" [value]="value() || ''" [maxlength]="maxlength" />
+  }
+</div>

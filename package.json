@@ -16,5 +16,17 @@
   "engines": {
     "node": ">=22.12.0"
   },
-  "packageManager": "pnpm@latest"
+  "packageManager": "pnpm@latest",
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  }
 }

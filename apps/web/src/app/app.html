@@ -1,1 +1,28 @@
-<router-outlet />
+<app-skip-link />
+<app-header />
+<app-service-navigation>
+  <app-service-navigation-link routerLink="/technical-records">
+    Technical Records
+  </app-service-navigation-link>
+  <app-service-navigation-link routerLink="/contingency-testing">
+    Contingency Testing
+  </app-service-navigation-link>
+  <app-service-navigation-link routerLink="/content-management">
+    Content Management
+  </app-service-navigation-link>
+</app-service-navigation>
+<div class="govuk-width-container">
+  <!-- Breadcrumbs-->
+  <main class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+        <app-sidenav />
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        <app-breadcrumbs />
+        <router-outlet />
+      </div>
+    </div>
+  </main>
+</div>
+<app-footer />

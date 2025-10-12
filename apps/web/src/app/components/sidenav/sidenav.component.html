@@ -1,0 +1,41 @@
+<div class="app-split-pane__nav">
+  <nav class="app-subnav" aria-labelledby="app-subnav-heading">
+    <h2 class="govuk-visually-hidden" id="app-subnav-heading">Pages in this section</h2>
+    @for (item of items; track $index) {
+      @if ('theme' in item) {
+        <h3 class="app-subnav__theme">{{ item.theme }}</h3>
+        <ul class="app-subnav__section">
+          @for (child of item.children; track $index) {
+            <li
+              class="app-subnav__section-item"
+              [class.app-subnav__section-item--current]="rla.isActive"
+            >
+              <a
+                class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline"
+                [routerLink]="child.routerLink"
+                routerLinkActive
+                #rla="routerLinkActive"
+              >
+                {{ child.label }}
+              </a>
+              @if (rla.isActive && child.children && child.children.length) {
+                <ul class="app-subnav__section app-subnav__section--nested">
+                  @for (grandchild of child.children; track $index) {
+                    <li class="app-subnav__section-item">
+                      <a
+                        class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline"
+                        [routerLink]="grandchild.routerLink"
+                      >
+                        {{ grandchild.label }}
+                      </a>
+                    </li>
+                  }
+                </ul>
+              }
+            </li>
+          }
+        </ul>
+      }
+    }
+  </nav>
+</div>

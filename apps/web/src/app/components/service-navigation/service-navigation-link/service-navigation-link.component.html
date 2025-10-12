@@ -1,0 +1,14 @@
+<li
+  class="govuk-service-navigation__item"
+  [class.govuk-service-navigation__item--active]="rla.isActive"
+>
+  <a
+    class="govuk-service-navigation__link"
+    href="javascript:void(0)"
+    [routerLink]="routerLink()"
+    routerLinkActive
+    #rla="routerLinkActive"
+  >
+    <ng-content></ng-content>
+  </a>
+</li>
