@@ -1,4 +1,4 @@
-import { PageParams } from "../page/index.js";
+import { PageParams } from '../page/index.js';
 export declare class ContentItem {
     id: string;
     key: string;
@@ -20,7 +20,6 @@ export declare class CreateContentItem {
     data: Record<string, unknown>;
 }
 export declare class UpdateContentItem {
-    id: string;
     key?: string;
     releaseId?: string | null;
     publishAt?: string | null;

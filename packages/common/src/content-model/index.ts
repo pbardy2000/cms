@@ -6,8 +6,8 @@ import {
   IsOptional,
   IsString,
   ValidateIf,
-} from "class-validator";
-import { PageParams } from "../page/index.js";
+} from 'class-validator';
+import { PageParams } from '../page/index.js';
 
 export class ContentModel {
   @IsString()
@@ -51,9 +51,6 @@ export class CreateContentModel {
 }
 
 export class UpdateContentModel {
-  @IsString()
-  id!: string;
-
   @IsOptional()
   @ValidateIf((o) => o.description !== null)
   @IsString()

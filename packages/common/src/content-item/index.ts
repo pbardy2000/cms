@@ -6,8 +6,8 @@ import {
   IsOptional,
   IsString,
   ValidateIf,
-} from "class-validator";
-import { PageParams } from "../page/index.js";
+} from 'class-validator';
+import { PageParams } from '../page/index.js';
 
 export class ContentItem {
   @IsString()
@@ -68,9 +68,6 @@ export class CreateContentItem {
 }
 
 export class UpdateContentItem {
-  @IsString()
-  id!: string;
-
   @IsOptional()
   @IsString()
   key?: string;

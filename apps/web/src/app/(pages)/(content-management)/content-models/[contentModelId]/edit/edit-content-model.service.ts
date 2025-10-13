@@ -18,7 +18,7 @@ export class EditContentModelService {
     });
   }
 
-  private buildForm(contentModel?: ContentModel): FormGroup {
+  buildForm(contentModel?: ContentModel): FormGroup {
     const form = this.fb.group({
       type: this.fb.control(contentModel?.type || ''),
       description: this.fb.control(contentModel?.description || ''),
@@ -32,8 +32,29 @@ export class EditContentModelService {
     return form;
   }
 
-  private buildPropertiesForm(contentModel?: ContentModel): FormGroup {
-    const form = this.fb.group({});
+  buildPropertiesForm(contentModel?: ContentModel): FormGroup {
+    const form = this.fb.group({
+      type: this.fb.control<string | null>(null),
+      title: this.fb.control<string | null>(null),
+      hint: this.fb.control<string | undefined>(undefined),
+      label: this.fb.control<string | undefined>(undefined),
+      size: this.fb.control<number | undefined>(undefined),
+      multiple: this.fb.control<boolean | undefined>(undefined),
+      options: this.fb.array([]),
+    });
+
+    return form;
+  }
+
+  buildPropertyOptionForm(): FormGroup {
+    const form = this.fb.group({
+      type: this.fb.control<string>('string'),
+      hint: this.fb.control<string | undefined>(undefined),
+      label: this.fb.control<string | undefined>(undefined),
+      value: this.fb.control<string | undefined>(undefined),
+      divider: this.fb.control<string | undefined>(undefined),
+      exclusive: this.fb.control<boolean>(false),
+    });
 
     return form;
   }

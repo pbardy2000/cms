@@ -1,4 +1,4 @@
-import type { GetReleasesQueryParams, Release } from '@cms/common';
+import type { CreateRelease, GetReleasesQueryParams, Release, UpdateRelease } from '@cms/common';
 import { createActionGroup, props } from '@ngrx/store';
 import { RELEASE_FEATURE_KEY } from './release.model';
 
@@ -9,6 +9,7 @@ export const {
   getReleases,
   getReleasesSuccess,
   getReleasesFailure,
+  saveRelease,
   insertRelease,
   insertReleaseSuccess,
   insertReleaseFailure,
@@ -30,10 +31,11 @@ export const {
     getReleases: props<{ queryParams: GetReleasesQueryParams }>(),
     getReleasesSuccess: props<{ releases: Release[] }>(),
     getReleasesFailure: props<{ error: unknown }>(),
-    insertRelease: props<{ release: Release }>(),
+    saveRelease: props<{ release: CreateRelease | UpdateRelease }>(),
+    insertRelease: props<{ release: CreateRelease }>(),
     insertReleaseSuccess: props<{ release: Release }>(),
-    insertReleaseFailure: props<{ release: Release; error: unknown }>(),
-    updateRelease: props<{ id: string; release: Release }>(),
+    insertReleaseFailure: props<{ release: CreateRelease; error: unknown }>(),
+    updateRelease: props<{ id: string; release: UpdateRelease }>(),
     updateReleaseSuccess: props<{ release: Release }>(),
     updateReleaseFailure: props<{ error: unknown }>(),
     deleteRelease: props<{ id: string }>(),

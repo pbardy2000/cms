@@ -1,10 +1,12 @@
-import { Component, forwardRef, input, model } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, inject, input, model } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RADIOS } from '../radios/radios.model';
 
 @Component({
   selector: 'app-radio',
   templateUrl: './radio.component.html',
-  imports: [],
+  styleUrls: ['./radio.component.scss'],
+  imports: [FormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -14,7 +16,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class RadioComponent<T> implements ControlValueAccessor {
+  readonly radios = inject(RADIOS, { optional: true });
+
   readonly id = input<string>();
+  readonly name = input<string>('');
   readonly hint = input<string>();
   readonly label = input<string>();
 

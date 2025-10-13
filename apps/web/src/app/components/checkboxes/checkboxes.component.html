@@ -1,0 +1,43 @@
+<div class="govuk-form-group" [class.govuk-form-group--error]="error()">
+  <fieldset class="govuk-fieldset" [attr.aria-describedby]="hint() ? id() + '-hint' : undefined">
+    @if (label()) {
+      <legend class="govuk-fieldset__legend">
+        <h1 class="govuk-fieldset__heading">{{ label() }}</h1>
+      </legend>
+    }
+
+    @if (hint()) {
+      <div id="{{ id() }}-hint" class="govuk-hint">{{ hint() }}</div>
+    }
+
+    @if (error()) {
+      <app-error-message [id]="id()">
+        {{ error() }}
+      </app-error-message>
+    }
+
+    <div
+      class="govuk-checkboxes"
+      [class.govuk-checkboxes--small]="size() === 'small'"
+      data-module="govuk-checkboxes"
+    >
+      <ng-content>
+        @if (options(); as options) {
+          @for (option of options; track $index) {
+            <app-checkbox
+              [id]="option.id || id() + '-' + option.value"
+              [label]="option.label || ''"
+              [hint]="option.hint || ''"
+              [value]="option.value"
+              [exclusive]="option.exclusive || false"
+            ></app-checkbox>
+
+            @if (option.divider) {
+              <div class="govuk-checkboxes__divider">{{ option.divider }}</div>
+            }
+          }
+        }
+      </ng-content>
+    </div>
+  </fieldset>
+</div>

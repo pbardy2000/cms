@@ -8,28 +8,38 @@ export const selectReleaseFeature = createFeatureSelector<ReleaseState>(RELEASE_
 
 export const selectAllReleases = createSelector(
   selectReleaseFeature,
-  releaseAdapter.getSelectors().selectAll
+  releaseAdapter.getSelectors().selectAll,
 );
 
 export const selectReleases = createSelector(selectAllReleases, (releases) =>
-  releases.filter((r) => r.deletedAt === null)
+  releases.filter((r) => r.deletedAt === null),
 );
 
 export const selectReleaseEntities = createSelector(
   selectReleaseFeature,
-  releaseAdapter.getSelectors().selectEntities
+  releaseAdapter.getSelectors().selectEntities,
 );
 
 export const selectReleaseFromRoute = createSelector(
   selectReleaseEntities,
   getRouterSelectors().selectRouteParam('id'),
-  (entities, id) => id && entities[id]
+  (entities, id) => id && entities[id],
 );
 
 export const selectArchivedReleases = createSelector(selectReleases, (releases) =>
-  releases.filter((r) => dayjs(r.publishAt).isAfter(dayjs()))
+  releases.filter((r) => dayjs(r.publishAt).isAfter(dayjs())),
 );
 
 export const selectPendingReleases = createSelector(selectReleases, (releases) =>
-  releases.filter((r) => dayjs(r.publishAt).isBefore(dayjs()))
+  releases.filter((r) => dayjs(r.publishAt).isBefore(dayjs())),
+);
+
+export const selectReleaseId = createSelector(
+  getRouterSelectors().selectRouteParam('releaseId'),
+  (releaseId) => releaseId as string,
+);
+
+export const selectIsEditingRelease = createSelector(
+  selectReleaseId,
+  (releaseId) => releaseId !== 'new',
 );

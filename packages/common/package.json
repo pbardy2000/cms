@@ -4,11 +4,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w"
+    "build": "npx tsc",
+    "watch": "npx tsc -w"
   },
   "dependencies": {
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.2"
+    "class-validator": "^0.14.2",
+    "typescript": "^5.9.3"
   }
 }

@@ -6,7 +6,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('@pages/(content-management)/content-management.routes').then((m) => m.routes),
   },
-
+  {
+    path: 'technical-records',
+    loadChildren: () =>
+      import('@pages/(technical-records)/technical-records.routes').then((m) => m.routes),
+  },
   {
     path: '',
     pathMatch: 'full',

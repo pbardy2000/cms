@@ -1,0 +1,7 @@
+.govuk-checkboxes__item {
+  margin-bottom: 10px;
+}
+
+.govuk-checkboxes__conditional:not(:has(*)) {
+  margin-bottom: 0;
+}

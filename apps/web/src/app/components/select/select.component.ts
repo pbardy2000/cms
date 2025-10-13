@@ -1,10 +1,23 @@
-import { Component, forwardRef, input, model } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  Injector,
+  OnDestroy,
+  forwardRef,
+  inject,
+  input,
+  model,
+  signal,
+} from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ReplaySubject, startWith, takeUntil } from 'rxjs';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  imports: [],
+  styleUrls: ['./select.component.scss'],
+  imports: [FormsModule, ErrorMessageComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -13,8 +26,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class SelectComponent<T> implements ControlValueAccessor {
+export class SelectComponent<T> implements ControlValueAccessor, AfterViewInit, OnDestroy {
+  private readonly injector = inject(Injector);
+
   readonly id = input<string>();
+  readonly name = input<string>('');
   readonly hint = input<string>();
   readonly label = input<string>();
   readonly placeholder = input<string>();
@@ -22,6 +38,9 @@ export class SelectComponent<T> implements ControlValueAccessor {
 
   readonly value = model<T>();
   readonly disabled = model(false);
+
+  private readonly destroy = new ReplaySubject<boolean>(1);
+  readonly error = signal<string>('');
 
   onChange = (_: T) => {};
   onTouched = () => {};
@@ -41,6 +60,34 @@ export class SelectComponent<T> implements ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
   }
+
+  ngAfterViewInit(): void {
+    const control = this.injector.get<NgControl>(NgControl);
+    if (control.control && control.control.statusChanges) {
+      control.control.statusChanges
+        .pipe(startWith(control.control.status), takeUntil(this.destroy))
+        .subscribe((status) => {
+          switch (status) {
+            case 'VALID':
+            case 'PENDING':
+            case 'DISABLED':
+              this.error.set('');
+              break;
+            case 'INVALID':
+              if (control.control && control.control.errors) {
+                const errors = Object.values(control.control.errors);
+                this.error.set(errors[0]);
+              }
+              break;
+          }
+        });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(true);
+    this.destroy.complete();
+  }
 }
 
 export type SelectProps<T> = {
@@ -56,4 +103,5 @@ export type SelectOption<T> = {
   value: T;
   label: string;
   id?: string;
+  disabled?: boolean;
 };

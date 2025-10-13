@@ -1,0 +1,134 @@
+<div class="govuk-form-group" [class.govuk-form-group--error]="error()">
+  <fieldset class="govuk-fieldset" role="group">
+    @if (label()) {
+      <legend class="govuk-fieldset__legend">
+        <h1 class="govuk-fieldset__heading">
+          {{ label() }}
+        </h1>
+      </legend>
+    }
+
+    @if (hint()) {
+      <div class="govuk-hint" [id]="id() + '-hint'">
+        {{ hint() }}
+      </div>
+    }
+
+    @if (error()) {
+      <app-error-message [id]="id()">
+        {{ error() }}
+      </app-error-message>
+    }
+
+    @let dayId = days() ? id() + '-day' : null;
+    @let monthId = months() ? id() + '-month' : null;
+    @let yearId = years() ? id() + '-year' : null;
+    @let hourId = hours() ? id() + '-hour' : null;
+    @let minuteId = minutes() ? id() + '-minute' : null;
+    @let secondId = seconds() ? id() + '-second' : null;
+
+    <div [formGroup]="form" [id]="id()">
+      @if (days()) {
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" [htmlFor]="dayId"> Day </label>
+            <input
+              class="govuk-input--width-2 govuk-input govuk-date-input__input"
+              [id]="dayId"
+              type="text"
+              inputmode="numeric"
+              formControlName="day"
+              govukDateFocusNext="{{ monthId || yearId || hourId || minuteId || secondId }}"
+              govukDateNumberOnly
+              maxlength="2"
+            />
+          </div>
+        </div>
+      }
+      @if (months()) {
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" [htmlFor]="monthId"> Month </label>
+            <input
+              class="govuk-input--width-2 govuk-input govuk-date-input__input"
+              [id]="monthId"
+              type="text"
+              inputmode="numeric"
+              formControlName="month"
+              govukDateFocusNext="{{ yearId || hourId || minuteId || secondId }}"
+              govukDateNumberOnly
+              maxlength="2"
+            />
+          </div>
+        </div>
+      }
+      @if (years()) {
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" [htmlFor]="yearId"> Year </label>
+            <input
+              class="govuk-input--width-4 govuk-input govuk-date-input__input"
+              [id]="yearId"
+              type="text"
+              inputmode="numeric"
+              formControlName="year"
+              govukDateFocusNext="{{ hourId || minuteId || secondId }}"
+              govukDateNumberOnly
+              maxlength="4"
+            />
+          </div>
+        </div>
+      }
+      @if (hours()) {
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" [htmlFor]="hourId"> Hour </label>
+            <input
+              class="govuk-input--width-2 govuk-input govuk-date-input__input"
+              [id]="hourId"
+              type="text"
+              inputmode="numeric"
+              formControlName="hours"
+              govukDateFocusNext="{{ minuteId || secondId }}"
+              govukDateNumberOnly
+              maxlength="2"
+            />
+          </div>
+        </div>
+      }
+      @if (minutes()) {
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" [htmlFor]="minuteId"> Minute </label>
+            <input
+              class="govuk-input--width-2 govuk-input govuk-date-input__input"
+              [id]="minuteId"
+              type="text"
+              inputmode="numeric"
+              formControlName="minutes"
+              govukDateFocusNext="{{ secondId }}"
+              govukDateNumberOnly
+              maxlength="2"
+            />
+          </div>
+        </div>
+      }
+      @if (seconds()) {
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" [htmlFor]="secondId"> Second </label>
+            <input
+              class="govuk-input--width-2 govuk-input govuk-date-input__input"
+              [id]="secondId"
+              type="text"
+              inputmode="numeric"
+              formControlName="seconds"
+              govukDateNumberOnly
+              maxlength="2"
+            />
+          </div>
+        </div>
+      }
+    </div>
+  </fieldset>
+</div>

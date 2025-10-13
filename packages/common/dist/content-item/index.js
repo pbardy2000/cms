@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsBoolean, IsDateString, IsNumber, IsObject, IsOptional, IsString, ValidateIf, } from "class-validator";
-import { PageParams } from "../page/index.js";
+import { IsBoolean, IsDateString, IsNumber, IsObject, IsOptional, IsString, ValidateIf, } from 'class-validator';
+import { PageParams } from '../page/index.js';
 export class ContentItem {
 }
 __decorate([
@@ -85,10 +85,6 @@ __decorate([
 ], CreateContentItem.prototype, "data", void 0);
 export class UpdateContentItem {
 }
-__decorate([
-    IsString(),
-    __metadata("design:type", String)
-], UpdateContentItem.prototype, "id", void 0);
 __decorate([
     IsOptional(),
     IsString(),

@@ -1,0 +1,41 @@
+<div class="govuk-form-group" [class.govuk-form-group--error]="error()">
+  @if (label()) {
+    <label class="govuk-label" [htmlFor]="id()">
+      {{ label() }}
+    </label>
+  }
+
+  @if (hint()) {
+    <div [id]="id() + '-hint'" class="govuk-hint">
+      {{ hint() }}
+    </div>
+  }
+  @if (error()) {
+    <app-error-message [id]="id()">
+      {{ error() }}
+    </app-error-message>
+  }
+
+  <select
+    class="govuk-select"
+    [class.govuk-select--error]="error()"
+    [id]="id()"
+    [name]="name()"
+    [disabled]="disabled()"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+    (blur)="onTouched()"
+  >
+    @for (option of options(); track $index) {
+      <option
+        [ngValue]="option.value"
+        [disabled]="option.disabled"
+        [selected]="option.value === value()"
+      >
+        {{ option.label }}
+      </option>
+    } @empty {
+      <ng-content></ng-content>
+    }
+  </select>
+</div>

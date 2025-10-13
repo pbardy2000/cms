@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsBoolean, IsDateString, IsOptional, IsString, ValidateIf, } from "class-validator";
-import { PageParams } from "../page/index.js";
+import { IsBoolean, IsDateString, IsOptional, IsString, ValidateIf } from 'class-validator';
+import { PageParams } from '../page/index.js';
 export class Release {
 }
 __decorate([
@@ -49,10 +49,6 @@ __decorate([
 ], CreateRelease.prototype, "publishAt", void 0);
 export class UpdateRelease {
 }
-__decorate([
-    IsString(),
-    __metadata("design:type", String)
-], UpdateRelease.prototype, "id", void 0);
 __decorate([
     IsOptional(),
     IsString(),

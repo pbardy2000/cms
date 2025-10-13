@@ -1,11 +1,5 @@
-import {
-  IsBoolean,
-  IsDateString,
-  IsOptional,
-  IsString,
-  ValidateIf,
-} from "class-validator";
-import { PageParams } from "../page/index.js";
+import { IsBoolean, IsDateString, IsOptional, IsString, ValidateIf } from 'class-validator';
+import { PageParams } from '../page/index.js';
 
 export class Release {
   @IsString()
@@ -38,9 +32,6 @@ export class CreateRelease {
 }
 
 export class UpdateRelease {
-  @IsString()
-  id!: string;
-
   @IsOptional()
   @IsString()
   name?: string;
