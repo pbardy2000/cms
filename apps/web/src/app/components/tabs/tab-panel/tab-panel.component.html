@@ -1,0 +1,7 @@
+<div
+  id="{{ id() }}"
+  class="govuk-tabs__panel"
+  [class.govuk-tabs__panel--hidden]="fragment() !== id()"
+>
+  <ng-content></ng-content>
+</div>

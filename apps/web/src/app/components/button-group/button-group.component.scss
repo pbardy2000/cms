@@ -1,0 +1,15 @@
+@media (min-width: 40.0625em) {
+  .govuk-button-group {
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .govuk-button-group::ng-deep .govuk-button {
+    margin-bottom: 0;
+  }
+
+  .govuk-button-group::ng-deep .govuk-link {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

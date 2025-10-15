@@ -5,6 +5,7 @@ import { ButtonGroupComponent } from '@app/components/button-group/button-group.
 import { ButtonComponent } from '@app/components/button/button.component';
 import { TextInputComponent } from '@app/components/text-input/text-input.component';
 import { TextareaComponent } from '@app/components/textarea/textarea.component';
+import jsonToSchema from 'json-schema-generator';
 import { EditContentModelService } from './edit-content-model.service';
 
 @Component({
@@ -23,12 +24,25 @@ import { EditContentModelService } from './edit-content-model.service';
 export class EditContentModelPage {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-   readonly editContentModelService = inject(EditContentModelService);
-  
+  readonly editContentModelService = inject(EditContentModelService);
 
   addProperty(): void {
-    this.router.navigate(['properties'], { relativeTo: this.route });
+    this.router.navigate(['property'], { relativeTo: this.route });
   }
 
-  saveContentModel(): void {}
+  editProperty(path: string): void {
+    this.router.navigate(['property'], { relativeTo: this.route, queryParams: { path } });
+  }
+
+  saveContentModel(): void {
+    const result = jsonToSchema({
+      title: 'requiredStandard',
+      requiredStandard: {
+        type: 'string',
+        description: '{}',
+      },
+    });
+
+    console.log(result);
+  }
 }

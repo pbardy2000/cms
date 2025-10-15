@@ -40,13 +40,13 @@ export class EditContentModelService {
       label: this.fb.control<string | undefined>(undefined),
       size: this.fb.control<number | undefined>(undefined),
       multiple: this.fb.control<boolean | undefined>(undefined),
-      options: this.fb.array([]),
+      options: this.fb.control<any[]>([]),
     });
 
     return form;
   }
 
-  buildPropertyOptionForm(): FormGroup {
+  buildPropertyOptionForm(option?: any): FormGroup {
     const form = this.fb.group({
       type: this.fb.control<string>('string'),
       hint: this.fb.control<string | undefined>(undefined),

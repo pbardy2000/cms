@@ -37,7 +37,7 @@ export class RadiosComponent<T> implements ControlValueAccessor, AfterViewInit, 
   readonly hint = input<string>();
   readonly label = input<string>();
   readonly size = input<'small' | 'regular'>('regular');
-  readonly orientation = input<'horizontal' | 'vertical'>('horizontal');
+  readonly orientation = input<'horizontal' | 'vertical'>('vertical');
   readonly options = input<RadioOption<T>[]>();
 
   readonly value = model<T>();

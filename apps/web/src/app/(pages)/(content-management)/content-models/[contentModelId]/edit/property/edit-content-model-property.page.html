@@ -1,0 +1,57 @@
+<h1 class="govuk-heading-xl">Edit property</h1>
+
+<form [formGroup]="form">
+  <app-text-input label="Title" formControlName="title" />
+  <app-radios label="Type" formControlName="type">
+    <app-radio label="Checkbox" value="checkbox">
+      <app-text-input label="Title" formControlName="title" />
+      <app-text-input label="Label" formControlName="label" />
+      <app-textarea label="Hint" formControlName="hint" [maxlength]="500" />
+    </app-radio>
+    <app-radio label="Checkboxes" value="checkboxes">
+      <ng-container [formGroup]="form">
+        <app-text-input label="Label" formControlName="label" />
+        <app-textarea label="Hint" formControlName="hint" [maxlength]="500" />
+        <app-edit-content-model-option formControlName="options" />
+      </ng-container>
+    </app-radio>
+    <app-radio label="Radios" value="radios">
+      <app-text-input label="Label" formControlName="label" />
+      <app-textarea label="Hint" formControlName="hint" [maxlength]="500" />
+      <app-edit-content-model-option formControlName="options" />
+    </app-radio>
+    <app-radio label="Select" value="select">
+      <app-text-input label="Label" formControlName="label" />
+      <app-textarea label="Hint" formControlName="hint" [maxlength]="500" />
+    </app-radio>
+    <app-radio label="Text input" value="text-input">
+      <app-text-input label="Label" formControlName="label" />
+      <app-textarea label="Hint" formControlName="hint" [maxlength]="500" />
+    </app-radio>
+    <app-radio label="Textarea" value="textarea">
+      <app-text-input label="Label" formControlName="label" />
+      <app-textarea label="Hint" formControlName="hint" [maxlength]="500" />
+    </app-radio>
+  </app-radios>
+
+  <h3 class="govuk-heading-m">Preview</h3>
+
+  <app-example>
+    <div example>
+      <app-form-control [props]="form.getRawValue()" />
+    </div>
+    <app-tabs>
+      <app-tab-list>
+        <app-tab id="example-1-html" [toggleVisibilityOnClick]="true">JSON</app-tab>
+      </app-tab-list>
+      <app-tab-panel id="example-1-html">
+        <app-code-example language="html" />
+      </app-tab-panel>
+    </app-tabs>
+  </app-example>
+
+  <app-button-group>
+    <app-button type="submit" (click)="saveProperty()"> Save property </app-button>
+    <app-button type="button" theme="secondary" (click)="cancel()"> Cancel </app-button>
+  </app-button-group>
+</form>

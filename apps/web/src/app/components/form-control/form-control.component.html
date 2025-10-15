@@ -34,17 +34,6 @@
         (touched)="onTouched()"
       ></app-date-input>
     }
-    @case ('radio') {
-      <app-radio
-        [id]="props.id"
-        [hint]="props.hint"
-        [label]="props.label"
-        [(ngModel)]="value"
-        [disabled]="disabled()"
-        (valueChange)="onChange($any($event))"
-        (touched)="onTouched()"
-      ></app-radio>
-    }
     @case ('radios') {
       <app-radios
         [id]="props.id"

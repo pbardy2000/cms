@@ -1,0 +1,127 @@
+<ng-container [formGroup]="form">
+  <ng-container formArrayName="options">
+    @for (option of form.controls.options.controls; track $index) {
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Option {{ $index + 1 }}</h2>
+
+          <ul class="govuk-summary-card__actions">
+            @if (!$first) {
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="javascript:void(0)" (click)="removeOption($index)">
+                  Remove<span class="govuk-visually-hidden">Remove option</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <dd class="govuk-summary-list__value">
+              <ng-container [formGroupName]="$index">
+                <div class="govuk-grid-row">
+                  <div class="govuk-grid-column-one-half">
+                    <app-text-input
+                      [id]="`options-${$index}-label`"
+                      label="Label"
+                      formControlName="label"
+                      (valueChange)="onChangeOptionLabel($index, $event)"
+                    ></app-text-input>
+                  </div>
+                  <div class="govuk-grid-column-one-half">
+                    <app-text-input
+                      [id]="`options-${$index}-label`"
+                      label="Hint"
+                      formControlName="hint"
+                    ></app-text-input>
+                  </div>
+                </div>
+                <div class="govuk-grid-row">
+                  <div class="govuk-grid-column-one-half">
+                    <app-select
+                      [id]="`options-${$index}-type`"
+                      label="Type"
+                      formControlName="type"
+                      [options]="valueTypes"
+                      (valueChange)="onChangeOptionType($index, $event)"
+                    ></app-select>
+                  </div>
+                  <div class="govuk-grid-column-one-half">
+                    @switch (option.value.type) {
+                      @case ('boolean') {
+                        <app-select
+                          [id]="`options-${$index}-value`"
+                          label="Value"
+                          formControlName="value"
+                          [options]="booleanOptions"
+                        ></app-select>
+                      }
+                      @case ('null') {
+                        <app-text-input
+                          [id]="`options-${$index}-value`"
+                          label="Value"
+                          placeholder="null"
+                          formControlName="value"
+                        ></app-text-input>
+                      }
+                      @case ('number') {
+                        <app-text-input
+                          [id]="`options-${$index}-value`"
+                          label="Value"
+                          type="number"
+                          formControlName="value"
+                        ></app-text-input>
+                      }
+                      @case ('string') {
+                        <app-text-input
+                          [id]="`options-${$index}-value`"
+                          label="Value"
+                          formControlName="value"
+                        ></app-text-input>
+                      }
+                    }
+                  </div>
+                </div>
+
+                <!--
+            @if (description.controls.type.value !== 'dropdown') {
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+                  <govuk-text-input
+                    [id]="`options-${$index}-divider`"
+                    label="Divider"
+                    formControlName="divider"
+                  ></govuk-text-input>
+                </div>
+                @if (description.controls.type.value === 'checkboxes') {
+                  <div class="govuk-grid-column-one-half">
+                    <govuk-checkbox
+                      [id]="`options-${$index}-exclusive`"
+                      title="Exclusive"
+                      label="Yes"
+                      formControlName="exclusive"
+                    ></govuk-checkbox>
+                  </div>
+                }
+              </div>
+            }
+          -->
+              </ng-container>
+
+              <div class="govuk-summary-list__actions">
+                <app-button-group>
+                  <app-button theme="secondary" (click)="addOptionAbove($index)"
+                    >Add option above
+                  </app-button>
+                  <app-button theme="secondary" (click)="addOptionBelow($index)"
+                    >Add option below
+                  </app-button>
+                </app-button-group>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    }
+  </ng-container>
+</ng-container>

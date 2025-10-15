@@ -1,0 +1,6 @@
+<div class="bg-light-grey relative pt-12">
+  <app-button class="absolute right-4 top-4" theme="inverted" (click)="onCopy()">
+    {{ copyText() }}
+  </app-button>
+  <pre><code class="!bg-light-grey" [highlight]="code()" [language]="language()"></code></pre>
+</div>

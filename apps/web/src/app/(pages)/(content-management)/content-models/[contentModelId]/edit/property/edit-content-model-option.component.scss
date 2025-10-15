@@ -1,0 +1,42 @@
+@media (min-width: 40.0625em) {
+  .govuk-summary-card__title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 6px 20px;
+
+    .govuk-summary-card__title,
+    .govuk-summary-card__actions {
+      font-size: 1rem;
+    }
+  }
+
+  .govuk-summary-card__content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .govuk-summary-list__value {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .govuk-summary-list__actions {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+.govuk-summary-card__content {
+  .govuk-grid-row {
+    margin: 0;
+  }
+  .govuk-grid-column-one-half {
+    app-select::ng-deep .govuk-form-group,
+    app-text-input::ng-deep .govuk-form-group {
+      margin-bottom: 10px;
+    }
+  }
+}
