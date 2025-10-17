@@ -73,17 +73,15 @@ export class TextInputComponent implements ControlValueAccessor, AfterViewInit, 
         .pipe(startWith(control.control.status), takeUntil(this.destroy))
         .subscribe((status) => {
           switch (status) {
-            case 'VALID':
-            case 'PENDING':
-            case 'DISABLED':
-              this.error.set('');
-              break;
             case 'INVALID':
               if (control.control && control.control.errors) {
                 const errors = Object.values(control.control.errors);
-                this.error.set(errors[0]);
+                const error = errors[0];
+                this.error.set(typeof error === 'string' ? error : error.label);
               }
               break;
+            default:
+              this.error.set('');
           }
         });
     }

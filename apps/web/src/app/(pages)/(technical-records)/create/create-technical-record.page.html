@@ -1,0 +1,54 @@
+<h1 class="govuk-heading-l">Create a new technical record</h1>
+
+<form class="form" [formGroup]="form">
+  <app-text-input
+    appToUppercase
+    appNoSpace
+    appTrimWhitespace
+    label="Vehicle Identification Number (VIN)"
+    hint="Must be between 3 and 21 characters"
+    formControlName="vin"
+  ></app-text-input>
+
+  <app-checkbox
+    label="Generate C, T or Z number"
+    formControlName="generateID"
+    name="generate-c-t-z-num"
+    label="Generate a C/T/Z number on submission of the new record"
+    [value]="true"
+  ></app-checkbox>
+
+  @if (!form.get('generateID')?.value) {
+    <app-text-input
+      appToUppercase
+      appNoSpace
+      appTrimWhitespace
+      label="Vehicle Registration Mark (VRM) or Trailer ID"
+      formControlName="vrmTrm"
+    ></app-text-input>
+  }
+
+  <app-radios
+    label="Vehicle status"
+    formControlName="status"
+    orientation="horizontal"
+    [options]="constants.vehicleStatusOptions"
+  ></app-radios>
+
+  <app-radios
+    label="Vehicle type"
+    formControlName="type"
+    [options]="constants.vehicleTypeOptions"
+  ></app-radios>
+
+  <hr class="govuk-section-break govuk-section-break--m" />
+
+  <app-button-group>
+    <app-button [id]="'create-tech-record-continue-btn'" (click)="onContinue()">
+      Continue
+    </app-button>
+    <app-button [id]="'create-tech-record-cancel-btn'" theme="secondary" (click)="onCancel()">
+      Cancel
+    </app-button>
+  </app-button-group>
+</form>

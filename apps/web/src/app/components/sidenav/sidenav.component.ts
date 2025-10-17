@@ -15,7 +15,7 @@ export class SidenavComponent {
         { label: 'Create a new record', routerLink: '/technical-records/create' },
         {
           label: 'Create a batch of records',
-          routerLink: '/technical-records/create-batch',
+          routerLink: '/technical-records/batch/create',
         },
         { label: 'Search tech records', routerLink: '/technical-records/search' },
       ],

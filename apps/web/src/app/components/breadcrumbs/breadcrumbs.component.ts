@@ -30,7 +30,20 @@ export class BreadcrumbsComponent {
           for (const child of current.children) {
             if (typeof child?.routeConfig?.title === 'string') {
               let routerLink = child.pathFromRoot
-                .map((segment) => segment.routeConfig?.path || '')
+                .map((segment) => {
+                  const path = segment.routeConfig?.path || '';
+                  const parts = path.split('/').map((part) => {
+                    if (part.startsWith(':')) {
+                      const key = part.slice(1, part.length);
+                      const param = child.paramMap.get(key);
+                      return param;
+                    }
+
+                    return part;
+                  });
+
+                  return parts.join('/');
+                })
                 .join('/')
                 .replaceAll('//', '/');
 
@@ -39,10 +52,8 @@ export class BreadcrumbsComponent {
               }
 
               if (!parent || parent.routerLink !== routerLink) {
-                breadcrumbs.push({
-                  label: child.routeConfig?.title || '',
-                  routerLink,
-                });
+                const label = child.routeConfig?.title || '';
+                breadcrumbs.push({ label, routerLink });
               }
             }
 
