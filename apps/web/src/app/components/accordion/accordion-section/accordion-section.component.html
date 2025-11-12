@@ -1,0 +1,47 @@
+<div
+  class="govuk-accordion__section"
+  [class.govuk-accordion__section--expanded]="expanded()"
+  attr.disabled="{{ disabled() ? '' : undefined }}"
+  attr.aria-disabled="{{ disabled() }}"
+>
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <button
+        type="button"
+        attr.aria-controls="{{ id() }}-content"
+        class="govuk-accordion__section-button"
+        attr.aria-expanded="{{ expanded() }}"
+        attr.aria-label="{{ heading() }}, {{ expanded() ? 'Hide' : 'Show' }} this section"
+        (click)="toggle()"
+        [class.govuk-accordion__section-button--compact]="compact()"
+      >
+        <div>
+          <span class="govuk-accordion__section-heading-text" id="{{ id() }}-heading">
+            <ng-content select="[accordion-section-heading]">
+              <span class="govuk-accordion__section-heading-text-focus">
+                {{ heading() }}
+              </span>
+            </ng-content>
+          </span>
+
+          <span class="govuk-visually-hidden govuk-accordion__section-heading-divider">, </span>
+
+          <div class="govuk-accordion__section-summary govuk-body" id="{{ id() }}-summary">
+            <ng-content select="[accordion-section-summary]">
+              {{ summary() }}
+            </ng-content>
+          </div>
+        </div>
+
+        <app-accordion-section-toggle [expanded]="expanded()" />
+      </button>
+    </h2>
+  </div>
+  <div
+    id="{{ id() }}-content"
+    class="govuk-accordion__section-content"
+    attr.aria-labelledby="{{ id() }}-title"
+  >
+    <ng-content />
+  </div>
+</div>

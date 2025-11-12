@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
-  imports: [],
 })
-export class AccordionComponent {}
+export class AccordionComponent {
+  readonly id = input<string>();
+}

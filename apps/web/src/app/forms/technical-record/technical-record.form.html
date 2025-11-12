@@ -1,169 +1,161 @@
-<app-accordion-group title="Technical record">
-  <!-- General vehicle details -->
-  @if (techRecordService.canHaveGeneralVehicleDetails(techRecord()?.type!)) {
-    <app-accordion
-      title="General vehicle details"
-      summary="Date of registration, body details, EU category."
-      [compact]="true"
-    >
-      <app-general-vehicle-details />
+<form [formGroup]="form">
+  @if (techRecord(); as techRecord) {
+    <app-accordion>
+      <app-accordion-controls>
+        <!-- General vehicle details -->
+        @if (techRecordService.canHaveGeneralVehicleDetails(techRecord.type)) {
+          <app-accordion-section
+            heading="General vehicle details"
+            summary="Date of registration, body details, EU category."
+          >
+            <app-general-vehicle-details [techRecord]="techRecord" />
+          </app-accordion-section>
+        }
+
+        <!-- Approval type (HGV, TRL) -->
+        @if (techRecordService.canHaveApprovalType(techRecord.type)) {
+          <app-accordion-section
+            heading="Approval type"
+            summary="Approval type, national type, variant number."
+          >
+            <app-approval-type-form />
+          </app-accordion-section>
+        }
+
+        <!-- Dimensions (HGV, TRL, PSV) -->
+        @if (techRecordService.canHaveDimensions(techRecord.type)) {
+          <app-accordion-section heading="Dimensions" summary="Axle distance, vehicle dimensions.">
+            <app-dimensions-form />
+          </app-accordion-section>
+        }
+
+        <!-- Authorisation into service (TRL) -->
+        @if (techRecordService.canHaveAuthorisationIntoService(techRecord.type)) {
+          <app-accordion-section
+            heading="Authorisation into service"
+            summary="Dates tracking the vehicle's authorisation into service."
+          >
+            <app-authorisation-into-service-form />
+          </app-accordion-section>
+        }
+
+        <!-- Purchaser (TRL) -->
+        @if (techRecordService.canHavePurchaser(techRecord.type)) {
+          <app-accordion-section heading="Purchaser" summary="Contact details for the purchaser.">
+            <app-purchaser-form />
+          </app-accordion-section>
+        }
+
+        <!-- Manufacturer -->
+        @if (techRecordService.canHaveManufacturer(techRecord.type)) {
+          <app-accordion-section
+            heading="Manufactuer"
+            summary="Contact details for the manufacturer."
+          >
+            <app-manufacturer-form />
+          </app-accordion-section>
+        }
+
+        <!-- Weights (HGV, TRL, PSV) -->
+        @if (techRecordService.canHaveWeights(techRecord.type)) {
+          <app-accordion-section heading="Weights" summary="Axle weights, unladen weight.">
+            <app-weights-form />
+          </app-accordion-section>
+        }
+
+        <!-- Configuration -->
+        <app-accordion-section
+          heading="Configuration"
+          summary="Off-road, fuel system, road friendly suspension."
+        >
+          <app-configuration-form />
+        </app-accordion-section>
+
+        <!-- Tyres (HGV, TRL, PSV) -->
+        @if (techRecordService.canHaveTyres(techRecord.type)) {
+          <app-accordion-section heading="Tyres" summary="Tyre details, tyre use code.">
+            <app-tyres-form />
+          </app-accordion-section>
+        }
+
+        <!-- Emissions and exemptions -->
+        @if (techRecordService.canHaveEmissionsAndExemptions(techRecord.type)) {
+          <app-accordion-section
+            heading="Emissions and exemptions"
+            summary="Drawbar coupling, Euro standard, tacho exemption."
+          >
+            <app-emissions-and-exemptions-form />
+          </app-accordion-section>
+        }
+
+        <!-- ADR -->
+        @if (techRecordService.canHaveAdr(techRecord.type)) {
+          <app-accordion-section heading="ADR" summary="Approval for carrying dangerous goods.">
+            <app-adr-form />
+          </app-accordion-section>
+        }
+
+        <!-- Last applicant -->
+        @if (techRecordService.canHaveLastApplicant(techRecord.type)) {
+          <app-accordion-section
+            heading="Last applicant"
+            summary="Contact details for the last applicant."
+          >
+            <app-last-applicant-form />
+          </app-accordion-section>
+        }
+
+        <!-- Seats and vehicle size -->
+        @if (techRecordService.canHaveSeatsAndVehicleSize(techRecord.type)) {
+          <app-accordion-section
+            heading="Seats and vehicle size"
+            summary="Seat, vehicle size, seatbelts."
+          >
+            <app-seats-and-vehicle-size-form />
+          </app-accordion-section>
+        }
+
+        <!-- Brakes -->
+        @if (techRecordService.canHaveBrakes(techRecord.type)) {
+          <app-accordion-section heading="Brakes" summary="Brake codes, retarders, parking brakes.">
+            <app-brakes-form />
+          </app-accordion-section>
+        }
+
+        <!-- Disability discrimination act -->
+        @if (techRecordService.canHaveDisabilityDiscriminationAct(techRecord.type)) {
+          <app-accordion-section
+            heading="Disability discrimination act"
+            summary="Wheelchair capacity, accessibility, schedules."
+          >
+            <app-disability-discrimination-act-form />
+          </app-accordion-section>
+        }
+
+        <!-- Documents -->
+        @if (techRecordService.canHaveDocuments(techRecord.type)) {
+          <app-accordion-section heading="Documents" summary="Microfilm document details.">
+            <app-documents-form />
+          </app-accordion-section>
+        }
+
+        <!-- Notes -->
+        @if (techRecordService.canHaveNotes(techRecord.type)) {
+          <app-accordion-section heading="Notes" summary="Notes attached to this record.">
+            <app-notes-form />
+          </app-accordion-section>
+        }
+
+        <!-- Reason for amendment -->
+        @if (techRecordService.canHaveReasonForAmendment(techRecord.type)) {
+          <app-accordion-section
+            heading="Reason for amendment"
+            summary="Tell us why you're amending this record."
+          >
+            <app-reason-for-creation-form />
+          </app-accordion-section>
+        }
+      </app-accordion-controls>
     </app-accordion>
   }
-
-  <!-- Approval type (HGV, TRL) -->
-  @if (techRecordService.canHaveApprovalType(techRecord()?.type!)) {
-    <app-accordion
-      title="Approval type"
-      summary="Approval type, national type, variant number."
-      [compact]="true"
-    >
-      <app-approval-type />
-    </app-accordion>
-  }
-
-  <!-- Dimensions (HGV, TRL, PSV) -->
-  @if (techRecordService.canHaveDimensions(techRecord()?.type!)) {
-    <app-accordion title="Dimensions" summary="Axle distance, vehicle dimensions." [compact]="true">
-      <app-dimensions />
-    </app-accordion>
-  }
-
-  <!-- Authorisation into service (TRL) -->
-  @if (techRecordService.canHaveAuthorisationIntoService(techRecord()?.type!)) {
-    <app-accordion
-      title="Authorisation into service"
-      summary="Dates tracking the vehicle's authorisation into service."
-      [compact]="true"
-    >
-      <app-authorisation-into-service />
-    </app-accordion>
-  }
-
-  <!-- Purchaser (TRL) -->
-  @if (techRecordService.canHavePurchaser(techRecord()?.type!)) {
-    <app-accordion title="Purchaser" summary="Contact details for the purchaser." [compact]="true">
-      <app-purchaser />
-    </app-accordion>
-  }
-
-  <!-- Manufacturer -->
-  @if (techRecordService.canHaveManufacturer(techRecord()?.type!)) {
-    <app-accordion
-      title="Manufactuer"
-      summary="Contact details for the manufacturer."
-      [compact]="true"
-    >
-      <app-manufacturer />
-    </app-accordion>
-  }
-
-  <!-- Weights (HGV, TRL, PSV) -->
-  @if (techRecordService.canHaveWeights(techRecord()?.type!)) {
-    <app-accordion title="Weights" summary="Axle weights, unladen weight." [compact]="true">
-      <app-weights />
-    </app-accordion>
-  }
-
-  <!-- Configuration -->
-  <app-accordion
-    title="Configuration"
-    summary="Off-road, fuel system, road friendly suspension."
-    [compact]="true"
-  >
-    <app-configuration />
-  </app-accordion>
-
-  <!-- Tyres (HGV, TRL, PSV) -->
-  @if (techRecordService.canHaveTyres(techRecord()?.type!)) {
-    <app-accordion title="Tyres" summary="Tyre details, tyre use code." [compact]="true">
-      <app-tyres />
-    </app-accordion>
-  }
-
-  <!-- Emissions and exemptions -->
-  @if (techRecordService.canHaveEmissionsAndExemptions(techRecord()?.type!)) {
-    <app-accordion
-      title="Emissions and exemptions"
-      summary="Drawbar coupling, Euro standard, tacho exemption."
-      [compact]="true"
-    >
-      <app-emissions-and-exemptions />
-    </app-accordion>
-  }
-
-  <!-- ADR -->
-  @if (techRecordService.canHaveAdr(techRecord()?.type!)) {
-    <app-accordion title="ADR" summary="Approval for carrying dangerous goods." [compact]="true">
-      <app-adr />
-    </app-accordion>
-  }
-
-  <!-- Last applicant -->
-  @if (techRecordService.canHaveLastApplicant(techRecord()?.type!)) {
-    <app-accordion
-      title="Last applicant"
-      summary="Contact details for the last applicant."
-      [compact]="true"
-    >
-      <app-last-applicant />
-    </app-accordion>
-  }
-
-  <!-- Seats and vehicle size -->
-  @if (techRecordService.canHaveSeatsAndVehicleSize(techRecord()?.type!)) {
-    <app-accordion
-      title="Seats and vehicle size"
-      summary="Seat, vehicle size, seatbelts."
-      [compact]="true"
-    >
-      <app-seats-and-vehicle-size />
-    </app-accordion>
-  }
-
-  <!-- Brakes -->
-  @if (techRecordService.canHaveBrakes(techRecord()?.type!)) {
-    <app-accordion
-      title="Brakes"
-      summary="Brake codes, retarders, parking brakes."
-      [compact]="true"
-    >
-      <app-brakes />
-    </app-accordion>
-  }
-
-  <!-- Disability discrimination act -->
-  @if (techRecordService.canHaveDisabilityDiscriminationAct(techRecord()?.type!)) {
-    <app-accordion
-      title="Disability discrimination act"
-      summary="Wheelchair capacity, accessibility, schedules."
-      [compact]="true"
-    >
-      <app-disability-discrimination-act />
-    </app-accordion>
-  }
-
-  <!-- Documents -->
-  @if (techRecordService.canHaveDocuments(techRecord()?.type!)) {
-    <app-accordion title="Documents" summary="Microfilm document details." [compact]="true">
-      <app-documents />
-    </app-accordion>
-  }
-
-  <!-- Notes -->
-  @if (techRecordService.canHaveNotes(techRecord()?.type!)) {
-    <app-accordion title="Notes" summary="Notes attached to this record." [compact]="true">
-      <app-notes />
-    </app-accordion>
-  }
-
-  <!-- Reason for amendment -->
-  @if (techRecordService.canHaveReasonForAmendment(techRecord()?.type!)) {
-    <app-accordion
-      title="Reason for amendment"
-      summary="Tell us why you're amending this record."
-      [compact]="true"
-    >
-      <app-reason-for-creation action="amending" />
-    </app-accordion>
-  }
-</app-accordion-group>
+</form>

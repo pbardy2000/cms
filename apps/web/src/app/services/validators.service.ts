@@ -129,7 +129,7 @@ export class ValidatorsService {
     };
   }
 
-  pattern(pattern: RegExp, error: ErrorMessage): ValidatorFn {
+  pattern(pattern: RegExp, error: ErrorMessage | string): ValidatorFn {
     return (control) => {
       if (!control.touched) return null;
 
@@ -179,6 +179,12 @@ export class ValidatorsService {
                 : error,
           }
         : null;
+    };
+  }
+
+  date(error: ErrorMessage | string): ValidatorFn {
+    return (control) => {
+      return null;
     };
   }
 

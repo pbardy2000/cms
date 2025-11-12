@@ -3,18 +3,18 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseForm } from '../base-form/base-form.form';
 
 @Component({
-  selector: 'app-emissions-and-exemptions-form',
-  templateUrl: './emissions-and-exemptions.form.html',
+  selector: 'app-weights-form',
+  templateUrl: './weights.form.html',
   imports: [],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => EmissionsAndExemptionsForm),
+      useExisting: forwardRef(() => WeightsForm),
       multi: true,
     },
   ],
 })
-export class EmissionsAndExemptionsForm extends BaseForm {
+export class WeightsForm extends BaseForm {
   override form = this.fb.group({
     
   });

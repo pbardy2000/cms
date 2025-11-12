@@ -1,0 +1,243 @@
+@if (techRecord(); as techRecord) {
+  <div class="govuk-!-padding-4" [formGroup]="form">
+    @if (form.get('techRecord_regnDate')?.value !== undefined) {
+      <app-date-input
+        label="Date of first registration"
+        [hint]="'For example, 27 3 2024'"
+        formControlName="techRecord_regnDate"
+      ></app-date-input>
+    }
+
+    @if (form.get('techRecord_manufactureMonth')?.value !== undefined) {
+      <app-select
+        label="Month of manufacture"
+        formControlName="techRecord_manufactureMonth"
+        [options]="[]"
+      ></app-select>
+    }
+
+    @if (form.get('techRecord_manufactureYear')?.value !== undefined) {
+      <app-text-input
+        label="Year of manufacture"
+        formControlName="techRecord_manufactureYear"
+        type="number"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_firstUseDate')?.value !== undefined) {
+      <app-date-input
+        label="Date of first use"
+        [hint]="'For example, 27 3 2024'"
+        formControlName="techRecord_firstUseDate"
+      ></app-date-input>
+    }
+
+    <!--
+    @if (form.get('techRecord_brakes_dtpNumber')?.value !== undefined) {
+      @if (techRecord().techRecord_vehicleType === 'psv') {
+        <govuk-form-group-autocomplete
+          type="text"
+          formControlName="techRecord_brakes_dtpNumber"
+          label="DTp number"
+          [width]="FormNodeWidth.XL"
+          [placeholder]="'Select DTp number'"
+          [options$]="dtpNumbers$"
+        />
+      } @else {
+       <app-text-input
+          type="text"
+          formControlName="techRecord_brakes_dtpNumber"
+          label="DTp number"
+          [width]="FormNodeWidth.L"
+        />
+      }
+    }
+    -->
+
+    @if (form.get('techRecord_vehicleConfiguration')?.value !== undefined) {
+      <!--
+      @if (
+        techRecord().techRecord_vehicleType === VehicleTypes.MOTORCYCLE ||
+        techRecord().techRecord_vehicleType === VehicleTypes.CAR
+      ) {
+       <app-text-input
+          type="text"
+          class="capitalise"
+          label="Vehicle configuration"
+          formControlName="techRecord_vehicleConfiguration"
+          [width]="FormNodeWidth.L"
+        ></govuk-form-group-input>
+      } @else {
+        <app-select
+          label="Vehicle configuration"
+          [defaultOption]="'Select configuration'"
+          [options]="vehicleConfigurationOptions"
+          formControlName="techRecord_vehicleConfiguration"
+        ></app-select>
+      }
+      -->
+    }
+
+    <!--
+    @if (
+      form.get('techRecord_vehicleClass_description') &&
+      techRecord().techRecord_vehicleType === VehicleTypes.MOTORCYCLE
+    ) {
+      <app-select
+        label="Vehicle class"
+        [defaultOption]="'Select vehicle class'"
+        [options]="MOTORCYCLE_VEHICLE_CLASS_DESCRIPTION_OPTIONS"
+        formControlName="techRecord_vehicleClass_description"
+      ></app-select>
+    }
+  
+    @if (form.get('techRecord_frameDescription')?.value !== undefined) {
+      <app-select
+        label="Frame description"
+        formControlName="techRecord_frameDescription"
+        [options]="FRAME_DESCRIPTION_OPTIONS"
+        [defaultOption]="'Select frame description'"
+      ></app-select>
+    }
+    -->
+
+    <!--  Start of PSV only fields -->
+    @if (form.get('techRecord_chassisMake')?.value !== undefined) {
+      <app-text-input
+        type="text"
+        formControlName="techRecord_chassisMake"
+        label="Chassis make"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_chassisModel')?.value !== undefined) {
+      <app-text-input
+        type="text"
+        formControlName="techRecord_chassisModel"
+        label="Chassis model"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_bodyMake')?.value !== undefined) {
+      <app-text-input
+        type="text"
+        formControlName="techRecord_bodyMake"
+        label="Body make"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_bodyModel')?.value !== undefined) {
+      <app-text-input
+        type="text"
+        formControlName="techRecord_bodyModel"
+        label="Body model"
+      ></app-text-input>
+    }
+
+    <!--
+    @if (
+      form.get('techRecord_vehicleClass_description') &&
+      techRecord().techRecord_vehicleType === VehicleTypes.PSV
+    ) {
+     <app-text-input
+        type="text"
+        formControlName="techRecord_vehicleClass_description"
+        label="Vehicle class"
+        [width]="FormNodeWidth.L"
+      >
+      </govuk-form-group-input>
+    }
+    -->
+
+    @if (form.get('techRecord_vehicleSubclass')?.value !== undefined) {
+      <app-checkboxes
+        label="Vehicle subclass"
+        formControlName="techRecord_vehicleSubclass"
+        [options]="[]"
+      ></app-checkboxes>
+    }
+
+    @if (form.get('techRecord_make')?.value !== undefined) {
+      <app-select type="text" formControlName="techRecord_make" label="Body make" [options]="[]">
+      </app-select>
+    }
+
+    @if (form.get('techRecord_model')?.value !== undefined) {
+      <app-text-input
+        type="text"
+        formControlName="techRecord_model"
+        label="Body model"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_bodyType_description')?.value !== undefined) {
+      <!--
+      @if (techRecord().techRecord_vehicleType === VehicleTypes.PSV) {
+       <app-text-input
+          type="text"
+          formControlName="techRecord_bodyType_description"
+          label="Body type"
+        />
+      } @else {
+        <app-select
+          type="text"
+          formControlName="techRecord_bodyType_description"
+          label="Body type"
+          [options]="[]"
+        >
+        </app-select>
+      }
+      -->
+    }
+
+    @if (form.get('techRecord_modelLiteral')?.value !== undefined) {
+      <app-text-input
+        type="text"
+        formControlName="techRecord_modelLiteral"
+        label="Model literal"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_functionCode')?.value !== undefined) {
+      <app-select
+        type="text"
+        formControlName="techRecord_functionCode"
+        label="Function code"
+        [options]="[]"
+      ></app-select>
+    }
+
+    @if (form.get('techRecord_conversionRefNo')?.value !== undefined) {
+      <app-text-input
+        formControlName="techRecord_conversionRefNo"
+        label="Conversion reference number"
+        type="text"
+        appToUppercase
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_euVehicleCategory')?.value !== undefined) {
+      <app-radios
+        label="EU vehicle category"
+        formControlName="techRecord_euVehicleCategory"
+        [options]="[]"
+      ></app-radios>
+    }
+
+    @if (form.get('techRecord_numberOfWheelsDriven')?.value !== undefined) {
+      <app-text-input
+        label="Number of wheels"
+        formControlName="techRecord_numberOfWheelsDriven"
+        type="number"
+      ></app-text-input>
+    }
+
+    @if (form.get('techRecord_noOfAxles')?.value !== undefined) {
+      <app-text-input
+        label="Number of axles"
+        formControlName="techRecord_noOfAxles"
+        type="number"
+      ></app-text-input>
+    }
+  </div>
+}

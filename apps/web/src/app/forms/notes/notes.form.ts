@@ -1,8 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseForm } from '../base-form/base-form.form';
 
 @Component({
   selector: 'app-notes-form',
   templateUrl: './notes.form.html',
   imports: [],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NotesForm),
+      multi: true,
+    },
+  ],
 })
-export class NotesForm {}
+export class NotesForm extends BaseForm {
+  override form = this.fb.group({
+    
+  });
+}
