@@ -1,0 +1,57 @@
+<div [formGroup]="form">
+  <!-- Upper Deck -->
+  <app-text-input
+    label="Upper deck seats"
+    formControlName="techRecord_seatsUpperDeck"
+    type="number"
+  ></app-text-input>
+
+  <!-- Lower Deck -->
+  <app-text-input
+    label="Lower deck seats"
+    formControlName="techRecord_seatsLowerDeck"
+    type="number"
+  ></app-text-input>
+
+  <!-- Standing Capacity -->
+  <app-text-input
+    label="Standing capacity"
+    formControlName='techRecord_standingCapacity'
+    type="number"
+  ></app-text-input>
+
+  <!-- Wheelchair Capacity  -->
+  <app-text-input
+    formControlName="techRecord_dda_wheelchairCapacity"
+    type="number"
+    label="Wheelchair capacity"
+  ></app-text-input>
+
+  <!--  Vehicle class-->
+  <app-radios
+    label="Vehicle class"
+    [hint]="'Vehicle class is calculated based on the number of seats and standing capacity'"
+    formControlName="techRecord_vehicleClass_description"
+    [options]="constants.vehicleClassOptions"
+  ></app-radios>
+
+  <!-- Vehicle size -->
+  <app-radios
+    label="Vehicle size"
+    formControlName="techRecord_vehicleSize"
+    [options]="constants.vehicleSizeOptions"
+    [hint]="'Vehicle size is calculated based on the number of seats and standing capacity'"
+  ></app-radios>
+
+  <!--  Number of Seatbelts -->
+  <app-text-input
+    label="Number of seatbelts"
+    formControlName="techRecord_numberOfSeatbelts"
+  ></app-text-input>
+
+  <!-- Seatbelt installation approval date -->
+  <govuk-form-group-date
+    label="Seatbelt installation approval date"
+    formControlName="techRecord_seatbeltInstallationApprovalDate"
+  ></govuk-form-group-date>
+</div>

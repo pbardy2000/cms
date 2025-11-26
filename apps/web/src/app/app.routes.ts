@@ -7,6 +7,11 @@ export const routes: Routes = [
       import('@pages/(content-management)/content-management.routes').then((m) => m.routes),
   },
   {
+    path: 'contingency-testing',
+    loadChildren: () =>
+      import('@pages/(contingency-testing)/contingency-testing.routes').then((m) => m.routes),
+  },
+  {
     path: 'technical-records',
     loadChildren: () =>
       import('@pages/(technical-records)/technical-records.routes').then((m) => m.routes),

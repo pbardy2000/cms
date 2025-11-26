@@ -14,4 +14,8 @@ import { BaseForm } from '../base-form/base-form.form';
     },
   ],
 })
-export class ReasonForCreationForm extends BaseForm {}
+export class ReasonForCreationForm extends BaseForm {
+  override form = this.fb.group({
+    
+  });
+}

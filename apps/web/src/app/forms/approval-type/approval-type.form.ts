@@ -14,4 +14,8 @@ import { BaseForm } from '../base-form/base-form.form';
     },
   ],
 })
-export class ApprovalTypeForm extends BaseForm {}
+export class ApprovalTypeForm extends BaseForm {
+  override form = this.fb.group({
+    
+  });
+}

@@ -77,6 +77,9 @@ export class GeneralVehicleDetailsForm extends BaseForm {
       { value: undefined, disabled: true },
       [],
     ),
+    techRecord_numberOfWheelsDriven: this.fb.control<number | null | undefined>(undefined),
+    techRecord_modelLiteral: this.fb.control<string | null | undefined>(undefined),
+    techRecord_vehicleSubclass: this.fb.control<string | null | undefined>(undefined),
   });
 
   override ngOnInit(): void {
