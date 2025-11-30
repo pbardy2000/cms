@@ -133,7 +133,6 @@ export class EditContentModelOptionComponent
 
   ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy)).subscribe(() => {
-      console.log('setting value', this.form.controls.options.getRawValue());
       this.onChange(this.form.controls.options.getRawValue());
     });
   }

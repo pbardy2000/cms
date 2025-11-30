@@ -43,6 +43,74 @@ export class ConstantsService {
     { label: 'Archived', value: 'ARCHIVED' },
   ];
 
+  readonly vehicleSubclassOptions: Option<string>[] = [
+    { label: 'Standard', value: 'STANDARD' },
+    { label: 'Extended', value: 'EXTENDED' },
+    { label: 'High', value: 'HIGH' },
+    { label: 'Low', value: 'LOW' },
+    { label: 'Special', value: 'SPECIAL' },
+  ];
+
+  readonly vehicleConfigurationOptions: Record<VehicleType, Option<string>[]> = {
+    car: [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+    ],
+    motorcycle: [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+    ],
+    hgv: [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+    ],
+    psv: [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+    ],
+    trl: [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+    ],
+    'small trl': [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+    ],
+    lgv: [
+      { label: 'Standard', value: 'STANDARD' },
+      { label: 'Extended', value: 'EXTENDED' },
+      { label: 'High', value: 'HIGH' },
+      { label: 'Low', value: 'LOW' },
+      { label: 'Special', value: 'SPECIAL' },
+      { label: '2.5 tonnes', value: '2.5 TONNES' },
+      { label: '5 tonnes', value: '5 TONNES' },
+      { label: '7.5 tonnes', value: '7.5 TONNES' },
+      { label: '10 tonnes', value: '10 TONNES' },
+      { label: '12.5 tonnes', value: '12.5 TONNES' },
+      { label: '15 tonnes', value: '15 TONNES' },
+      { label: '17.5 tonnes', value: '17.5 TONNES' },
+      { label: '20 tonnes', value: '20 TONNES' },
+    ],
+  };
+
   readonly euVehicleCategoryOptions: Record<VehicleType, Option<EUVehicleCategory>[]> = {
     hgv: [
       { label: 'N1', value: 'N1' },
@@ -76,6 +144,29 @@ export class ConstantsService {
       { label: 'L7', value: 'L7' },
     ],
   };
+
+  readonly monthOptions: Option<string>[] = [
+    { label: 'January', value: 'January' },
+    { label: 'February', value: 'February' },
+    { label: 'March', value: 'March' },
+    { label: 'April', value: 'April' },
+    { label: 'May', value: 'May' },
+    { label: 'June', value: 'June' },
+    { label: 'July', value: 'July' },
+    { label: 'August', value: 'August' },
+    { label: 'September', value: 'September' },
+    { label: 'October', value: 'October' },
+    { label: 'November', value: 'November' },
+    { label: 'December', value: 'December' },
+  ];
+
+  readonly frameDescriptionOptions: Option<string>[] = [
+    { label: 'Standard', value: 'STANDARD' },
+    { label: 'Extended', value: 'EXTENDED' },
+    { label: 'High', value: 'HIGH' },
+    { label: 'Low', value: 'LOW' },
+    { label: 'Special', value: 'SPECIAL' },
+  ];
 
   readonly fuelSystemOptions: Record<VehicleType, Option<string>[]> = {
     hgv: [
@@ -542,9 +633,9 @@ export type TechRecord = {
   vin: string;
   vrm: string;
   trailerId: string;
-  type: VehicleType;
-  completeness: TechRecordCompleteness;
-  status: VehicleStatus;
+  techRecord_statusCode: VehicleStatus;
+  techRecord_vehicleType: VehicleType;
+  techRecord_recordCompleteness: TechRecordCompleteness;
 
   // Identifiers
   systemNumber: string;
@@ -788,8 +879,8 @@ export type TechRecordStub = {
   vin: string;
   vrm?: string | undefined;
   trailerId?: string | undefined;
-  status: VehicleStatus;
-  type: VehicleType;
+  techRecord_statusCode: VehicleStatus;
+  techRecord_vehicleType: VehicleType;
 };
 
 export type Axle = {

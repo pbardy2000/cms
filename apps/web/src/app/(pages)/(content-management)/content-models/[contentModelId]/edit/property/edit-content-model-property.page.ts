@@ -17,7 +17,7 @@ import { TabsComponent } from '@app/components/tabs/tabs.component';
 import { TagComponent } from '@app/components/tag/tag.component';
 import { TextInputComponent } from '@app/components/text-input/text-input.component';
 import { TextareaComponent } from '@app/components/textarea/textarea.component';
-import { ReplaySubject, takeUntil } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { EditContentModelService } from '../edit-content-model.service';
 import { EditContentModelOptionComponent } from './edit-content-model-option.component';
 
@@ -53,11 +53,7 @@ export class EditContentModelPropertyPage implements OnInit, OnDestroy {
 
   private readonly destroy = new ReplaySubject<boolean>(1);
 
-  ngOnInit(): void {
-    this.form.valueChanges.pipe(takeUntil(this.destroy)).subscribe(() => {
-      console.log(this.form.value);
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy.next(true);

@@ -16,6 +16,14 @@ import { BaseForm } from '../base-form/base-form.form';
 })
 export class NotesForm extends BaseForm {
   override form = this.fb.group({
-    
+    techRecord_notes: this.fb.control<string | undefined>({ value: undefined, disabled: false }, [
+      this.validators.maxLength(1024, 'Notes'),
+    ]),
+    techRecord_remarks: this.fb.control<string | undefined>({ value: undefined, disabled: false }, [
+      this.validators.maxLength(1024, 'Notes'),
+    ]),
+    techRecord_dispensations: this.fb.control<string | undefined>({ value: undefined, disabled: false }, [
+      this.validators.maxLength(160, 'Dispensations'),
+    ]),
   });
 }

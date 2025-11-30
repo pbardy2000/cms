@@ -16,6 +16,9 @@ import { BaseForm } from '../base-form/base-form.form';
 })
 export class ReasonForCreationForm extends BaseForm {
   override form = this.fb.group({
-    
+    techRecord_reasonForCreation: this.fb.control('', [
+			this.validators.required('Reason for creation'),
+			this.validators.maxLength(100, 'Reason for creation'),
+		]),
   });
 }

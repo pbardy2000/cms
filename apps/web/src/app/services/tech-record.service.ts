@@ -8,57 +8,57 @@ export class TechRecordService {
   }
 
   canHaveAxles(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveWeights(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveTyres(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveDimensions(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveApprovalType(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'trl' || type === 'hgv';
   }
 
   canHaveAuthorisationIntoService(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'trl';
   }
 
   canHaveManufacturer(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'trl';
   }
 
   canHavePurchaser(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'trl';
   }
 
   canHaveConfiguration(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveEmissionsAndExemptions(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveAdr(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'lgv' || type === 'trl' || type === 'hgv';
   }
 
@@ -68,27 +68,27 @@ export class TechRecordService {
   }
 
   canHaveLastApplicant(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'hgv' || type === 'trl';
   }
 
   canHaveSeatsAndVehicleSize(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv';
   }
 
   canHaveBrakes(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl';
   }
 
   canHaveDisabilityDiscriminationAct(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv';
   }
 
   canHaveDocuments(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
@@ -101,34 +101,34 @@ export class TechRecordService {
   }
 
   canHaveGBWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveEECWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'trl' || type === 'hgv';
   }
 
   canHaveDesignWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl' || type === 'hgv';
   }
 
   canHaveLadenWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl';
   }
 
   canHaveKerbWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.type;
+    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
     return type === 'psv' || type === 'trl';
   }
 
   getDefaultEUVehicleCategory(
     data: TechRecord | TechRecordStub | string,
   ): EUVehicleCategory | null {
-    const type = typeof data === 'string' ? data : (data.type as VehicleType);
+    const type = typeof data === 'string' ? data : (data.techRecord_vehicleType as VehicleType);
     switch (type) {
       case 'car':
         return 'M1';

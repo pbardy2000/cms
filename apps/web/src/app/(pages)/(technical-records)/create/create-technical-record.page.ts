@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonGroupComponent } from '@app/components/button-group/button-group.component';
 import { ButtonComponent } from '@app/components/button/button.component';
 import { CheckboxComponent } from '@app/components/checkbox/checkbox.component';
@@ -32,6 +32,7 @@ import { ReplaySubject, takeUntil } from 'rxjs';
 export class CreateTechnicalRecordPage {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly validators = inject(ValidatorsService);
   readonly constants = inject(ConstantsService);
 
@@ -51,7 +52,7 @@ export class CreateTechnicalRecordPage {
     generateID: this.fb.nonNullable.control<boolean>(false),
     vrm: this.fb.nonNullable.control<string>(''),
     trailerId: this.fb.nonNullable.control<string>(''),
-    vrmTrm: this.fb.nonNullable.control<string>('', this.vrmTrmValidators),
+    vrmTrm: this.fb.nonNullable.control<string>(''),
     status: this.fb.nonNullable.control<VehicleStatus>('PROVISIONAL', [
       this.validators.required('Vehicle status'),
     ]),
@@ -64,7 +65,15 @@ export class CreateTechnicalRecordPage {
     this.form.controls.generateID.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe((generateID) => {
-        this.form.controls.vrmTrm.setValidators(generateID ? [] : this.vrmTrmValidators);
+        this.form.controls.vrmTrm.setValidators(generateID ? [] : [
+          this.validators.alphanumeric('Vehicle Registration Mark (VRM) or Trailer ID'),
+          this.validators.required('Vehicle Registration Mark (VRM) or Trailer ID'),
+          this.validators.antipattern(new RegExp('/^[0-9]{7}[zZ]$/'), {
+            href: 'vrmTrm',
+            label:
+              'Vehicle Registration Mark (VRM) or Trailer ID must be 7 characters and end with a Z',
+          }),
+        ]);
         this.form.controls.vrmTrm.updateValueAndValidity();
       });
   }
@@ -74,26 +83,24 @@ export class CreateTechnicalRecordPage {
     this.destroy.complete();
   }
 
-  get vrmTrmValidators(): ValidatorFn[] {
-    return [
-      this.validators.alphanumeric('Vehicle Registration Mark (VRM) or Trailer ID'),
-      this.validators.required('Vehicle Registration Mark (VRM) or Trailer ID'),
-      this.validators.antipattern(new RegExp('/^[0-9]{7}[zZ]$/'), {
-        href: 'vrmTrm',
-        label:
-          'Vehicle Registration Mark (VRM) or Trailer ID must be 7 characters and end with a Z',
-      }),
-    ];
-  }
-
   onContinue(): void {
-    this.router.navigate(['/technical-records/create/details']);
-
     this.form.markAllAsTouched();
 
     if (this.form.valid) {
+      this.router.navigate(['/technical-records/create/details'], {
+        queryParams: {
+          vin: this.form.value.vin,
+          primaryVrm: this.form.value.vrm,
+          trailerId: this.form.value.trailerId,
+          techRecord_statusCode: this.form.value.status,
+          techRecord_vehicleType: this.form.value.type,
+        },
+        queryParamsHandling: 'merge',
+      });
     }
   }
 
-  onCancel(): void {}
+  onCancel(): void {
+    this.router.navigate(['..'], { relativeTo: this.activatedRoute });
+  }
 }

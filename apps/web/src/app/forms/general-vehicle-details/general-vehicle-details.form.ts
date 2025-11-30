@@ -5,6 +5,12 @@ import { DateInputComponent } from '@app/components/date-input/date-input.compon
 import { RadiosComponent } from '@app/components/radios/radios.component';
 import { SelectComponent } from '@app/components/select/select.component';
 import { TextInputComponent } from '@app/components/text-input/text-input.component';
+import { TypeaheadComponent } from '@app/components/typeahead/typeahead.component';
+import { ForTagsDirective } from '@app/directives/for-tags.directive';
+import { ForVehicleTypesDirective } from '@app/directives/for-vehicle-types.directive';
+import { NoSpaceDirective } from '@app/directives/no-space.directive';
+import { ToUppercaseDirective } from '@app/directives/to-uppercase.directive';
+import { TrimWhitespaceDirective } from '@app/directives/trim-whitespace.directive';
 import { ConstantsService, TechRecord } from '@app/services/constants.service';
 import { BaseForm } from '../base-form/base-form.form';
 
@@ -19,12 +25,19 @@ import { BaseForm } from '../base-form/base-form.form';
     ReactiveFormsModule,
     DateInputComponent,
     CheckboxesComponent,
+    TypeaheadComponent,
+    TrimWhitespaceDirective,
+    NoSpaceDirective,
+    ToUppercaseDirective,
+    ForTagsDirective,
+    ForVehicleTypesDirective,
   ],
 })
 export class GeneralVehicleDetailsForm extends BaseForm {
   readonly constants = inject(ConstantsService);
 
   readonly techRecord = input<TechRecord>();
+  readonly filters = input<string[]>([]);
 
   override form = this.fb.group({
     techRecord_vehicleType: this.fb.control<string | undefined>(undefined),
@@ -80,6 +93,10 @@ export class GeneralVehicleDetailsForm extends BaseForm {
     techRecord_numberOfWheelsDriven: this.fb.control<number | null | undefined>(undefined),
     techRecord_modelLiteral: this.fb.control<string | null | undefined>(undefined),
     techRecord_vehicleSubclass: this.fb.control<string | null | undefined>(undefined),
+    techRecord_firstUseDate: this.fb.control<string | null | undefined>(undefined, [
+      this.validators.date('Date of first use'),
+    ]),
+    techRecord_frameDescription: this.fb.control<string | null | undefined>(undefined, []),
   });
 
   override ngOnInit(): void {

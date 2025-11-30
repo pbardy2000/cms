@@ -16,6 +16,11 @@ import { BaseForm } from '../base-form/base-form.form';
 })
 export class DocumentsForm extends BaseForm {
   override form = this.fb.group({
-    
+    techRecord_microfilm_microfilmRollNumber: this.fb.control<string | null>(null, [
+      this.validators.maxLength(5, 'Microfilm roll number'),
+    ]),
+    techRecord_microfilm_microfilmSerialNumber: this.fb.control<string | null>(null, [
+      this.validators.maxLength(4, 'Microfilm serial number'),
+    ]),
   });
 }

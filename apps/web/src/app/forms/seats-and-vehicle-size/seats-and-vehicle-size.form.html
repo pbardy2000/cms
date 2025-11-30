@@ -16,7 +16,7 @@
   <!-- Standing Capacity -->
   <app-text-input
     label="Standing capacity"
-    formControlName='techRecord_standingCapacity'
+    formControlName="techRecord_standingCapacity"
     type="number"
   ></app-text-input>
 
@@ -27,7 +27,7 @@
     label="Wheelchair capacity"
   ></app-text-input>
 
-  <!--  Vehicle class-->
+  <!-- Vehicle class-->
   <app-radios
     label="Vehicle class"
     [hint]="'Vehicle class is calculated based on the number of seats and standing capacity'"
@@ -50,8 +50,8 @@
   ></app-text-input>
 
   <!-- Seatbelt installation approval date -->
-  <govuk-form-group-date
+  <app-date-input
     label="Seatbelt installation approval date"
     formControlName="techRecord_seatbeltInstallationApprovalDate"
-  ></govuk-form-group-date>
+  ></app-date-input>
 </div>
