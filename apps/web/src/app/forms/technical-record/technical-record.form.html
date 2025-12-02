@@ -18,7 +18,7 @@
             heading="Approval type"
             summary="Approval type, national type, variant number."
           >
-            <app-approval-type-form />
+            <app-approval-type-form [techRecord]="techRecord" />
           </app-accordion-section>
         }
 
@@ -123,7 +123,9 @@
         }
 
         <!-- Disability discrimination act -->
-        @if (techRecordService.canHaveDisabilityDiscriminationAct(techRecord.techRecord_vehicleType)) {
+        @if (
+          techRecordService.canHaveDisabilityDiscriminationAct(techRecord.techRecord_vehicleType)
+        ) {
           <app-accordion-section
             heading="Disability discrimination act"
             summary="Wheelchair capacity, accessibility, schedules."

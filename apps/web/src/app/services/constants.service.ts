@@ -23,18 +23,17 @@ export class ConstantsService {
   ];
 
   readonly vehicleTypeOptions: Option<VehicleType>[] = [
+    { label: 'Heavy Goods Vehicle (HGV)', value: 'hgv' },
+    { label: 'Trailer (TRL)', value: 'trl' },
+    { label: 'Public Service Vehicle (PSV)', value: 'psv' },
+    { label: 'Light Goods Vehicle (LGV)', value: 'lgv' },
     { label: 'Car', value: 'car' },
-    { label: 'Trailer', value: 'trl' },
-    { label: 'Small Trailer', value: 'small trl' },
-    { label: 'Heavy Goods Vehicle', value: 'hgv' },
-    { label: 'Public Service Vehicle', value: 'psv' },
-    { label: 'Light Goods Vehicle', value: 'lgv' },
     { label: 'Motorcycle', value: 'motorcycle' },
   ];
 
   readonly vehicleStatusOptions: Option<VehicleStatus>[] = [
-    { label: 'Provisional', value: 'PROVISIONAL' },
     { label: 'Current', value: 'CURRENT' },
+    { label: 'Provisional', value: 'PROVISIONAL' },
   ];
 
   readonly recordStatusOptions: Option<RecordStatus>[] = [
@@ -483,23 +482,31 @@ export class ConstantsService {
     },
   ];
 
-  readonly approvalTypeOptions: Option<string>[] = [
-    { label: 'NTA', value: 'NTA' },
-    { label: 'ECTA', value: 'ECTA' },
-    { label: 'IVA', value: 'IVA' },
-    { label: 'NSSTA', value: 'NSSTA' },
-    { label: 'ECSSTA', value: 'ECSSTA' },
-    { label: 'GB WVTA', value: 'GB_WVTA' },
-    { label: 'UKNI WVTA', value: 'UKNI_WVTA' },
-    { label: 'EU WVTA Pre 23', value: 'EU_WVTA_PRE_23' },
-    { label: 'EU WVTA 23 on', value: 'EU_WVTA_23_ON' },
-    { label: 'QNIG', value: 'QNIG' },
-    { label: 'Prov.GB WVTA', value: 'PROV_GB_WVTA' },
-    { label: 'Small series NKSXX', value: 'SMALL_SERIES_NKSXX' },
-    { label: 'Small series NKS', value: 'SMALL_SERIES_NKS' },
-    { label: 'IVA - VCA', value: 'IVA_VCA' },
-    { label: 'IVA - DVSA/NI', value: 'IVA_DVSA_NI' },
-  ];
+  readonly approvalTypeOptions: Record<VehicleType, Option<string>[]> = {
+    hgv: [
+      { label: 'NTA', value: 'NTA' },
+      { label: 'ECTA', value: 'ECTA' },
+      { label: 'IVA', value: 'IVA' },
+      { label: 'NSSTA', value: 'NSSTA' },
+      { label: 'ECSSTA', value: 'ECSSTA' },
+      { label: 'GB WVTA', value: 'GB_WVTA' },
+      { label: 'UKNI WVTA', value: 'UKNI_WVTA' },
+      { label: 'EU WVTA Pre 23', value: 'EU_WVTA_PRE_23' },
+      { label: 'EU WVTA 23 on', value: 'EU_WVTA_23_ON' },
+      { label: 'QNIG', value: 'QNIG' },
+      { label: 'Prov.GB WVTA', value: 'PROV_GB_WVTA' },
+      { label: 'Small series NKSXX', value: 'SMALL_SERIES_NKSXX' },
+      { label: 'Small series NKS', value: 'SMALL_SERIES_NKS' },
+      { label: 'IVA - VCA', value: 'IVA_VCA' },
+      { label: 'IVA - DVSA/NI', value: 'IVA_DVSA_NI' },
+    ],
+    psv: [],
+    lgv: [],
+    car: [],
+    trl: [],
+    'small trl': [],
+    motorcycle: [],
+  };
 
   readonly tags = {
     PLATES: { color: 'purple', label: 'Plates' } as Tag,

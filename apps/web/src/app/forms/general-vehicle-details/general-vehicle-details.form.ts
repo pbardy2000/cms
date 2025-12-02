@@ -7,7 +7,6 @@ import { SelectComponent } from '@app/components/select/select.component';
 import { TextInputComponent } from '@app/components/text-input/text-input.component';
 import { TypeaheadComponent } from '@app/components/typeahead/typeahead.component';
 import { ForTagsDirective } from '@app/directives/for-tags.directive';
-import { ForVehicleTypesDirective } from '@app/directives/for-vehicle-types.directive';
 import { NoSpaceDirective } from '@app/directives/no-space.directive';
 import { ToUppercaseDirective } from '@app/directives/to-uppercase.directive';
 import { TrimWhitespaceDirective } from '@app/directives/trim-whitespace.directive';
@@ -17,6 +16,7 @@ import { BaseForm } from '../base-form/base-form.form';
 @Component({
   selector: 'app-general-vehicle-details',
   templateUrl: './general-vehicle-details.form.html',
+  styleUrls: ['./general-vehicle-deetails.scss'],
   imports: [
     TextInputComponent,
     RadiosComponent,
@@ -30,7 +30,6 @@ import { BaseForm } from '../base-form/base-form.form';
     NoSpaceDirective,
     ToUppercaseDirective,
     ForTagsDirective,
-    ForVehicleTypesDirective,
   ],
 })
 export class GeneralVehicleDetailsForm extends BaseForm {
@@ -98,10 +97,4 @@ export class GeneralVehicleDetailsForm extends BaseForm {
     ]),
     techRecord_frameDescription: this.fb.control<string | null | undefined>(undefined, []),
   });
-
-  override ngOnInit(): void {
-    super.ngOnInit();
-
-    this.form.patchValue(this.techRecord() as any);
-  }
 }

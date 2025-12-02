@@ -19,9 +19,9 @@
 
   <ng-content select="[typeahead-errors]">
     @if (error$()) {
-      <govuk-error-message id="{{ id$() }}-error">
+      <app-error-message id="{{ id$() }}-error">
         {{ error$() }}
-      </govuk-error-message>
+      </app-error-message>
     }
   </ng-content>
 

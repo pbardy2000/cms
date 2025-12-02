@@ -16,6 +16,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
+  styleUrls: ['./text-input.component.scss'],
   imports: [FormsModule, ErrorMessageComponent],
   providers: [
     {

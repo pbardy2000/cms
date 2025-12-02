@@ -13,12 +13,13 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { ReplaySubject, startWith, takeUntil } from 'rxjs';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { NgxTypeaheadComponent } from './ngx-typeahead.component';
 
 @Component({
   selector: 'app-typeahead',
   templateUrl: './typeahead.component.html',
-  imports: [FormsModule, NgClass, NgxTypeaheadComponent],
+  imports: [FormsModule, NgClass, NgxTypeaheadComponent, ErrorMessageComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

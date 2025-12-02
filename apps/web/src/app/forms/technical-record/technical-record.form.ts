@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionControlsComponent } from '@app/components/accordion/accordion-controls/accordion-controls.component';
 import { AccordionSectionComponent } from '@app/components/accordion/accordion-section/accordion-section.component';
@@ -59,4 +59,13 @@ export class TechnicalRecordForm {
   readonly techRecord = input.required<TechRecord>();
 
   readonly form = this.fb.group({});
+
+  constructor() {
+    effect(() => {
+      const techRecord = this.techRecord();
+      if (techRecord) {
+        this.form.patchValue(techRecord);
+      }
+    });
+  }
 }

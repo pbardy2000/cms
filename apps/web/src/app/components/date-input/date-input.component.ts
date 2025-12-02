@@ -29,6 +29,7 @@ type DateFormat = 'YYYY-MM-DD' | 'YYYY-MM-DDTHH:mm:ss' | 'YYYY-MM-DDTHH:mm:ss' |
 @Component({
   selector: 'app-date-input',
   templateUrl: './date-input.component.html',
+  styleUrls: ['./date-input.component.scss'],
   imports: [
     FormsModule,
     ReactiveFormsModule,

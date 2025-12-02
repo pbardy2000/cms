@@ -1,213 +1,229 @@
-@if (techRecord(); as techRecord) {
-  @let vehicleType = techRecord.techRecord_vehicleType;
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    @let vehicleType = techRecord.techRecord_vehicleType;
 
-  <div class="govuk-!-padding-4" [formGroup]="form">
-    <app-date-input
-      *forVehicleTypes="['hgv']; vehicleType: vehicleType"
-      [forTags]="['Plates', 'Required']"
-      [forTagsFilters]="filters()"
-      [label]="'Date of first registration'"
-      [hint]="'For example, 27 3 2024'"
-      [formControlName]="'techRecord_regnDate'"
-    ></app-date-input>
+    <div [formGroup]="parent">
+      <app-date-input
+        *forTags="['Plates', 'Required']; filters: filters()"
+        [label]="'Date of first registration'"
+        [hint]="'For example, 27 3 2024'"
+        [formControlName]="'techRecord_regnDate'"
+      ></app-date-input>
 
-    <app-select
-      *forVehicleTypes="['trl']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Month of manufacture'"
-      [formControlName]="'techRecord_manufactureMonth'"
-      [options]="constants.monthOptions"
-    ></app-select>
+      @if (vehicleType === 'trl') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Month of manufacture'"
+          [formControlName]="'techRecord_manufactureMonth'"
+          [options]="constants.monthOptions"
+        ></app-select>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['hgv']; vehicleType: vehicleType"
-      [forTags]="['Plates']"
-      [forTagsFilters]="filters()"
-      [label]="'Year of manufacture'"
-      [formControlName]="'techRecord_manufactureYear'"
-      [type]="'number'"
-    ></app-text-input>
+      <app-text-input
+        *forTags="['Plates']; filters: filters()"
+        [label]="'Year of manufacture'"
+        [formControlName]="'techRecord_manufactureYear'"
+        [type]="'number'"
+        class="govuk-input--width-4"
+      ></app-text-input>
 
-    <app-typeahead
-      *forVehicleTypes="['psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'DTp number'"
-      [formControlName]="'techRecord_brakes_dtpNumber'"
-      [placeholder]="'Select DTp number'"
-      [options]="[]"
-      [id]="'techRecord_brakes_dtpNumber'"
-    ></app-typeahead>
+      @if (vehicleType === 'psv') {
+        <app-typeahead
+          *forTags="[]; filters: filters()"
+          [label]="'DTp number'"
+          [formControlName]="'techRecord_brakes_dtpNumber'"
+          [placeholder]="'Select DTp number'"
+          [options]="[]"
+          [id]="'techRecord_brakes_dtpNumber'"
+        ></app-typeahead>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['hgv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'DTp number'"
-      [formControlName]="'techRecord_brakes_dtpNumber'"
-    ></app-text-input>
+      @if (vehicleType === 'hgv' || vehicleType === 'trl' || vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'DTp number'"
+          [formControlName]="'techRecord_brakes_dtpNumber'"
+          class="govuk-input--width-10"
+        ></app-text-input>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['car', 'motorcycle']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Vehicle configuration'"
-      [formControlName]="'techRecord_vehicleConfiguration'"
-    ></app-text-input>
+      @if (vehicleType === 'car' || vehicleType === 'motorcycle') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Vehicle configuration'"
+          [formControlName]="'techRecord_vehicleConfiguration'"
+          class="govuk-input--width-10"
+        ></app-text-input>
+      }
 
-    <app-select
-      *forVehicleTypes="['hgv', 'trl', 'psv', 'lgv', 'small trl']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Vehicle configuration'"
-      [placeholder]="'Select configuration'"
-      [options]="constants.vehicleConfigurationOptions[vehicleType]"
-      [formControlName]="'techRecord_vehicleConfiguration'"
-    ></app-select>
+      @if (vehicleType !== 'car' && vehicleType !== 'motorcycle') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Vehicle configuration'"
+          [placeholder]="'Select configuration'"
+          [options]="constants.vehicleConfigurationOptions[vehicleType]"
+          [formControlName]="'techRecord_vehicleConfiguration'"
+          class="govuk-input--width-10"
+        ></app-select>
+      }
 
-    <app-select
-      *forVehicleTypes="['motorcycle']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Vehicle class'"
-      [placeholder]="'Select vehicle class'"
-      [formControlName]="'techRecord_vehicleClass_description'"
-      [options]="constants.vehicleClassOptions"
-    ></app-select>
+      @if (vehicleType === 'motorcycle') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Vehicle class'"
+          [placeholder]="'Select vehicle class'"
+          [formControlName]="'techRecord_vehicleClass_description'"
+          [options]="constants.vehicleClassOptions"
+          class="govuk-input--width-10"
+        ></app-select>
+      }
 
-    <app-select
-      *forVehicleTypes="['trl']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Frame description'"
-      [formControlName]="'techRecord_frameDescription'"
-      [placeholder]="'Select frame description'"
-      [options]="constants.frameDescriptionOptions"
-    ></app-select>
+      @if (vehicleType === 'trl') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Frame description'"
+          [formControlName]="'techRecord_frameDescription'"
+          [placeholder]="'Select frame description'"
+          [options]="constants.frameDescriptionOptions"
+          class="govuk-input--width-10"
+        ></app-select>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Chassis make'"
-      [formControlName]="'techRecord_chassisMake'"
-    ></app-text-input>
+      @if (vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Chassis make'"
+          [formControlName]="'techRecord_chassisMake'"
+        ></app-text-input>
 
-    <app-text-input
-      *forVehicleTypes="['psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Chassis model'"
-      [formControlName]="'techRecord_chassisModel'"
-    ></app-text-input>
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Chassis model'"
+          [formControlName]="'techRecord_chassisModel'"
+        ></app-text-input>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['hgv', 'trl', 'psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Body make'"
-      [formControlName]="'techRecord_bodyMake'"
-    ></app-text-input>
+      @if (vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Body make'"
+          [formControlName]="'techRecord_bodyMake'"
+        ></app-text-input>
 
-    <app-text-input
-      *forVehicleTypes="['hgv', 'trl', 'psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Body model'"
-      [formControlName]="'techRecord_bodyModel'"
-    ></app-text-input>
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Body model'"
+          [formControlName]="'techRecord_bodyModel'"
+        ></app-text-input>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Vehicle class'"
-      [formControlName]="'techRecord_vehicleClass_description'"
-    ></app-text-input>
+      @if (vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Vehicle class'"
+          [formControlName]="'techRecord_vehicleClass_description'"
+        ></app-text-input>
+      }
 
-    <app-checkboxes
-      *forVehicleTypes="['car', 'lgv', 'motorcycle']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Vehicle subclass'"
-      [formControlName]="'techRecord_vehicleSubclass'"
-      [options]="constants.vehicleSubclassOptions"
-    ></app-checkboxes>
+      @if (vehicleType === 'car' || vehicleType === 'lgv' || vehicleType === 'motorcycle') {
+        <app-checkboxes
+          *forTags="[]; filters: filters()"
+          [label]="'Vehicle subclass'"
+          [formControlName]="'techRecord_vehicleSubclass'"
+          [options]="constants.vehicleSubclassOptions"
+        ></app-checkboxes>
+      }
 
-    <app-select
-      *forVehicleTypes="['hgv', 'trl', 'psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Body make'"
-      [formControlName]="'techRecord_make'"
-      [options]="[]"
-    ></app-select>
+      @if (vehicleType === 'hgv' || vehicleType === 'trl' || vehicleType === 'psv') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Body make'"
+          [formControlName]="'techRecord_make'"
+          [options]="[]"
+          placeholder="Select body make"
+          class="govuk-input--width-10"
+        ></app-select>
 
-    <app-text-input
-      *forVehicleTypes="['hgv', 'trl', 'psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Body model'"
-      [formControlName]="'techRecord_model'"
-    ></app-text-input>
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Body model'"
+          [formControlName]="'techRecord_model'"
+          class="govuk-input--width-10"
+        ></app-text-input>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['psv']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Body type'"
-      [formControlName]="'techRecord_bodyType_description'"
-    ></app-text-input>
+      @if (vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Body type'"
+          [formControlName]="'techRecord_bodyType_description'"
+        ></app-text-input>
+      }
 
-    <app-select
-      *forVehicleTypes="['hgv', 'trl']; vehicleType: vehicleType"
-      [forTags]="[]"
-      [forTagsFilters]="filters()"
-      [label]="'Body type'"
-      [formControlName]="'techRecord_bodyType_description'"
-      [options]="[]"
-    ></app-select>
+      @if (vehicleType === 'hgv' || vehicleType === 'trl') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Body type'"
+          [formControlName]="'techRecord_bodyType_description'"
+          [options]="[]"
+          placeholder="Select body type"
+          class="govuk-input--width-10"
+        ></app-select>
+      }
 
-    <app-text-input
-      *forVehicleTypes="['psv']; vehicleType: vehicleType"
-      formControlName="techRecord_modelLiteral"
-      label="Model literal"
-    ></app-text-input>
+      @if (vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Model literal'"
+          [formControlName]="'techRecord_modelLiteral'"
+        ></app-text-input>
+      }
 
-    <app-select
-      *forVehicleTypes="['hgv', 'trl']; vehicleType: vehicleType"
-      formControlName="techRecord_functionCode"
-      label="Function code"
-      [options]="[]"
-    ></app-select>
+      @if (vehicleType === 'hgv' || vehicleType === 'trl') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          [label]="'Function code'"
+          [formControlName]="'techRecord_functionCode'"
+          [options]="[]"
+          placeholder="Select function code"
+          class="govuk-input--width-10"
+        ></app-select>
 
-    <app-text-input
-      *forVehicleTypes="['hgv', 'trl']; vehicleType: vehicleType"
-      label="Conversion reference number"
-      formControlName="techRecord_conversionRefNo"
-      appNoSpace
-      appToUppercase
-      appTrimWhitespace
-    ></app-text-input>
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [label]="'Conversion reference number'"
+          [formControlName]="'techRecord_conversionRefNo'"
+          appNoSpace
+          appToUppercase
+          appTrimWhitespace
+          class="govuk-input--width-10"
+        ></app-text-input>
+      }
 
-    <app-radios
-      label="EU vehicle category"
-      formControlName="techRecord_euVehicleCategory"
-      [options]="constants.euVehicleCategoryOptions[vehicleType]"
-    ></app-radios>
+      <app-radios
+        *forTags="[]; filters: filters()"
+        [label]="'EU vehicle category'"
+        [formControlName]="'techRecord_euVehicleCategory'"
+        [options]="constants.euVehicleCategoryOptions[vehicleType]"
+      ></app-radios>
 
-    <app-text-input
-      *forVehicleTypes="['motorcycle']; vehicleType: vehicleType"
-      type="number"
-      label="Number of wheels"
-      formControlName="techRecord_numberOfWheelsDriven"
-    ></app-text-input>
+      @if (vehicleType === 'motorcycle') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          [type]="'number'"
+          [label]="'Number of wheels'"
+          [formControlName]="'techRecord_numberOfWheelsDriven'"
+        ></app-text-input>
+      }
 
-    <app-text-input
-      type="number"
-      label="Number of axles"
-      formControlName="techRecord_noOfAxles"
-    ></app-text-input>
-  </div>
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        type="number"
+        label="Number of axles"
+        formControlName="techRecord_noOfAxles"
+        hint="This will affect how many axle-related fields appear in the record"
+        class="govuk-input--width-2"
+      ></app-text-input>
+    </div>
+  }
 }

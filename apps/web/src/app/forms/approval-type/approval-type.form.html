@@ -1,0 +1,37 @@
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    @let vehicleType = techRecord.techRecord_vehicleType;
+
+    <div [formGroup]="parent">
+      <app-select
+        *forTags="[]; filters: filters()"
+        [label]="'Approval type'"
+        [formControlName]="'techRecord_approvalType'"
+        [options]="constants.approvalTypeOptions[vehicleType]"
+        placeholder="Select approval type"
+        class="govuk-input--width-10"
+      ></app-select>
+
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        [label]="'National type number'"
+        [formControlName]="'techRecord_approvalTypeNumber'"
+        class="govuk-input--width-20"
+      ></app-text-input>
+
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        [label]="'Variant number'"
+        [formControlName]="'techRecord_variantNumber'"
+        class="govuk-input--width-20"
+      ></app-text-input>
+
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        [label]="'Variant version number'"
+        [formControlName]="'techRecord_variantVersionNumber'"
+        class="govuk-input--width-20"
+      ></app-text-input>
+    </div>
+  }
+}

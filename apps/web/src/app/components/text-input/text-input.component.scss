@@ -1,8 +1,7 @@
-.govuk-form-group .govuk-label {
+.govuk-label-wrapper .govuk-label {
   font-weight: var(--heading-font-weight);
 }
 
-.govuk-select {
-  width: 100%;
+.govuk-input {
   max-width: var(--max-width);
 }

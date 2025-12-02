@@ -18,6 +18,7 @@ import { RADIOS } from './radios.model';
 @Component({
   selector: 'app-radios',
   templateUrl: './radios.component.html',
+  styleUrls: ['./radios.component.scss'],
   imports: [FormsModule, ErrorMessageComponent, RadioComponent],
   providers: [
     { provide: RADIOS, useExisting: forwardRef(() => RadiosComponent) },

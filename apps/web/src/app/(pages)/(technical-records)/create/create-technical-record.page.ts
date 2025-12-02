@@ -16,6 +16,7 @@ import { ReplaySubject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-create-technical-record',
   templateUrl: './create-technical-record.page.html',
+  styleUrls: ['./create-technical-record.page.scss'],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -53,7 +54,7 @@ export class CreateTechnicalRecordPage {
     vrm: this.fb.nonNullable.control<string>(''),
     trailerId: this.fb.nonNullable.control<string>(''),
     vrmTrm: this.fb.nonNullable.control<string>(''),
-    status: this.fb.nonNullable.control<VehicleStatus>('PROVISIONAL', [
+    status: this.fb.nonNullable.control<VehicleStatus>('CURRENT', [
       this.validators.required('Vehicle status'),
     ]),
     type: this.fb.nonNullable.control<VehicleType>('hgv', [
@@ -65,15 +66,19 @@ export class CreateTechnicalRecordPage {
     this.form.controls.generateID.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe((generateID) => {
-        this.form.controls.vrmTrm.setValidators(generateID ? [] : [
-          this.validators.alphanumeric('Vehicle Registration Mark (VRM) or Trailer ID'),
-          this.validators.required('Vehicle Registration Mark (VRM) or Trailer ID'),
-          this.validators.antipattern(new RegExp('/^[0-9]{7}[zZ]$/'), {
-            href: 'vrmTrm',
-            label:
-              'Vehicle Registration Mark (VRM) or Trailer ID must be 7 characters and end with a Z',
-          }),
-        ]);
+        this.form.controls.vrmTrm.setValidators(
+          generateID
+            ? []
+            : [
+                this.validators.alphanumeric('Vehicle Registration Mark (VRM) or Trailer ID'),
+                this.validators.required('Vehicle Registration Mark (VRM) or Trailer ID'),
+                this.validators.antipattern(new RegExp('/^[0-9]{7}[zZ]$/'), {
+                  href: 'vrmTrm',
+                  label:
+                    'Vehicle Registration Mark (VRM) or Trailer ID must be 7 characters and end with a Z',
+                }),
+              ],
+        );
         this.form.controls.vrmTrm.updateValueAndValidity();
       });
   }

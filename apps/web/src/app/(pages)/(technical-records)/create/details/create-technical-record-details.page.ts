@@ -49,6 +49,7 @@ export function createEmptyHGV(): TechRecord {
     techRecord_recordCompleteness: 'SKELETON',
     techRecord_hiddenInVta: null,
     techRecord_updateType: null,
+    techRecord_firstUseDate: '2022-01-01',
     techRecord_approvalType: null,
     techRecord_approvalTypeNumber: null,
     techRecord_ntaNumber: null,
