@@ -30,6 +30,7 @@
               [hint]="option.hint || ''"
               [value]="option.value"
               [exclusive]="option.exclusive || false"
+              (checkedChange)="toggle(option.value, option.exclusive)"
             ></app-checkbox>
 
             @if (option.divider) {

@@ -46,19 +46,8 @@ import {
 
 @Component({
   selector: '[ngxTypeahead]',
-  styles: [
-    `
-      .ta-backdrop {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1;
-      }
-    `,
-  ],
   templateUrl: './ngx-typeahead.component.html',
+  styleUrls: ['./ngx-typeahead.component.scss'],
   imports: [CommonModule],
 })
 export class NgxTypeaheadComponent implements OnInit, OnDestroy {
@@ -222,7 +211,10 @@ export class NgxTypeaheadComponent implements OnInit, OnDestroy {
     );
 
     if (this.suggestionIndex === NO_INDEX) return;
-    this.document.getElementById(this.id$() + '-item-' + this.suggestionIndex)?.closest('button')?.focus();
+    this.document
+      .getElementById(this.id$() + '-item-' + this.suggestionIndex)
+      ?.closest('button')
+      ?.focus();
   }
 
   displaySuggestions() {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonGroupComponent } from '@app/components/button-group/button-group.component';
 import { ButtonComponent } from '@app/components/button/button.component';
 import { CheckboxComponent } from '@app/components/checkbox/checkbox.component';
+import { RadioComponent } from '@app/components/radio/radio.component';
 import { RadiosComponent } from '@app/components/radios/radios.component';
 import { TextInputComponent } from '@app/components/text-input/text-input.component';
 import { NoSpaceDirective } from '@app/directives/no-space.directive';
@@ -24,6 +25,7 @@ import { ReplaySubject, takeUntil } from 'rxjs';
     ButtonGroupComponent,
     TextInputComponent,
     RadiosComponent,
+    RadioComponent,
     CheckboxComponent,
     ToUppercaseDirective,
     NoSpaceDirective,
@@ -59,6 +61,9 @@ export class CreateTechnicalRecordPage {
     ]),
     type: this.fb.nonNullable.control<VehicleType>('hgv', [
       this.validators.required('Vehicle type'),
+    ]),
+    techRecord_euVehicleCategory: this.fb.nonNullable.control<string | null>(null, [
+      this.validators.required('EU vehicle category'),
     ]),
   });
 
@@ -99,6 +104,7 @@ export class CreateTechnicalRecordPage {
           trailerId: this.form.value.trailerId,
           techRecord_statusCode: this.form.value.status,
           techRecord_vehicleType: this.form.value.type,
+          techRecord_euVehicleCategory: this.form.value.techRecord_euVehicleCategory,
         },
         queryParamsHandling: 'merge',
       });

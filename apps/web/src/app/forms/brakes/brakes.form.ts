@@ -1,6 +1,7 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseForm } from '../base-form/base-form.form';
+import { TechRecord } from '@app/services/constants.service';
 
 @Component({
   selector: 'app-brakes-form',
@@ -15,7 +16,8 @@ import { BaseForm } from '../base-form/base-form.form';
   ],
 })
 export class BrakesForm extends BaseForm {
-  override form = this.fb.group({
-    
-  });
+  readonly techRecord = input<TechRecord>();
+  readonly filters = input<string[]>([]);
+
+  override form = this.fb.group({});
 }

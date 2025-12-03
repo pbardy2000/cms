@@ -5,3 +5,11 @@
 .govuk-checkboxes__conditional:not(:has(*)) {
   margin-bottom: 0;
 }
+
+.govuk-fieldset__heading {
+  font-weight: var(--heading-font-weight);
+}
+
+.govuk-checkboxes__conditional::ng-deep .govuk-form-group:last-of-type {
+  margin-bottom: 30px;
+}

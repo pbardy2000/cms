@@ -16,6 +16,7 @@
           [label]="'Month of manufacture'"
           [formControlName]="'techRecord_manufactureMonth'"
           [options]="constants.monthOptions"
+          class="govuk-input--width-10"
         ></app-select>
       }
 
@@ -200,12 +201,14 @@
         ></app-text-input>
       }
 
-      <app-radios
-        *forTags="[]; filters: filters()"
-        [label]="'EU vehicle category'"
-        [formControlName]="'techRecord_euVehicleCategory'"
-        [options]="constants.euVehicleCategoryOptions[vehicleType]"
-      ></app-radios>
+      @if (vehicleType !== 'trl') {
+        <app-radios
+          *forTags="[]; filters: filters()"
+          [label]="'EU vehicle category'"
+          [formControlName]="'techRecord_euVehicleCategory'"
+          [options]="constants.euVehicleCategoryOptions[vehicleType]"
+        ></app-radios>
+      }
 
       @if (vehicleType === 'motorcycle') {
         <app-text-input

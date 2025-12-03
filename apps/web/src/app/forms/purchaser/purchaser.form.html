@@ -1,0 +1,73 @@
+@if (parent) {
+  <div [formGroup]="parent">
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Name or company'"
+      [formControlName]="'techRecord_purchaserDetails_name'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Address line 1'"
+      [formControlName]="'techRecord_purchaserDetails_address1'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Address line 2'"
+      [formControlName]="'techRecord_purchaserDetails_address2'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Town or city'"
+      [formControlName]="'techRecord_purchaserDetails_postTown'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'County'"
+      [formControlName]="'techRecord_purchaserDetails_address3'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Postcode'"
+      [formControlName]="'techRecord_purchaserDetails_postCode'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Telephone number'"
+      [formControlName]="'techRecord_purchaserDetails_telephoneNumber'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Email address'"
+      [formControlName]="'techRecord_purchaserDetails_emailAddress'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Fax number'"
+      [formControlName]="'techRecord_purchaserDetails_faxNumber'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-textarea
+      *forTags="[]; filters: filters()"
+      [label]="'Purchaser notes'"
+      [formControlName]="'techRecord_purchaserDetails_purchaserNotes'"
+      [maxlength]="1024"
+    ></app-textarea>
+  </div>
+}

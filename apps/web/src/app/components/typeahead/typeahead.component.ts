@@ -19,6 +19,7 @@ import { NgxTypeaheadComponent } from './ngx-typeahead.component';
 @Component({
   selector: 'app-typeahead',
   templateUrl: './typeahead.component.html',
+  styleUrls: ['./typeahead.component.scss'],
   imports: [FormsModule, NgClass, NgxTypeaheadComponent, ErrorMessageComponent],
   providers: [
     {

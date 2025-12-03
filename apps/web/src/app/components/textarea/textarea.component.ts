@@ -17,6 +17,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
 @Component({
   selector: 'app-textarea',
   templateUrl: './textarea.component.html',
+  styleUrls: ['./textarea.component.scss'],
   imports: [FormsModule, CharacterCountComponent, ErrorMessageComponent],
   providers: [
     {

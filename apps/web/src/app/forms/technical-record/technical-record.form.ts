@@ -1,8 +1,9 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, effect, inject, input, model } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionControlsComponent } from '@app/components/accordion/accordion-controls/accordion-controls.component';
 import { AccordionSectionComponent } from '@app/components/accordion/accordion-section/accordion-section.component';
 import { AccordionComponent } from '@app/components/accordion/accordion.component';
+import { ForTagsDirective } from '@app/directives/for-tags.directive';
 import { TechRecord } from '@app/services/constants.service';
 import { TechRecordService } from '@app/services/tech-record.service';
 import { AdrForm } from '../adr/adr.form';
@@ -51,6 +52,7 @@ import { WeightsForm } from '../weights/weights.form';
     AccordionSectionComponent,
     FormsModule,
     ReactiveFormsModule,
+    ForTagsDirective,
   ],
 })
 export class TechnicalRecordForm {
@@ -59,6 +61,7 @@ export class TechnicalRecordForm {
   readonly techRecord = input.required<TechRecord>();
 
   readonly form = this.fb.group({});
+  readonly filters = model<string[]>([]);
 
   constructor() {
     effect(() => {

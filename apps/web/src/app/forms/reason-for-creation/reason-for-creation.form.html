@@ -1,0 +1,13 @@
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    <form [formGroup]="parent">
+      <app-textarea
+        *forTags="[]; filters: filters()"
+        label="Reason for creation"
+        hint="Enter the reason for creating this technical record"
+        formControlName="techRecord_reasonForCreation"
+        [maxlength]="100"
+      ></app-textarea>
+    </form>
+  }
+}

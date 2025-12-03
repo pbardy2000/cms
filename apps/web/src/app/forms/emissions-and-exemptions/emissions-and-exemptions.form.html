@@ -1,0 +1,44 @@
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    @let vehicleType = techRecord.techRecord_vehicleType;
+
+    <form [formGroup]="parent">
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Drawbar coupling fitted"
+        formControlName="techRecord_drawbarCouplingFitted"
+        [options]="constants.yesNoOptions"
+      ></app-radios>
+
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Euro standard"
+        formControlName="techRecord_euroStandard"
+        [options]="constants.euroStandardOptions[vehicleType]"
+      ></app-radios>
+
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        label="Emission limit (smoke absorption coefficient)"
+        formControlName="techRecord_emissionsLimit"
+        type="number"
+        suffix="m^-1"
+        class="govuk-input--width-2"
+      ></app-text-input>
+
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Speed limit exempt"
+        formControlName="techRecord_speedLimiterMrk"
+        [options]="constants.exemptNotExemptOptions"
+      ></app-radios>
+
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Tacho exemption"
+        formControlName="techRecord_tachoExemptMrk"
+        [options]="constants.exemptNotExemptOptions"
+      ></app-radios>
+    </form>
+  }
+}

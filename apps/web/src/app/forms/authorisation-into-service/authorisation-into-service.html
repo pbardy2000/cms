@@ -1,0 +1,33 @@
+@if (parent) {
+  <div [formGroup]="parent">
+    <app-date-input
+      *forTags="[]; filters: filters()"
+      [label]="'COC issue date'"
+      [formControlName]="'techRecord_authIntoService_cocIssueDate'"
+    ></app-date-input>
+
+    <app-date-input
+      *forTags="[]; filters: filters()"
+      [label]="'Date received'"
+      [formControlName]="'techRecord_authIntoService_dateReceived'"
+    ></app-date-input>
+
+    <app-date-input
+      *forTags="[]; filters: filters()"
+      [label]="'Date pending'"
+      [formControlName]="'techRecord_authIntoService_datePending'"
+    ></app-date-input>
+
+    <app-date-input
+      *forTags="[]; filters: filters()"
+      [label]="'Date authorised'"
+      [formControlName]="'techRecord_authIntoService_dateAuthorised'"
+    ></app-date-input>
+
+    <app-date-input
+      *forTags="[]; filters: filters()"
+      [label]="'Date rejected'"
+      [formControlName]="'techRecord_authIntoService_dateRejected'"
+    ></app-date-input>
+  </div>
+}

@@ -1,24 +1,23 @@
-import { Component, forwardRef, inject } from '@angular/core';
+import { Component, forwardRef, inject, input } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { RadioComponent } from '@app/components/radio/radio.component';
 import { RadiosComponent } from '@app/components/radios/radios.component';
 import { SelectComponent } from '@app/components/select/select.component';
 import { TextInputComponent } from '@app/components/text-input/text-input.component';
-import { ForVehicleTypesDirective } from '@app/directives/for-vehicle-types.directive';
-import { ConstantsService } from '@app/services/constants.service';
+import { ForTagsDirective } from '@app/directives/for-tags.directive';
+import { ConstantsService, TechRecord } from '@app/services/constants.service';
 import { BaseForm } from '../base-form/base-form.form';
 
 @Component({
   selector: 'app-configuration-form',
   templateUrl: './configuration.form.html',
+  styleUrls: ['./configuration.form.scss'],
   imports: [
     RadiosComponent,
-    RadioComponent,
     SelectComponent,
     TextInputComponent,
     FormsModule,
     ReactiveFormsModule,
-    ForVehicleTypesDirective,
+    ForTagsDirective,
   ],
   providers: [
     {
@@ -30,6 +29,9 @@ import { BaseForm } from '../base-form/base-form.form';
 })
 export class ConfigurationForm extends BaseForm {
   readonly constants = inject(ConstantsService);
+
+  readonly techRecord = input<TechRecord>();
+  readonly filters = input<string[]>([]);
 
   override form = this.fb.group({
     techRecord_offRoad: this.fb.control<boolean | null>(null),

@@ -1,0 +1,32 @@
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    @let vehicleType = techRecord.techRecord_vehicleType;
+    <form [formGroup]="parent">
+      @if (vehicleType === 'psv') {
+        <app-textarea
+          *forTags="[]; filters: filters()"
+          label="Notes"
+          hint="Enter any notes for this technical record"
+          formControlName="techRecord_remarks"
+          [maxlength]="1024"
+        ></app-textarea>
+
+        <app-textarea
+          *forTags="[]; filters: filters()"
+          label="Dispensations"
+          hint="Enter any dispensations for this technical record"
+          formControlName="techRecord_dispensations"
+          [maxlength]="160"
+        ></app-textarea>
+      } @else {
+        <app-textarea
+          *forTags="[]; filters: filters()"
+          label="Notes"
+          hint="Enter any notes for this technical record"
+          formControlName="techRecord_notes"
+          [maxlength]="1024"
+        ></app-textarea>
+      }
+    </form>
+  }
+}

@@ -1,0 +1,168 @@
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    <form [formGroup]="parent">
+      <app-radios
+        *forTags="[]; filters: filters()"
+        id="techRecord_adrDetails_dangerousGoods"
+        label="Approved to carrying dangerous goods"
+        formControlName="techRecord_adrDetails_dangerousGoods"
+      >
+        <app-radio label="Yes" [value]="true">
+          <!-- Applicant details -->
+          <h3 class="govuk-heading-s">Applicant details</h3>
+
+          <app-text-input
+            *forTags="[]; filters: filters()"
+            label="Name"
+            formControlName="techRecord_adrDetails_applicantDetails_name"
+          ></app-text-input>
+
+          <app-text-input
+            *forTags="[]; filters: filters()"
+            label="Address line 1"
+            formControlName="techRecord_adrDetails_applicantDetails_street"
+          ></app-text-input>
+
+          <app-text-input
+            *forTags="[]; filters: filters()"
+            label="Address line 2"
+            formControlName="techRecord_adrDetails_applicantDetails_town"
+          ></app-text-input>
+
+          <app-text-input
+            *forTags="[]; filters: filters()"
+            label="Town or city"
+            formControlName="techRecord_adrDetails_applicantDetails_city"
+            class="govuk-input--width-20"
+          ></app-text-input>
+
+          <app-text-input
+            *forTags="[]; filters: filters()"
+            label="Postcode"
+            formControlName="techRecord_adrDetails_applicantDetails_postcode"
+            class="govuk-input--width-10"
+          ></app-text-input>
+
+          <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m" />
+
+          <!-- ADR details -->
+          <h3 class="govuk-heading-s">ADR details</h3>
+
+          <app-select
+            *forTags="[]; filters: filters()"
+            label="ADR body type"
+            formControlName="techRecord_adrDetails_vehicleDetails_type"
+            [options]="constants.adrBodyTypeOptions"
+            placeholder="Select body type"
+            class="govuk-input--width-10"
+          ></app-select>
+
+          <app-radios
+            *forTags="[]; filters: filters()"
+            label="Is the vehicle used on international journeys?"
+            formControlName="techRecord_adrDetails_vehicleDetails_usedOnInternationalJourneys"
+            [options]="constants.yesNoNAOptions"
+            size="small"
+          ></app-radios>
+
+          <app-date-input
+            *forTags="[]; filters: filters()"
+            label="Date processed"
+            formControlName="techRecord_adrDetails_dateProcessed"
+          ></app-date-input>
+
+          <app-checkboxes
+            *forTags="[]; filters: filters()"
+            label="Permitted dangerous goods"
+            formControlName="techRecord_adrDetails_permittedDangerousGoods"
+            size="small"
+            [options]="constants.permittedDangerousGoodsOptions"
+          ></app-checkboxes>
+
+          @if (carriesExplosives()) {
+            <app-radios
+              id="techRecord_adrDetails_compatibilityGroupJ"
+              label="Compatibility group J"
+              formControlName="techRecord_adrDetails_compatibilityGroupJ"
+              [options]="constants.yesNoOptions"
+              size="small"
+            ></app-radios>
+          }
+
+          <app-checkboxes
+            *forTags="[]; filters: filters()"
+            label="Guidance notes"
+            formControlName="techRecord_adrDetails_additionalNotes_number"
+            [options]="constants.guidanceNotesOptions"
+            size="small"
+          ></app-checkboxes>
+
+          <app-text-input
+            *forTags="[]; filters: filters()"
+            label="ADR type approval number"
+            formControlName="techRecord_adrDetails_adrTypeApprovalNo"
+            class="govuk-input--width-10"
+          ></app-text-input>
+
+          <app-checkbox
+            title="New certificate required"
+            formControlName="techRecord_adrDetails_newCertificateRequested"
+            label="Yes"
+            size="small"
+          ></app-checkbox>
+
+          <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m" />
+
+          <!-- Declarations seen -->
+          <h3 class="govuk-heading-s">Declarations seen</h3>
+
+          <app-checkbox
+            id="techRecord_adrDetails_brakeDeclarationsSeen"
+            label="Manufacturer brake declaration"
+            formControlName="techRecord_adrDetails_brakeDeclarationsSeen"
+            size="small"
+            [value]="true"
+          >
+            <app-textarea
+              id="techRecord_adrDetails_brakeDeclarationIssuer"
+              label="Issuer"
+              formControlName="techRecord_adrDetails_brakeDeclarationIssuer"
+              [maxlength]="1024"
+            ></app-textarea>
+
+            <app-checkbox
+              id="techRecord_adrDetails_brakeEndurance"
+              label="Brake endurance"
+              formControlName="techRecord_adrDetails_brakeEndurance"
+              size="small"
+              [value]="true"
+            >
+              <app-text-input
+                *forTags="[]; filters: filters()"
+                label="Weight"
+                formControlName="techRecord_adrDetails_weight"
+                type="number"
+                suffix="tonnes"
+                class="govuk-input--width-5"
+              ></app-text-input>
+            </app-checkbox>
+          </app-checkbox>
+
+          <app-checkbox
+            id="techRecord_adrDetails_declarationsSeen"
+            label="Owner/operator declaration"
+            formControlName="techRecord_adrDetails_declarationsSeen"
+            size="small"
+            [value]="true"
+          ></app-checkbox>
+
+          <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m" />
+
+          <!-- Notes-->
+          <h3 class="govuk-heading-s">Notes</h3>
+        </app-radio>
+        <app-radio label="No" [value]="false"></app-radio>
+      </app-radios>
+    </form>
+  }
+}

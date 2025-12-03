@@ -11,10 +11,10 @@
   ></app-text-input>
 
   <app-checkbox
-    label="Generate C, T or Z number"
+    title="Generate C, T or Z number"
     formControlName="generateID"
     name="generate-c-t-z-num"
-    label="Generate a C/T/Z number on submission of the new record"
+    label="Generate C, T or Z number on submission of the new record"
     [value]="true"
   ></app-checkbox>
 
@@ -35,11 +35,27 @@
     [options]="constants.vehicleStatusOptions"
   ></app-radios>
 
-  <app-radios
-    label="Vehicle type"
-    formControlName="type"
-    [options]="constants.vehicleTypeOptions"
-  ></app-radios>
+  <app-radios id="type" label="Vehicle type" formControlName="type">
+    <app-radio label="Heavy Goods Vehicle (HGV)" value="hgv"></app-radio>
+    <app-radio label="Trailer (TRL)" value="trl">
+      <app-radios
+        id="techRecord_euVehicleCategory"
+        label="Select an EU vehicle category"
+        hint="This will determine the fields that appear in the record"
+        formControlName="techRecord_euVehicleCategory"
+      >
+        <app-radio label="O1" value="O1"></app-radio>
+        <app-radio label="O2" value="O2"></app-radio>
+        <div class="govuk-radios__divider">or</div>
+        <app-radio label="O3" value="O3"></app-radio>
+        <app-radio label="O4" value="O4"></app-radio>
+      </app-radios>
+    </app-radio>
+    <app-radio label="Public Service Vehicle (PSV)" value="psv"></app-radio>
+    <app-radio label="Light Goods Vehicle (LGV)" value="lgv"></app-radio>
+    <app-radio label="Car" value="car"></app-radio>
+    <app-radio label="Motorcycle" value="motorcycle"></app-radio>
+  </app-radios>
 
   <hr class="govuk-section-break govuk-section-break--m" />
 

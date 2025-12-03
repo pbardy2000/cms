@@ -1,36 +1,49 @@
 @if (parent) {
-  <form [formGroup]="parent">
-    <app-radios
-      label="Off-road vehicle"
-      formControlName="techRecord_offRoad"
-      [options]="constants.yesNoOptions"
-    ></app-radios>
+  @if (techRecord(); as techRecord) {
+    @let vehicleType = techRecord.techRecord_vehicleType;
 
-    <app-radios
-      label="Departmental vehicle marker"
-      formControlName="techRecord_departmentalVehicleMarker"
-      [options]="constants.yesNoOptions"
-    ></app-radios>
+    <form [formGroup]="parent">
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Off-road vehicle"
+        formControlName="techRecord_offRoad"
+        [options]="constants.yesNoOptions"
+      ></app-radios>
 
-    <app-select
-      label="Fuel system"
-      placeholder="Select fuel system"
-      formControlName="techRecord_fuelPropulsionSystem"
-      [options]="constants.fuelSystemOptions['hgv']"
-    ></app-select>
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Departmental vehicle marker"
+        formControlName="techRecord_departmentalVehicleMarker"
+        [options]="constants.yesNoOptions"
+      ></app-radios>
 
-    <app-text-input
-      *forVehicleTypes="['psv']; vehicleType: parent.get('techRecord_vehicleType')!.value"
-      label="Speed restriction"
-      formControlName="techRecord_speedRestriction"
-      type="number"
-      suffix="mph"
-    ></app-text-input>
+      @if (vehicleType === 'hgv') {
+        <app-select
+          *forTags="[]; filters: filters()"
+          label="Fuel system"
+          placeholder="Select fuel system"
+          formControlName="techRecord_fuelPropulsionSystem"
+          [options]="constants.fuelSystemOptions['hgv']"
+          class="govuk-input--width-10"
+        ></app-select>
+      }
 
-    <app-radios
-      label="Road friendly suspension"
-      formControlName="techRecord_roadFriendly"
-      [options]="constants.yesNoOptions"
-    ></app-radios>
-  </form>
+      @if (vehicleType === 'psv') {
+        <app-text-input
+          *forTags="[]; filters: filters()"
+          label="Speed restriction"
+          formControlName="techRecord_speedRestriction"
+          type="number"
+          suffix="mph"
+        ></app-text-input>
+      }
+
+      <app-radios
+        *forTags="[]; filters: filters()"
+        label="Road friendly suspension"
+        formControlName="techRecord_roadFriendly"
+        [options]="constants.yesNoOptions"
+      ></app-radios>
+    </form>
+  }
 }

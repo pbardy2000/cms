@@ -1,3 +1,7 @@
 .govuk-checkboxes--small::ng-deep .govuk-checkboxes__item {
   margin-bottom: 0;
 }
+
+.govuk-checkboxes__conditiona::ng-deep app-checkbox .govuk-form-group {
+  margin-bottom: 0 !important;
+}

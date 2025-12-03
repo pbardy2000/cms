@@ -1,0 +1,28 @@
+@if (parent) {
+  @if (techRecord(); as techRecord) {
+    <form [formGroup]="parent">
+      <app-typeahead
+        *forTags="[]; filters: filters()"
+        id="techRecord_microfilm_documentType"
+        label="Microfilm document type"
+        formControlName="techRecord_microfilm_microfilmDocumentType"
+        [options]="constants.microfilmDocumentTypes"
+        class="govuk-input--width-20"
+      ></app-typeahead>
+
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        label="Microfilm roll number"
+        formControlName="techRecord_microfilm_microfilmRollNumber"
+        class="govuk-input--width-20"
+      ></app-text-input>
+
+      <app-text-input
+        *forTags="[]; filters: filters()"
+        label="Microfilm serial number"
+        formControlName="techRecord_microfilm_microfilmSerialNumber"
+        class="govuk-input--width-20"
+      ></app-text-input>
+    </form>
+  }
+}

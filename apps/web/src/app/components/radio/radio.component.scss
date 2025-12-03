@@ -2,6 +2,24 @@
   margin-bottom: 0;
 }
 
-::ng-deep .govuk-form-group .govuk-form-group:last-of-type {
-  margin-bottom: 30px;
+.govuk-radios__conditional::ng-deep {
+  .govuk-form-group:last-of-type {
+    margin-bottom: 30px;
+  }
+
+  app-checkbox {
+    .govuk-form-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .govuk-checkboxes__conditional::ng-deep .govuk-form-group:last-of-type {
+      margin-bottom: 30px;
+    }
+  }
+
+  app-date-input {
+    .govuk-form-group:last-of-type {
+      margin-bottom: 20px;
+    }
+  }
 }

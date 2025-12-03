@@ -1,0 +1,73 @@
+@if (parent) {
+  <div [formGroup]="parent">
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Name or company'"
+      [formControlName]="'techRecord_manufacturerDetails_name'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Address line 1'"
+      [formControlName]="'techRecord_manufacturerDetails_address1'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Address line 2'"
+      [formControlName]="'techRecord_manufacturerDetails_address2'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Town or city'"
+      [formControlName]="'techRecord_manufacturerDetails_postTown'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'County'"
+      [formControlName]="'techRecord_manufacturerDetails_address3'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Postcode'"
+      [formControlName]="'techRecord_manufacturerDetails_postCode'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Telephone number'"
+      [formControlName]="'techRecord_manufacturerDetails_telephoneNumber'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Email address'"
+      [formControlName]="'techRecord_manufacturerDetails_emailAddress'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-text-input
+      *forTags="[]; filters: filters()"
+      [label]="'Fax number'"
+      [formControlName]="'techRecord_manufacturerDetails_faxNumber'"
+      class="govuk-input--width-20"
+    ></app-text-input>
+
+    <app-textarea
+      *forTags="[]; filters: filters()"
+      [label]="'Manufacturer notes'"
+      [formControlName]="'techRecord_manufacturerDetails_manufacturerNotes'"
+      [maxlength]="1024"
+    ></app-textarea>
+  </div>
+}

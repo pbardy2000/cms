@@ -22,6 +22,11 @@ export class ConstantsService {
     { label: 'I do not know', value: null },
   ];
 
+  readonly exemptNotExemptOptions: Option<boolean | null>[] = [
+    { label: 'Exempt', value: true },
+    { label: 'Not exempt', value: false },
+  ];
+
   readonly vehicleTypeOptions: Option<VehicleType>[] = [
     { label: 'Heavy Goods Vehicle (HGV)', value: 'hgv' },
     { label: 'Trailer (TRL)', value: 'trl' },
@@ -86,13 +91,6 @@ export class ConstantsService {
       { label: 'Low', value: 'LOW' },
       { label: 'Special', value: 'SPECIAL' },
     ],
-    'small trl': [
-      { label: 'Standard', value: 'STANDARD' },
-      { label: 'Extended', value: 'EXTENDED' },
-      { label: 'High', value: 'HIGH' },
-      { label: 'Low', value: 'LOW' },
-      { label: 'Special', value: 'SPECIAL' },
-    ],
     lgv: [
       { label: 'Standard', value: 'STANDARD' },
       { label: 'Extended', value: 'EXTENDED' },
@@ -128,10 +126,6 @@ export class ConstantsService {
       { label: 'O2', value: 'O2' },
       { label: 'O3', value: 'O3' },
       { label: 'O4', value: 'O4' },
-    ],
-    'small trl': [
-      { label: 'O1', value: 'O1' },
-      { label: 'O2', value: 'O2' },
     ],
     motorcycle: [
       { label: 'L1', value: 'L1' },
@@ -222,17 +216,6 @@ export class ConstantsService {
       { label: 'LNG', value: 'LNG' },
       { label: 'Other', value: 'OTHER' },
     ],
-    'small trl': [
-      // TODO: correct values
-      { label: 'Diesel', value: 'DIESEL' },
-      { label: 'Petrol', value: 'PETROL' },
-      { label: 'Hybrid', value: 'HYBRID' },
-      { label: 'Electric', value: 'ELECTRIC' },
-      { label: 'CNG', value: 'CNG' },
-      { label: 'Fuel cell', value: 'FUEL_CELL' },
-      { label: 'LNG', value: 'LNG' },
-      { label: 'Other', value: 'OTHER' },
-    ],
     motorcycle: [
       // TODO: correct values
       { label: 'Diesel', value: 'DIESEL' },
@@ -280,13 +263,6 @@ export class ConstantsService {
       { label: '2J', value: '2J' },
       { label: '2M', value: '2M' },
     ],
-    'small trl': [
-      // TODO: correct values
-      { label: '2R', value: '2R' },
-      { label: '2B', value: '2B' },
-      { label: '2J', value: '2J' },
-      { label: '2M', value: '2M' },
-    ],
     motorcycle: [
       // TODO: correct values
       { label: '2R', value: '2R' },
@@ -311,6 +287,7 @@ export class ConstantsService {
       { label: 'Euro 6', value: 'EURO6' },
       { label: 'Euro V', value: 'EUROV' },
       { label: 'Euro VI', value: 'EUROVI' },
+      { label: 'Full electric', value: 'FULL_ELECTRIC' },
     ],
     psv: [
       // TODO: correct values
@@ -322,51 +299,11 @@ export class ConstantsService {
       { label: 'Euro 6', value: 'EURO6' },
       { label: 'Euro V', value: 'EUROV' },
       { label: 'Euro VI', value: 'EUROVI' },
+      { label: 'Full electric', value: 'FULL_ELECTRIC' },
     ],
-    lgv: [
-      // TODO: correct values
-      { label: '0.10 g/kWh Euro III PM', value: 'EUROIII' },
-      { label: '0.03 g/kWh Euro IV PM', value: 'EUROIV' },
-      { label: 'Euro 3', value: 'EURO3' },
-      { label: 'Euro 4', value: 'EURO4' },
-      { label: 'Euro 5', value: 'EURO5' },
-      { label: 'Euro 6', value: 'EURO6' },
-      { label: 'Euro V', value: 'EUROV' },
-      { label: 'Euro VI', value: 'EUROVI' },
-    ],
-    car: [
-      // TODO: correct values
-      { label: '0.10 g/kWh Euro III PM', value: 'EUROIII' },
-      { label: '0.03 g/kWh Euro IV PM', value: 'EUROIV' },
-      { label: 'Euro 3', value: 'EURO3' },
-      { label: 'Euro 4', value: 'EURO4' },
-      { label: 'Euro 5', value: 'EURO5' },
-      { label: 'Euro 6', value: 'EURO6' },
-      { label: 'Euro V', value: 'EUROV' },
-      { label: 'Euro VI', value: 'EUROVI' },
-    ],
-    trl: [
-      // TODO: correct values
-      { label: '0.10 g/kWh Euro III PM', value: 'EUROIII' },
-      { label: '0.03 g/kWh Euro IV PM', value: 'EUROIV' },
-      { label: 'Euro 3', value: 'EURO3' },
-      { label: 'Euro 4', value: 'EURO4' },
-      { label: 'Euro 5', value: 'EURO5' },
-      { label: 'Euro 6', value: 'EURO6' },
-      { label: 'Euro V', value: 'EUROV' },
-      { label: 'Euro VI', value: 'EUROVI' },
-    ],
-    'small trl': [
-      // TODO: correct values
-      { label: '0.10 g/kWh Euro III PM', value: 'EUROIII' },
-      { label: '0.03 g/kWh Euro IV PM', value: 'EUROIV' },
-      { label: 'Euro 3', value: 'EURO3' },
-      { label: 'Euro 4', value: 'EURO4' },
-      { label: 'Euro 5', value: 'EURO5' },
-      { label: 'Euro 6', value: 'EURO6' },
-      { label: 'Euro V', value: 'EUROV' },
-      { label: 'Euro VI', value: 'EUROVI' },
-    ],
+    lgv: [],
+    car: [],
+    trl: [],
     motorcycle: [
       // TODO: correct values
       { label: '0.10 g/kWh Euro III PM', value: 'EUROIII' },
@@ -504,7 +441,6 @@ export class ConstantsService {
     lgv: [],
     car: [],
     trl: [],
-    'small trl': [],
     motorcycle: [],
   };
 
@@ -585,9 +521,172 @@ export class ConstantsService {
       'TYRES',
       'TYRE_LOAD_INDEX',
     ],
-    'small trl': ['TRL_SUBCLASS'],
     motorcycle: ['MOTORCYCLE_SUBCLASS'],
   };
+
+  readonly microfilmDocumentTypes: Option<string>[] = [
+    {
+      value: 'AAV - HGV Annual Test',
+      label: 'AAV - HGV Annual Test',
+    },
+    {
+      value: 'COIF Master',
+      label: 'COIF Master',
+    },
+    {
+      value: 'Tempo 100 Sp Ord',
+      label: 'Tempo 100 Sp Ord',
+    },
+    {
+      value: 'Deleted',
+      label: 'Deleted',
+    },
+    {
+      value: 'XPT - Tr Plating Cert paid',
+      label: 'XPT - Tr Plating Cert paid',
+    },
+
+    {
+      value: 'FFV - HGV First Test',
+      label: 'FFV - HGV First Test',
+    },
+    {
+      value: 'Repl Vitesse 100',
+      label: 'Repl Vitesse 100',
+    },
+    {
+      value: 'TCV - HGV Test Cert',
+      label: 'TCV - HGV Test Cert',
+    },
+    {
+      value: 'ZZZ - Miscellaneous',
+      label: 'ZZZ - Miscellaneous',
+    },
+    {
+      value: 'Test Certificate',
+      label: 'Test Certificate',
+    },
+    {
+      value: 'XCT - Trailer Test Cert free',
+      label: 'XCT - Trailer Test Cert free',
+    },
+    {
+      value: 'C52 - COC and VTG52A',
+      label: 'C52 - COC and VTG52A',
+    },
+    {
+      value: 'Tempo 100 Report',
+      label: 'Tempo 100 Report',
+    },
+    {
+      value: 'Main File Amendment',
+      label: 'Main File Amendment',
+    },
+    {
+      value: 'PSV Doc',
+      label: 'PSV Doc',
+    },
+    {
+      value: 'PSV Repl COC',
+      label: 'PSV Repl COC',
+    },
+    {
+      value: 'TAV - COC',
+      label: 'TAV - COC',
+    },
+    {
+      value: 'NPT - Trailer Alteration',
+      label: 'NPT - Trailer Alteration',
+    },
+    {
+      value: 'OMO Certificate',
+      label: 'OMO Certificate',
+    },
+    {
+      value: 'PSV Repl COIF',
+      label: 'PSV Repl COIF',
+    },
+    {
+      value: 'COIF Application',
+      label: 'COIF Application',
+    },
+    {
+      value: 'XPV - HGV Plating Cert Free',
+      label: 'XPV - HGV Plating Cert Free',
+    },
+    {
+      value: 'TCT - Trailer Test Cert',
+      label: 'TCT - Trailer Test Cert',
+    },
+    {
+      value: 'Tempo 100 App',
+      label: 'Tempo 100 App',
+    },
+    {
+      value: 'PSV Decision on N/ALT',
+      label: 'PSV Decision on N/ALT',
+    },
+    {
+      value: 'Special Order PSV',
+      label: 'Special Order PSV',
+    },
+    {
+      value: 'NPV - HGV Alteration',
+      label: 'NPV - HGV Alteration',
+    },
+    {
+      value: 'No Description Found',
+      label: 'No Description Found',
+    },
+    {
+      value: 'Vitesse 100 Sp Ord',
+      label: 'Vitesse 100 Sp Ord',
+    },
+    {
+      value: 'Brake Test Details',
+      label: 'Brake Test Details',
+    },
+    {
+      value: 'COIF Productional',
+      label: 'COIF Productional',
+    },
+    {
+      value: 'RDT - Test Disc Paid',
+      label: 'RDT - Test Disc Paid',
+    },
+    {
+      value: 'RCV - HGV Test Cert',
+      label: 'RCV - HGV Test Cert',
+    },
+    {
+      value: 'FFT - Trailer First Test',
+      label: 'FFT - Trailer First Test',
+    },
+    {
+      value: 'IPT - Trailer EEC Plate/Cert',
+      label: 'IPT - Trailer EEC Plate/Cert',
+    },
+    {
+      value: 'XDT - Test Disc Free',
+      label: 'XDT - Test Disc Free',
+    },
+    {
+      value: 'PRV - HGV Plating Cert paid',
+      label: 'PRV - HGV Plating Cert paid',
+    },
+    {
+      value: 'COF Cert',
+      label: 'COF Cert',
+    },
+    {
+      value: 'PRT - Tr Plating Cert paid',
+      label: 'PRT - Tr Plating Cert paid',
+    },
+    {
+      value: 'Tempo 100 Permit',
+      label: 'Tempo 100 Permit',
+    },
+  ];
 }
 
 export type ErrorMessage = {
@@ -610,7 +709,7 @@ export type VehicleStatus = 'PROVISIONAL' | 'CURRENT';
 
 export type RecordStatus = VehicleStatus | 'ARCHIVED';
 
-export type VehicleType = 'car' | 'lgv' | 'hgv' | 'psv' | 'trl' | 'small trl' | 'motorcycle';
+export type VehicleType = 'car' | 'lgv' | 'hgv' | 'psv' | 'trl' | 'motorcycle';
 
 export type EUVehicleCategory =
   | 'L1'

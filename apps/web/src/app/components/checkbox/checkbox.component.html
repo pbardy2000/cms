@@ -33,7 +33,6 @@
     [class.govuk-checkboxes__conditional--hidden]="!isChecked()"
     [id]="'conditional-' + checkboxes.id() + '-' + value() + '-checkbox'"
   >
-    <ng-content select="[checkbox-conditional]"></ng-content>
     <ng-content></ng-content>
   </div>
 }

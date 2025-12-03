@@ -22,6 +22,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss'],
   imports: [FormsModule, ErrorMessageComponent],
   providers: [
     {
@@ -63,6 +64,7 @@ export class CheckboxComponent<T>
     }
 
     if (event.target instanceof HTMLInputElement) {
+      this.checked.set(event.target.checked);
       this.writeValue(event.target.checked ? this.value() : false);
     }
   }

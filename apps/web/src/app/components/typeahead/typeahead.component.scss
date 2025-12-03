@@ -1,0 +1,38 @@
+.govuk-label-wrapper .govuk-label {
+  font-weight: var(--heading-font-weight);
+}
+
+.options-container {
+  position: relative;
+  width: fit-content;
+  max-width: var(--max-width);
+}
+
+.option {
+  border-bottom: 1px solid #b1b4b6;
+  width: 100%;
+}
+
+.option.odd {
+  background-color: #fff;
+}
+
+.option.even {
+  background-color: #fafafa;
+}
+
+.option-label {
+  text-align: left;
+  margin-bottom: 0 !important;
+  padding: 0.5rem;
+}
+
+.chevron-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+}
