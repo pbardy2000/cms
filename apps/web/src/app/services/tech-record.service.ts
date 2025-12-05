@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EUVehicleCategory, TechRecord, TechRecordStub, VehicleType } from './constants.service';
+import { EUVehicleCategory, TechRecord, VehicleType } from './constants.service';
 
 @Injectable({ providedIn: 'root' })
 export class TechRecordService {
@@ -18,9 +18,8 @@ export class TechRecordService {
     return true;
   }
 
-  canHaveAxles(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
-    return type === 'psv' || type === 'trl' || type === 'hgv';
+  canHaveAxles(data: TechRecord) {
+    return this.isHeavyVehicle(data);
   }
 
   canHaveWeights(data: TechRecord) {
@@ -59,8 +58,7 @@ export class TechRecordService {
     return this.isHeavyVehicle(data);
   }
 
-  canHaveAdr(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
+  canHaveAdr({ techRecord_vehicleType: type }: TechRecord) {
     return type === 'lgv' || type === 'trl' || type === 'hgv';
   }
 
@@ -77,9 +75,8 @@ export class TechRecordService {
     return data.techRecord_vehicleType === 'psv';
   }
 
-  canHaveBrakes(data: TechRecord) {
-    const VehicleType = data.techRecord_vehicleType;
-    return VehicleType === 'psv' || VehicleType === 'trl';
+  canHaveBrakes({ techRecord_vehicleType: type }: TechRecord) {
+    return type === 'psv' || type === 'trl';
   }
 
   canHaveDisabilityDiscriminationAct(data: TechRecord) {
@@ -98,34 +95,35 @@ export class TechRecordService {
     return true;
   }
 
-  canHaveGBWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
-    return type === 'psv' || type === 'trl' || type === 'hgv';
+  canHaveGBWeight(data: TechRecord) {
+    return this.isHeavyVehicle(data);
   }
 
-  canHaveEECWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
+  canHaveEECWeight({ techRecord_vehicleType: type }: TechRecord) {
     return type === 'trl' || type === 'hgv';
   }
 
-  canHaveDesignWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
-    return type === 'psv' || type === 'trl' || type === 'hgv';
+  canHaveDesignWeight(data: TechRecord) {
+    return this.isHeavyVehicle(data);
   }
 
-  canHaveLadenWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
+  canHaveLadenWeight({ techRecord_vehicleType: type }: TechRecord) {
     return type === 'psv' || type === 'trl';
   }
 
-  canHaveKerbWeight(data: TechRecord | TechRecordStub | string) {
-    const type = typeof data === 'string' ? data : data.techRecord_vehicleType;
+  canHaveKerbWeight({ techRecord_vehicleType: type }: TechRecord) {
     return type === 'psv' || type === 'trl';
   }
 
-  getDefaultEUVehicleCategory(
-    data: TechRecord | TechRecordStub | string,
-  ): EUVehicleCategory | null {
+  canCarryExplosives(data: TechRecord) {
+    if (!this.canHaveAdr(data)) return false;
+    if (!Array.isArray(data.techRecord_adrDetails_permittedDangerousGoods)) return false;
+    return data.techRecord_adrDetails_permittedDangerousGoods.some((good) => {
+      return ['Explosives (type 2)', 'Explosives (type 3)'].includes(good);
+    });
+  }
+
+  getDefaultEUVehicleCategory(data: TechRecord): EUVehicleCategory | null {
     const type = typeof data === 'string' ? data : (data.techRecord_vehicleType as VehicleType);
     switch (type) {
       case 'car':

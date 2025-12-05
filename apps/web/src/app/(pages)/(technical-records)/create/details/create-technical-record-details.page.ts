@@ -1,17 +1,23 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ButtonGroupComponent } from '@app/components/button-group/button-group.component';
+import { ButtonComponent } from '@app/components/button/button.component';
+import { ErrorSummaryComponent } from '@app/components/error-summary/error-summary.component';
 import { TechnicalRecordForm } from '@app/forms/technical-record/technical-record.form';
 import { TechRecord, VehicleStatus, VehicleType } from '@app/services/constants.service';
 
 @Component({
   selector: 'app-create-technical-record-details',
   templateUrl: './create-technical-record-details.page.html',
-  imports: [TechnicalRecordForm],
+  imports: [TechnicalRecordForm, ButtonGroupComponent, ButtonComponent, ErrorSummaryComponent],
 })
 export class CreateTechnicalRecordPage {
+  readonly fb = inject(FormBuilder);
   readonly activatedRoute = inject(ActivatedRoute);
 
+  readonly form = this.fb.group({});
   readonly queryParams = toSignal(this.activatedRoute.queryParamMap);
 
   readonly techRecord = computed(() => {
@@ -27,9 +33,9 @@ export class CreateTechnicalRecordPage {
     };
   });
 
-  onSubmit(): void {}
+  saveAndContinue(): void {}
 
-  onCancel(): void {}
+  cancel(): void {}
 }
 
 export function createEmptyHGV(): TechRecord {

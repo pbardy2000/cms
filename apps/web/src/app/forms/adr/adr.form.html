@@ -79,7 +79,7 @@
             [options]="constants.permittedDangerousGoodsOptions"
           ></app-checkboxes>
 
-          @if (carriesExplosives()) {
+          @if (techRecordService.canCarryExplosives(parent.value)) {
             <app-radios
               id="techRecord_adrDetails_compatibilityGroupJ"
               label="Compatibility group J"

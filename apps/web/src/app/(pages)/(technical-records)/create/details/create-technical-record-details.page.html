@@ -1,3 +1,10 @@
+<app-error-summary></app-error-summary>
+
 <h1 class="govuk-heading-l">Create a new technical record</h1>
 
-<app-technical-record-form [techRecord]="techRecord()" />
+<app-technical-record-form [form]="form" [techRecord]="techRecord()" />
+
+<app-button-group>
+  <app-button (click)="saveAndContinue()">Save and continue</app-button>
+  <app-button theme="secondary" (click)="cancel()">Cancel</app-button>
+</app-button-group>

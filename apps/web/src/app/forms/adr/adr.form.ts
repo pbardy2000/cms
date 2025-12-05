@@ -10,6 +10,7 @@ import { TextInputComponent } from '@app/components/text-input/text-input.compon
 import { TextareaComponent } from '@app/components/textarea/textarea.component';
 import { ForTagsDirective } from '@app/directives/for-tags.directive';
 import { ConstantsService, TechRecord } from '@app/services/constants.service';
+import { TechRecordService } from '@app/services/tech-record.service';
 import { BaseForm } from '../base-form/base-form.form';
 
 @Component({
@@ -39,6 +40,7 @@ import { BaseForm } from '../base-form/base-form.form';
 })
 export class AdrForm extends BaseForm {
   readonly constants = inject(ConstantsService);
+  readonly techRecordService = inject(TechRecordService);
 
   readonly techRecord = input<TechRecord>();
   readonly filters = input<string[]>([]);
@@ -82,6 +84,30 @@ export class AdrForm extends BaseForm {
     techRecord_adrDetails_bodyDeclaration_type: this.fb.control<string | null>(null),
     techRecord_adrDetails_newCertificateRequested: this.fb.control<boolean | null>(null),
 
+    // Tank details
+    techRecord_adrDetails_tank_tankDetails_tankManufacturer: this.fb.control<string | null>(null, [
+      this.validators.maxLength(100, 'Tank manufacturer'),
+    ]),
+    techRecord_adrDetails_tank_tankDetails_yearOfManufacture: this.fb.control<number | null>(null, [
+      this.validators.min(1900, 'Year of manufacture'),
+      this.validators.max(2100, 'Year of manufacture'),
+    ]),
+    techRecord_adrDetails_tank_tankDetails_tankManufacturerSerialNo: this.fb.control<string | null>(
+      null,
+      [this.validators.maxLength(10, 'Tank manufacturer serial number')],
+    ),
+    techRecord_adrDetails_tank_tankDetails_tankTypeAppNo: this.fb.control<string | null>(null, [
+      this.validators.maxLength(10, 'Tank type approval number'),
+    ]),
+    techRecord_adrDetails_tank_tankDetails_tankCode: this.fb.control<string | null>(null, [
+      this.validators.maxLength(20, 'Tank code'),
+    ]),
+    techRecord_adrDetails_tank_tankDetails_specialProvisions: this.fb.control<string | null>(null, [
+      this.validators.maxLength(500, 'Special provisions'),
+    ]),
+
+    // Tank statements
+
     // Declarations seen
     techRecord_adrDetails_brakeDeclarationsSeen: this.fb.control<boolean | null>(null),
     techRecord_adrDetails_brakeDeclarationIssuer: this.fb.control<string | null>(null, [
@@ -94,15 +120,4 @@ export class AdrForm extends BaseForm {
     ]),
     techRecord_adrDetails_declarationsSeen: this.fb.control<boolean | null>(null),
   });
-
-  carriesExplosives() {
-    const goodsCarried = this.parent?.get('techRecord_adrDetails_permittedDangerousGoods')?.value;
-    if (Array.isArray(goodsCarried)) {
-      return goodsCarried.some((good) =>
-        ['Explosives (type 2)', 'Explosives (type 3)'].includes(good),
-      );
-    }
-
-    return false;
-  }
 }

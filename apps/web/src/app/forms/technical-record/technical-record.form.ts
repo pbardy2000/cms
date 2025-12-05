@@ -1,5 +1,5 @@
-import { Component, effect, inject, input, model } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AfterViewInit, Component, inject, input, model } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionControlsComponent } from '@app/components/accordion/accordion-controls/accordion-controls.component';
 import { AccordionSectionComponent } from '@app/components/accordion/accordion-section/accordion-section.component';
 import { AccordionComponent } from '@app/components/accordion/accordion.component';
@@ -55,20 +55,19 @@ import { WeightsForm } from '../weights/weights.form';
     ForTagsDirective,
   ],
 })
-export class TechnicalRecordForm {
-  private readonly fb = inject(FormBuilder);
+export class TechnicalRecordForm implements AfterViewInit {
   readonly techRecordService = inject(TechRecordService);
+
+  readonly form = model<FormGroup>();
+  readonly filters = model<string[]>([]);
   readonly techRecord = input.required<TechRecord>();
 
-  readonly form = this.fb.group({});
-  readonly filters = model<string[]>([]);
+  ngAfterViewInit(): void {
+    const form = this.form();
+    const techRecord = this.techRecord();
 
-  constructor() {
-    effect(() => {
-      const techRecord = this.techRecord();
-      if (techRecord) {
-        this.form.patchValue(techRecord);
-      }
-    });
+    if (form && techRecord) {
+      form.patchValue(techRecord);
+    }
   }
 }
