@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {
+  AsyncValidatorFn,
   ControlContainer,
   ControlValueAccessor,
   FormArray,
   FormBuilder,
   FormGroup,
+  ValidatorFn,
 } from '@angular/forms';
 import { ValidatorsService } from '@app/services/validators.service';
 import { ReplaySubject, takeUntil } from 'rxjs';
@@ -56,6 +58,9 @@ export abstract class BaseForm<
     }
 
     if (parent instanceof FormGroup) {
+      parent.addValidators(this.form.validator as ValidatorFn);
+      parent.addAsyncValidators(this.form.asyncValidator as AsyncValidatorFn);
+
       Object.entries(this.form.controls).forEach(([key, control]) => {
         parent.addControl(key, control, { emitEvent: false });
       });

@@ -10,6 +10,7 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ErrorService } from '@app/services/error.service';
 import { ReplaySubject, startWith, takeUntil } from 'rxjs';
 import { CharacterCountComponent } from '../character-count/character-count.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
@@ -28,7 +29,8 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
   ],
 })
 export class TextareaComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
-  private readonly injector = inject(Injector);
+  readonly injector = inject(Injector);
+  readonly errorService = inject(ErrorService);
 
   readonly id = input<string>();
   readonly name = input<string>('');
@@ -41,7 +43,7 @@ export class TextareaComponent implements ControlValueAccessor, AfterViewInit, O
   readonly disabled = model(false);
 
   readonly error = signal<string>('');
-  private readonly destroy = new ReplaySubject<boolean>(1);
+  readonly destroy = new ReplaySubject<boolean>(1);
 
   onChange = (_: string | null) => {};
   onTouched = () => {};
@@ -76,8 +78,8 @@ export class TextareaComponent implements ControlValueAccessor, AfterViewInit, O
               break;
             case 'INVALID':
               if (control.control && control.control.errors) {
-                const errors = Object.values(control.control.errors);
-                this.error.set(errors[0]);
+                const error = Object.values(control.control.errors)[0];
+                this.error.set(typeof error === 'string' ? error : error.label);
               }
               break;
           }

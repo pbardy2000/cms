@@ -1,12 +1,13 @@
 <h1 class="govuk-heading-l">Search technical records</h1>
 
-<form [formGroup]="form">
+<form [formGroup]="form" #ngForm="ngForm" (ngSubmit)="search()">
   <h2 class="govuk-heading-s">Enter a VIN, VRM, or Trailer ID</h2>
   <div class="search-container">
     <app-text-input
       class="search-input"
       formControlName="searchTerm"
       id="searchInput"
+      (keydown.enter)="search()"
     ></app-text-input>
     <app-button class="search-button" (click)="search()" id="searchButton">Search</app-button>
   </div>

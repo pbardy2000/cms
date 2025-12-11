@@ -22,6 +22,7 @@
       "@directives/*": ["./src/app/directives/*"],
       "@environments/*": ["./src/environments/*"],
       "@forms/*": ["./src/app/forms/*"],
+      "@guards/*": ["./src/app/guards/*"],
       "@pages/*": ["./src/app/(pages)/*"],
       "@store/*": ["./src/app/store/*"]
     }

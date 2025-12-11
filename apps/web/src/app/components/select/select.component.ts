@@ -75,8 +75,8 @@ export class SelectComponent<T> implements ControlValueAccessor, AfterViewInit, 
               break;
             case 'INVALID':
               if (control.control && control.control.errors) {
-                const errors = Object.values(control.control.errors);
-                this.error.set(errors[0]);
+                const error = Object.values(control.control.errors)[0];
+                this.error.set(typeof error === 'string' ? error : error.label);
               }
               break;
           }

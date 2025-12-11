@@ -822,8 +822,10 @@ export type TechRecord = {
   techRecord_manufactureYear?: string | null;
   techRecord_brakes_dtpNumber?: string;
   techRecord_vehicleConfiguration?: string;
-  techRecord_make?: string;
-  techRecord_model?: string;
+  techRecord_make?: string | null;
+  techRecord_model?: string | null;
+  techRecord_bodyMake?: string | null;
+  techRecord_bodyModel?: string | null;
   techRecord_bodyType_code?: string | null;
   techRecord_bodyType_description?: string | null;
   techRecord_functionCode?: string | null;
@@ -834,6 +836,10 @@ export type TechRecord = {
   techRecord_frameDescription?: string | null;
   techRecord_suspensionType?: string | null;
   techRecord_tyreUseCode?: string | null;
+  techRecord_chassisMake?: string | null;
+  techRecord_chassisModel?: string | null;
+  techRecord_modelLiteral?: string | null;
+  techRecord_vehicleSubclass?: string | null;
 
   // Last applicant
   techRecord_applicantDetails_name?: string | null;
@@ -981,13 +987,7 @@ export type TestRecord = {
   id: number;
 };
 
-export type TechRecordStub = {
-  vin: string;
-  vrm?: string | undefined;
-  trailerId?: string | undefined;
-  techRecord_statusCode: VehicleStatus;
-  techRecord_vehicleType: VehicleType;
-};
+export type Modes = 'EDIT' | 'VIEW';
 
 export type Axle = {
   axleNumber: number | null;

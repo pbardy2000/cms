@@ -13,12 +13,21 @@ import {
 import { ReleaseEffects } from './release/release.effects';
 import { RELEASE_FEATURE_KEY, ReleaseState } from './release/release.model';
 import { releaseInitialState, releaseReducer } from './release/release.reducer';
+import {
+  TECHNICAL_RECORD_FEATURE_KEY,
+  TechnicalRecordState,
+} from './technical-record/technical-record.model';
+import {
+  technicalRecordInitialState,
+  technicalRecordReducer,
+} from './technical-record/technical-record.reducer';
 
 export type AppState = {
   [CONTENT_ITEM_FEATURE_KEY]: ContentItemState;
   [CONTENT_MODEL_FEATURE_KEY]: ContentModelState;
   [DEFAULT_ROUTER_FEATURENAME]: RouterState | undefined;
   [RELEASE_FEATURE_KEY]: ReleaseState;
+  [TECHNICAL_RECORD_FEATURE_KEY]: TechnicalRecordState;
 };
 
 export const appInitialState: AppState = {
@@ -26,6 +35,7 @@ export const appInitialState: AppState = {
   [CONTENT_MODEL_FEATURE_KEY]: contentModelInitialState,
   [DEFAULT_ROUTER_FEATURENAME]: undefined,
   [RELEASE_FEATURE_KEY]: releaseInitialState,
+  [TECHNICAL_RECORD_FEATURE_KEY]: technicalRecordInitialState,
 };
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -33,6 +43,7 @@ export const reducers: ActionReducerMap<AppState> = {
   [CONTENT_MODEL_FEATURE_KEY]: contentModelReducer,
   [DEFAULT_ROUTER_FEATURENAME]: routerReducer,
   [RELEASE_FEATURE_KEY]: releaseReducer,
+  [TECHNICAL_RECORD_FEATURE_KEY]: technicalRecordReducer,
 };
 
 export const effects = [ContentItemEffects, ContentModelEffects, ReleaseEffects];

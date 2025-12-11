@@ -57,11 +57,11 @@ export class GeneralVehicleDetailsForm extends BaseForm {
       this.validators.maxLength(30, 'Body model must be less than or equal to 30 characters'),
     ]),
     techRecord_vehicleConfiguration: this.fb.control<string | null | undefined>(undefined, [
-      this.validators.required('Vehicle configuration is required'),
+      this.validators.required('Vehicle configuration'),
     ]),
     techRecord_bodyType_code: this.fb.control<string | null | undefined>(undefined),
     techRecord_bodyType_description: this.fb.control<string | null | undefined>(undefined, [
-      this.validators.required('Body type is required'),
+      this.validators.required('Body type'),
     ]),
     techRecord_bodyMake: this.fb.control<string | null | undefined>(
       { value: undefined, disabled: true },

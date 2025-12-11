@@ -44,10 +44,10 @@ export class SeatsAndVehicleSizeForm extends BaseForm {
       this.validators.max(99, 'Wheelchair capacity must be less than or equal to 99'),
     ]),
     techRecord_vehicleClass_description: this.fb.control<string | null>(null, [
-      this.validators.required('Vehicle class is required'),
+      this.validators.required('Vehicle class'),
     ]),
     techRecord_vehicleSize: this.fb.control<string | null>(null, [
-      this.validators.required('Vehicle size is required'),
+      this.validators.required('Vehicle size'),
     ]),
     techRecord_numberOfSeatbelts: this.fb.control<string | null>(null, [
       this.validators.max(150, 'Number of seatbelts must be less than or equal to 150'),

@@ -1,0 +1,5 @@
+<h1 class="govuk-heading-l">Preview technical record</h1>
+
+@if (editingTechRecord(); as techRecord) {
+  <app-tech-record [techRecord]="techRecord" [mode]="'VIEW'"></app-tech-record>
+}

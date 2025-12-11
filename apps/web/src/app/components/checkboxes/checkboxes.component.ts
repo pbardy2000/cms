@@ -13,6 +13,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from 
 import { ReplaySubject, startWith, takeUntil } from 'rxjs';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { CHECKBOXES } from './checkboxes.model';
 
 @Component({
   selector: 'app-checkboxes',
@@ -20,6 +21,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
   styleUrls: ['./checkboxes.component.scss'],
   imports: [FormsModule, ErrorMessageComponent, CheckboxComponent],
   providers: [
+    { provide: CHECKBOXES, useExisting: forwardRef(() => CheckboxesComponent) },
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxesComponent),
@@ -100,8 +102,8 @@ export class CheckboxesComponent<T> implements ControlValueAccessor, AfterViewIn
               break;
             case 'INVALID':
               if (control.control && control.control.errors) {
-                const errors = Object.values(control.control.errors);
-                this.error.set(errors[0]);
+                const error = Object.values(control.control.errors)[0];
+                this.error.set(typeof error === 'string' ? error : error.label);
               }
               break;
           }

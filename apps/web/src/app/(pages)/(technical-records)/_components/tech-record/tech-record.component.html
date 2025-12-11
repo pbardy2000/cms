@@ -1,0 +1,567 @@
+@if (techRecord(); as techRecord) {
+  <!-- General vehicle details -->
+  @if (techRecordService.canHaveGeneralVehicleDetails(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">General vehicle details</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> General vehicle details </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <!-- Vehicle class -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Vehicle class</dt>
+            <dd class="govuk-summary-list__value">
+              {{ techRecord.techRecord_vehicleClass_description }}
+            </dd>
+            <!-- Year of manufacture -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Year of manufacture</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_manufactureYear }}
+              </dd>
+            </div>
+            <!-- DTp number -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">DTp number</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_brakes_dtpNumber }}
+              </dd>
+            </div>
+            <!-- Make -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Make</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_make }}
+              </dd>
+            </div>
+            <!-- Model -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Model</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_model }}
+              </dd>
+            </div>
+            <!-- Vehicle configuration -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Vehicle configuration</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_vehicleConfiguration }}
+              </dd>
+            </div>
+            <!-- Body type -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Body type</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_bodyMake }}
+              </dd>
+            </div>
+            <!-- Body model -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Body model</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_bodyModel }}
+              </dd>
+            </div>
+            <!-- Function code -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Function code</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_functionCode }}
+              </dd>
+            </div>
+            <!-- Conversion reference number -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Conversion reference number</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_conversionRefNo }}
+              </dd>
+            </div>
+            <!-- EU vehicle category -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">EU vehicle category</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_euVehicleCategory }}
+              </dd>
+            </div>
+            <!-- Number of axles -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Number of axles</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_noOfAxles }}
+              </dd>
+            </div>
+            <!-- Month of manufacture -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Month of manufacture</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_manufactureYear }}
+              </dd>
+            </div>
+            <!-- Chassis make -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Chassis make</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_chassisMake }}
+              </dd>
+            </div>
+            <!-- Chassis model -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Chassis model</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_chassisModel }}
+              </dd>
+            </div>
+            <!-- Number of wheels -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Number of wheels</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_numberOfWheelsDriven }}
+              </dd>
+            </div>
+            <!-- Model literal -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Model literal</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_modelLiteral }}
+              </dd>
+            </div>
+            <!-- Vehicle subclass -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Vehicle subclass</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_vehicleSubclass }}
+              </dd>
+            </div>
+            <!-- First use date -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">First use date</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_firstUseDate }}
+              </dd>
+            </div>
+            <!-- Frame description -->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Frame description</dt>
+              <dd class="govuk-summary-list__value">
+                {{ techRecord.techRecord_frameDescription }}
+              </dd>
+            </div>
+          </div>
+        </dl>
+      </div>
+    </div>
+  }
+
+  <!-- Approval type -->
+  @if (techRecordService.canHaveApprovalType(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Approval type</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Approval type </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <!-- Approval type -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Approval type</dt>
+            <dd class="govuk-summary-list__value">
+              {{ techRecord.techRecord_approvalType }}
+            </dd>
+          </div>
+          <!-- Approval type number -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Approval type number</dt>
+            <dd class="govuk-summary-list__value">
+              {{ techRecord.techRecord_approvalTypeNumber }}
+            </dd>
+          </div>
+          <!-- Variant number -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Variant number</dt>
+            <dd class="govuk-summary-list__value">
+              {{ techRecord.techRecord_variantNumber }}
+            </dd>
+          </div>
+          <!-- Variant version number -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Variant version number</dt>
+            <dd class="govuk-summary-list__value">
+              {{ techRecord.techRecord_variantVersionNumber }}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  }
+
+  <!-- Dimensions -->
+  @if (techRecordService.canHaveDimensions(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Dimensions</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Dimensions </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Authorisation into service -->
+  @if (techRecordService.canHaveAuthorisationIntoService(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Authorisation into service</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Authorisation into service </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Purchaser -->
+  @if (techRecordService.canHavePurchaser(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Purchaser</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Purchaser </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Manufacturer -->
+  @if (techRecordService.canHaveManufacturer(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Manufacturer</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Manufacturer </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Weights -->
+  @if (techRecordService.canHaveWeights(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Weights</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Weights </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Tyres -->
+  @if (techRecordService.canHaveTyres(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Tyres</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Tyres </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Configuration -->
+  @if (techRecordService.canHaveConfiguration(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Configuration</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Configuration </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Emissions and exemptions -->
+  @if (techRecordService.canHaveEmissionsAndExemptions(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Emissions and exemptions</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Emissions and exemptions </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- ADR -->
+  @if (techRecordService.canHaveAdr(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">ADR</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> ADR </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Last applicant -->
+  @if (techRecordService.canHaveLastApplicant(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Last applicant</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Last applicant </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Seats and vehicle size -->
+  @if (techRecordService.canHaveSeatsAndVehicleSize(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Seats and vehicle size</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Seats and vehicle size </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Brakes -->
+  @if (techRecordService.canHaveBrakes(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Brakes</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Brakes </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Disability discrimination act -->
+  @if (techRecordService.canHaveDisabilityDiscriminationAct(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Disability discrimination act</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Disability discrimination act </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Documents -->
+  @if (techRecordService.canHaveDocuments(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Documents</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Documents </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Notes -->
+  @if (techRecordService.canHaveNotes(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Notes</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Notes </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+
+  <!-- Reason for amendment -->
+  @if (techRecordService.canHaveReasonForAmendment(techRecord)) {
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Reason for amendment</h2>
+        @if (mode() === 'EDIT') {
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="javascript:void(0)">
+                Edit
+                <span class="govuk-visually-hidden"> Reason for amendment </span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list"></dl>
+      </div>
+    </div>
+  }
+}

@@ -83,17 +83,6 @@
             </app-accordion-section>
           }
 
-          <!-- Configuration -->
-          @if (techRecordService.canHaveConfiguration(techRecord)) {
-            <app-accordion-section
-              *forTags="[]; filters: filters()"
-              heading="Configuration"
-              summary="Off-road, fuel system, road friendly suspension."
-            >
-              <app-configuration-form [techRecord]="techRecord" [filters]="filters()" />
-            </app-accordion-section>
-          }
-
           <!-- Tyres (HGV, TRL, PSV) -->
           @if (techRecordService.canHaveTyres(techRecord)) {
             <app-accordion-section
@@ -102,6 +91,17 @@
               summary="Tyre details, tyre use code."
             >
               <app-tyres-form [techRecord]="techRecord" [filters]="filters()" />
+            </app-accordion-section>
+          }
+
+          <!-- Configuration -->
+          @if (techRecordService.canHaveConfiguration(techRecord)) {
+            <app-accordion-section
+              *forTags="[]; filters: filters()"
+              heading="Configuration"
+              summary="Off-road, fuel system, road friendly suspension."
+            >
+              <app-configuration-form [techRecord]="techRecord" [filters]="filters()" />
             </app-accordion-section>
           }
 

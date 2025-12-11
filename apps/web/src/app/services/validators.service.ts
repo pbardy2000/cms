@@ -10,6 +10,12 @@ function isEmpty(value: unknown): boolean {
   providedIn: 'root',
 })
 export class ValidatorsService {
+  toggle(control: AbstractControl, validator: ValidatorFn): void {
+    control.hasValidator(validator)
+      ? control.removeValidators(validator)
+      : control.addValidators(validator);
+  }
+
   inferControlKey(control: AbstractControl): string | number | null {
     if (!control.parent) return null;
 
@@ -34,98 +40,68 @@ export class ValidatorsService {
     return null;
   }
 
-  min(min: number, error: ErrorMessage | string): ValidatorFn {
+  min(min: number, error: string): ValidatorFn {
     return (control) => {
       if (!control.touched) return null;
-      const key = this.inferControlKey(control);
 
-      return control.value != null && Number.parseInt(control.value) <= min
-        ? {
-            min:
-              typeof error === 'string'
-                ? {
-                    href: key,
-                    label: `${error} must be greater than or equal to ${min}`,
-                  }
-                : error,
-          }
-        : null;
+      if (control.value != null && Number.parseInt(control.value) <= min) {
+        const href = this.inferControlKey(control);
+        return { href, label: `${error} must be greater than or equal to ${min}` };
+      }
+
+      return null;
     };
   }
 
-  max(max: number, error: ErrorMessage | string): ValidatorFn {
+  max(max: number, error: string): ValidatorFn {
     return (control) => {
       if (!control.touched) return null;
 
-      const key = this.inferControlKey(control);
+      if (control.value != null && Number.parseInt(control.value) > max) {
+        const href = this.inferControlKey(control);
+        return { href, label: `${error} must be less than or equal to ${max}` };
+      }
 
-      return control.value != null && Number.parseInt(control.value) > max
-        ? {
-            max:
-              typeof error === 'string'
-                ? {
-                    href: key,
-                    label: `${error} must be less than or equal to ${max}`,
-                  }
-                : error,
-          }
-        : null;
+      return null;
     };
   }
 
-  minLength(min: number, error: ErrorMessage | string): ValidatorFn {
+  minLength(min: number, error: string): ValidatorFn {
     return (control) => {
       if (!control.touched) return null;
 
-      const key = this.inferControlKey(control);
+      if (control.value !== null && control.value.length < min) {
+        const href = this.inferControlKey(control);
+        return { href, label: `${error} must be greater than or equal to ${min} characters` };
+      }
 
-      return control.value !== null && control.value.length < min
-        ? {
-            minLength:
-              typeof error === 'string'
-                ? {
-                    href: key,
-                    label: `${error} must be greater than or equal to ${min} characters`,
-                  }
-                : error,
-          }
-        : null;
+      return null;
     };
   }
 
-  maxLength(max: number, error: ErrorMessage | string): ValidatorFn {
+  maxLength(max: number, error: string): ValidatorFn {
     return (control) => {
       if (!control.touched) return null;
 
-      const key = this.inferControlKey(control);
+      if (control.value !== null && control.value.length > max) {
+        const href = this.inferControlKey(control);
+        return { href, label: `${error} must be ${max} characters or less` };
+      }
 
-      return control.value !== null && control.value.length > max
-        ? {
-            maxLength:
-              typeof error === 'string'
-                ? {
-                    href: key,
-                    label: `${error} must be ${max} characters or less`,
-                  }
-                : error,
-          }
-        : null;
+      return null;
     };
   }
 
-  required(error: ErrorMessage | string): ValidatorFn {
+  required(error: string): ValidatorFn {
     return (control) => {
       if (!control.touched) return null;
 
-      const key = this.inferControlKey(control);
-      const invalid = typeof control.value === 'boolean' ? false : isEmpty(control.value);
+      if (typeof control.value === 'boolean' ? false : isEmpty(control.value)) {
+        const href = this.inferControlKey(control);
+        return { required: { href, label: `${error} is required` } };
+      }
 
-      return invalid
-        ? {
-            required:
-              typeof error === 'string' ? { href: key, label: `${error} is required` } : error,
-          }
-        : null;
+      return null;
     };
   }
 
@@ -151,16 +127,12 @@ export class ValidatorsService {
     return (control) => {
       if (!control.touched) return null;
 
-      const key = this.inferControlKey(control);
+      if (control.value === null || /[^a-zA-Z0-9]/.test(control.value)) {
+        const href = this.inferControlKey(control);
+        return { href, label: `${error} must be alphanumeric` };
+      }
 
-      return control.value === null || /[^a-zA-Z0-9]/.test(control.value)
-        ? {
-            alphanumeric:
-              typeof error === 'string'
-                ? { href: key, label: `${error} muste be alphanumeric` }
-                : error,
-          }
-        : null;
+      return null;
     };
   }
 
@@ -168,17 +140,13 @@ export class ValidatorsService {
     return (control) => {
       if (!control.touched) return null;
 
-      const key = this.inferControlKey(control);
+      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      if (control.value !== null && !regex.test(control.value)) {
+        const href = this.inferControlKey(control);
+        return { href, label: `${error} must be a valid email address` };
+      }
 
-      return control.value !== null &&
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(control.value)
-        ? {
-            email:
-              typeof error === 'string'
-                ? { href: key, label: `${error} must be in the past` }
-                : error,
-          }
-        : null;
+      return null;
     };
   }
 

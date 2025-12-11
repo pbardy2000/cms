@@ -102,7 +102,8 @@ export class TypeaheadComponent<T> implements ControlValueAccessor, OnDestroy, A
           }
 
           if (status === 'INVALID' && control.control?.errors) {
-            this.error$.set(Object.values(control.control.errors || {})[0]);
+            const error = Object.values(control.control.errors)[0];
+            this.error$.set(typeof error === 'string' ? error : error.label);
           }
         });
     }

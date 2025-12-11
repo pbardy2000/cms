@@ -22,7 +22,6 @@ import { RADIOS } from './radios.model';
   imports: [FormsModule, ErrorMessageComponent, RadioComponent],
   providers: [
     { provide: RADIOS, useExisting: forwardRef(() => RadiosComponent) },
-
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadiosComponent),
@@ -80,8 +79,8 @@ export class RadiosComponent<T> implements ControlValueAccessor, AfterViewInit, 
               break;
             case 'INVALID':
               if (control.control && control.control.errors) {
-                const errors = Object.values(control.control.errors);
-                this.error.set(errors[0]);
+                const error = Object.values(control.control.errors)[0];
+                this.error.set(typeof error === 'string' ? error : error.label);
               }
               break;
           }

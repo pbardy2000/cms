@@ -1,21 +1,29 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonGroupComponent } from '@app/components/button-group/button-group.component';
 import { ButtonComponent } from '@app/components/button/button.component';
 import { ErrorSummaryComponent } from '@app/components/error-summary/error-summary.component';
 import { TechnicalRecordForm } from '@app/forms/technical-record/technical-record.form';
+import { CanComponentDeactivate } from '@app/guards/can-deactivate.guard';
 import { TechRecord, VehicleStatus, VehicleType } from '@app/services/constants.service';
+import { ErrorService } from '@app/services/error.service';
+import { stashTechnicalRecordChanges } from '@app/store/technical-record/technical-record.actions';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-technical-record-details',
   templateUrl: './create-technical-record-details.page.html',
   imports: [TechnicalRecordForm, ButtonGroupComponent, ButtonComponent, ErrorSummaryComponent],
 })
-export class CreateTechnicalRecordPage {
+export class CreateTechnicalRecordPage implements CanComponentDeactivate {
   readonly fb = inject(FormBuilder);
+  readonly store = inject(Store);
+  readonly router = inject(Router);
   readonly activatedRoute = inject(ActivatedRoute);
+  readonly errorService = inject(ErrorService);
 
   readonly form = this.fb.group({});
   readonly queryParams = toSignal(this.activatedRoute.queryParamMap);
@@ -33,9 +41,22 @@ export class CreateTechnicalRecordPage {
     };
   });
 
-  saveAndContinue(): void {}
+  saveAndContinue(): void {
+    this.errorService.markAllAsTouched(this.form);
 
-  cancel(): void {}
+    if (this.form.valid) {
+      this.router.navigate(['technical-records', 'create', 'preview']);
+    }
+  }
+
+  cancel(): void {
+    this.router.navigate(['technical-records', 'create']);
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    this.store.dispatch(stashTechnicalRecordChanges({ technicalRecord: this.form.value as any }));
+    return true;
+  }
 }
 
 export function createEmptyHGV(): TechRecord {
